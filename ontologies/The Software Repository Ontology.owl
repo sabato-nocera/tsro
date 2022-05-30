@@ -1,0 +1,340 @@
+@prefix : <http://www.semanticweb.org/sabato/ontologies/2022/4/tsro#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/sabato/ontologies/2022/4/tsro> .
+
+<http://www.semanticweb.org/sabato/ontologies/2022/4/tsro> rdf:type owl:Ontology ;
+                                                            owl:imports <http://rdfs.org/sioc/ns#> ,
+                                                                        <http://xmlns.com/foaf/0.1/> ,
+                                                                        <https://w3id.org/def/InformaticsResearchArtifactsOntology> ,
+                                                                        <https://w3id.org/okn/o/sd/1.9.0> ;
+                                                            rdfs:comment "Quest'ontologia è stata realizzata come progetto del corso di Intelligent Web (A.A. 2021/2022) e rappresenta una specifica formale, esplicita e condivisa della concettualizzazione di repository software."@it ,
+                                                                         "This ontology was created as a project of the Intelligent Web course (A.A. 2021/2022) and represents a formal, explicit and shared specification of the conceptualization of software repositories."@en ;
+                                                            rdfs:label "The Software Repository Ontology"@en .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/sabato/ontologies/2022/4/tsro#creatorOfGithubRepository
+:creatorOfGithubRepository rdf:type owl:ObjectProperty ;
+                           rdfs:subPropertyOf <http://rdfs.org/sioc/ns#creator_of> ;
+                           owl:inverseOf :gitHubRepositoryCreator ;
+                           rdfs:domain :GitHubAccount ;
+                           rdfs:range :GitHubSoftwareRepository ;
+                           rdfs:label "creator of github repository"@en .
+
+
+###  http://www.semanticweb.org/sabato/ontologies/2022/4/tsro#forkedFrom
+:forkedFrom rdf:type owl:ObjectProperty ;
+            owl:inverseOf :hasFork ;
+            rdf:type owl:FunctionalProperty ;
+            rdfs:domain :SoftwareRepository ;
+            rdfs:range :SoftwareRepository ;
+            rdfs:label "forked from"@en .
+
+
+###  http://www.semanticweb.org/sabato/ontologies/2022/4/tsro#gitHubRepositoryCreator
+:gitHubRepositoryCreator rdf:type owl:ObjectProperty ;
+                         rdfs:subPropertyOf <http://rdfs.org/sioc/ns#has_creator> ;
+                         rdf:type owl:FunctionalProperty ;
+                         rdfs:domain :GitHubSoftwareRepository ;
+                         rdfs:range :GitHubAccount ;
+                         rdfs:label "github repository creator"@en .
+
+
+###  http://www.semanticweb.org/sabato/ontologies/2022/4/tsro#githubContributor
+:githubContributor rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf :repositoryContributor ;
+                   rdfs:domain :GitHubSoftwareRepository ;
+                   rdfs:range :GitHubDeveloperAccount ;
+                   rdfs:label "github contributor"@en .
+
+
+###  http://www.semanticweb.org/sabato/ontologies/2022/4/tsro#hasBranch
+:hasBranch rdf:type owl:ObjectProperty ;
+           rdfs:domain :Commit ,
+                       :SoftwareRepository ;
+           rdfs:range :Branch ;
+           rdfs:label "has branch"@en .
+
+
+###  http://www.semanticweb.org/sabato/ontologies/2022/4/tsro#hasCommit
+:hasCommit rdf:type owl:ObjectProperty ;
+           owl:inverseOf :isCommitOf ;
+           rdfs:domain :SoftwareRepository ;
+           rdfs:range :Commit ;
+           rdfs:label "has commit"@en .
+
+
+###  http://www.semanticweb.org/sabato/ontologies/2022/4/tsro#hasCommitter
+:hasCommitter rdf:type owl:ObjectProperty ,
+                       owl:FunctionalProperty ;
+              rdfs:domain :Commit ;
+              rdfs:range :GitHubDeveloperAccount ;
+              rdfs:label "has committer"@en .
+
+
+###  http://www.semanticweb.org/sabato/ontologies/2022/4/tsro#hasFork
+:hasFork rdf:type owl:ObjectProperty ;
+         rdfs:domain :SoftwareRepository ;
+         rdfs:range :SoftwareRepository ;
+         rdfs:label "has fork"@en .
+
+
+###  http://www.semanticweb.org/sabato/ontologies/2022/4/tsro#hasModifiedFile
+:hasModifiedFile rdf:type owl:ObjectProperty ;
+                 owl:inverseOf :modifiedIn ;
+                 rdfs:domain :Commit ;
+                 rdfs:range :ModifiedFile ;
+                 rdfs:label "has modified file"@en .
+
+
+###  http://www.semanticweb.org/sabato/ontologies/2022/4/tsro#hasRepository
+:hasRepository rdf:type owl:ObjectProperty ;
+               rdfs:domain <https://w3id.org/okn/o/sd#Software> ;
+               rdfs:range :SoftwareRepository ;
+               owl:propertyDisjointWith :relatedToSoftware ;
+               rdfs:label "has repository"@en .
+
+
+###  http://www.semanticweb.org/sabato/ontologies/2022/4/tsro#hasTopic
+:hasTopic rdf:type owl:ObjectProperty ;
+          rdfs:domain :SoftwareRepository ;
+          rdfs:range <http://cso.kmi.open.ac.uk/schema/cso#Topic> ;
+          rdfs:label "has topic"@en .
+
+
+###  http://www.semanticweb.org/sabato/ontologies/2022/4/tsro#isCommitOf
+:isCommitOf rdf:type owl:ObjectProperty ,
+                     owl:FunctionalProperty ;
+            rdfs:domain :Commit ;
+            rdfs:range :SoftwareRepository ;
+            rdfs:label "is commit of"@en .
+
+
+###  http://www.semanticweb.org/sabato/ontologies/2022/4/tsro#likesGitHubRepository
+:likesGitHubRepository rdf:type owl:ObjectProperty ;
+                       rdfs:subPropertyOf <http://rdfs.org/sioc/ns#likes> ;
+                       rdfs:domain :GitHubAccount ;
+                       rdfs:range :GitHubSoftwareRepository ;
+                       rdfs:label "likes github repository"@en .
+
+
+###  http://www.semanticweb.org/sabato/ontologies/2022/4/tsro#modifiedIn
+:modifiedIn rdf:type owl:ObjectProperty ;
+            rdfs:domain :ModifiedFile ;
+            rdfs:range :Commit ;
+            rdfs:label "modified in"@en .
+
+
+###  http://www.semanticweb.org/sabato/ontologies/2022/4/tsro#relatedToSoftware
+:relatedToSoftware rdf:type owl:ObjectProperty ;
+                   rdfs:domain :SoftwareRepository ;
+                   rdfs:range <https://w3id.org/okn/o/sd#Software> ;
+                   rdfs:label "related to software"@en .
+
+
+###  http://www.semanticweb.org/sabato/ontologies/2022/4/tsro#repositoryAuthor
+:repositoryAuthor rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf <http://schema.org/author> ;
+                  rdf:type owl:FunctionalProperty ;
+                  rdfs:domain <http://ontology.ethereal.cz/irao/Repository> ;
+                  rdfs:range <http://rdfs.org/sioc/ns#UserAccount> ;
+                  rdfs:label "repository author"@en .
+
+
+###  http://www.semanticweb.org/sabato/ontologies/2022/4/tsro#repositoryContributor
+:repositoryContributor rdf:type owl:ObjectProperty ;
+                       rdfs:subPropertyOf <http://schema.org/contributor> ;
+                       rdfs:domain :SoftwareRepository ;
+                       rdfs:range <http://rdfs.org/sioc/ns#UserAccount> ;
+                       rdfs:label "repository contributor"@en .
+
+
+###  https://dbpedia.org/property/sponsor
+<https://dbpedia.org/property/sponsor> rdf:type owl:ObjectProperty ;
+                                       rdfs:domain :GitHubAccount ;
+                                       rdfs:range :GitHubDeveloperAccount ;
+                                       rdfs:label "sponsors"@en .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.semanticweb.org/sabato/ontologies/2022/4/tsro#hasCloneUrl
+:hasCloneUrl rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf <https://dbpedia.org/property/url> ;
+             rdf:type owl:FunctionalProperty ;
+             rdfs:domain :RemoteSoftwareRepository ;
+             rdfs:range rdfs:Literal ;
+             owl:propertyDisjointWith :hasHtmlUrl ;
+             rdfs:label "has clone url" .
+
+
+###  http://www.semanticweb.org/sabato/ontologies/2022/4/tsro#hasDeletedLines
+:hasDeletedLines rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf :hasLines ;
+                 rdf:type owl:FunctionalProperty ;
+                 rdfs:domain :Commit ,
+                             :ModifiedFile ,
+                             <https://w3id.org/okn/o/sd#SourceCode> ;
+                 rdfs:range xsd:int ;
+                 rdfs:label "has deleted lines"@en .
+
+
+###  http://www.semanticweb.org/sabato/ontologies/2022/4/tsro#hasHash
+:hasHash rdf:type owl:DatatypeProperty ,
+                  owl:FunctionalProperty ;
+         rdfs:domain :Commit ;
+         rdfs:range rdfs:Literal ;
+         rdfs:label "has hash"@en .
+
+
+###  http://www.semanticweb.org/sabato/ontologies/2022/4/tsro#hasHtmlUrl
+:hasHtmlUrl rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf <https://dbpedia.org/property/url> ;
+            rdf:type owl:FunctionalProperty ;
+            rdfs:domain :RemoteSoftwareRepository ;
+            rdfs:range rdfs:Literal ;
+            rdfs:label "has html url" .
+
+
+###  http://www.semanticweb.org/sabato/ontologies/2022/4/tsro#hasInsertedLines
+:hasInsertedLines rdf:type owl:DatatypeProperty ;
+                  rdfs:subPropertyOf :hasLines ;
+                  rdf:type owl:FunctionalProperty ;
+                  rdfs:domain :Commit ,
+                              :ModifiedFile ,
+                              <https://w3id.org/okn/o/sd#SourceCode> ;
+                  rdfs:range xsd:int ;
+                  rdfs:label "has inserted lines"@en .
+
+
+###  http://www.semanticweb.org/sabato/ontologies/2022/4/tsro#hasLines
+:hasLines rdf:type owl:DatatypeProperty ;
+          rdfs:domain :Commit ;
+          rdfs:range rdfs:Literal ;
+          rdfs:label "has lines"@en .
+
+
+###  http://www.semanticweb.org/sabato/ontologies/2022/4/tsro#hasNloc
+:hasNloc rdf:type owl:DatatypeProperty ,
+                  owl:FunctionalProperty ;
+         rdfs:domain :Commit ,
+                     :ModifiedFile ,
+                     <https://w3id.org/okn/o/sd#SourceCode> ;
+         rdfs:range xsd:int ;
+         rdfs:label "has nloc"@en .
+
+
+###  http://www.semanticweb.org/sabato/ontologies/2022/4/tsro#hasTotalLines
+:hasTotalLines rdf:type owl:DatatypeProperty ;
+               rdfs:subPropertyOf :hasLines ;
+               rdf:type owl:FunctionalProperty ;
+               rdfs:domain :Commit ,
+                           :ModifiedFile ,
+                           <https://w3id.org/okn/o/sd#SourceCode> ;
+               rdfs:range xsd:int ;
+               rdfs:label "has total lines"@en .
+
+
+###  https://dbpedia.org/property/url
+<https://dbpedia.org/property/url> rdf:type owl:DatatypeProperty .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/sabato/ontologies/2022/4/tsro#Branch
+:Branch rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/sabato/ontologies/2022/4/tsro#Commit
+:Commit rdf:type owl:Class ;
+        <http://purl.org/dc/elements/1.1/description> rdfs:Literal .
+
+
+###  http://www.semanticweb.org/sabato/ontologies/2022/4/tsro#GitHubAccount
+:GitHubAccount rdf:type owl:Class ;
+               rdfs:subClassOf <http://rdfs.org/sioc/ns#UserAccount> ;
+               rdfs:label "GitHub Account" .
+
+
+###  http://www.semanticweb.org/sabato/ontologies/2022/4/tsro#GitHubDeveloperAccount
+:GitHubDeveloperAccount rdf:type owl:Class ;
+                        rdfs:subClassOf :GitHubAccount ;
+                        owl:disjointWith :GitHubOrganizationAccount ;
+                        rdfs:label "GitHub Developer Account" .
+
+
+###  http://www.semanticweb.org/sabato/ontologies/2022/4/tsro#GitHubOrganizationAccount
+:GitHubOrganizationAccount rdf:type owl:Class ;
+                           rdfs:subClassOf :GitHubAccount ;
+                           rdfs:label "GitHub Organization Account" .
+
+
+###  http://www.semanticweb.org/sabato/ontologies/2022/4/tsro#GitHubSoftwareRepository
+:GitHubSoftwareRepository rdf:type owl:Class ;
+                          rdfs:subClassOf :RemoteSoftwareRepository ;
+                          rdfs:label "GitHub Software Repository" .
+
+
+###  http://www.semanticweb.org/sabato/ontologies/2022/4/tsro#ModifiedFile
+:ModifiedFile rdf:type owl:Class ;
+              rdfs:subClassOf <https://dbpedia.org/ontology/File> .
+
+
+###  http://www.semanticweb.org/sabato/ontologies/2022/4/tsro#RemoteSoftwareRepository
+:RemoteSoftwareRepository rdf:type owl:Class ;
+                          rdfs:subClassOf :SoftwareRepository ;
+                          rdfs:label "Remote Software Repository" .
+
+
+###  http://www.semanticweb.org/sabato/ontologies/2022/4/tsro#SoftwareRepository
+:SoftwareRepository rdf:type owl:Class ;
+                    rdfs:subClassOf <http://ontology.ethereal.cz/irao/Repository> ;
+                    <http://purl.org/dc/elements/1.1/creator> <http://xmlns.com/foaf/0.1/Agent> ;
+                    <http://purl.org/dc/elements/1.1/description> rdfs:Literal ;
+                    <http://purl.org/dc/elements/1.1/rights> <https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#RightsStatement> ;
+                    rdfs:label "Software Repository" .
+
+
+###  https://dbpedia.org/ontology/File
+<https://dbpedia.org/ontology/File> rdf:type owl:Class .
+
+
+###  https://dbpedia.org/ontology/Organisation
+<https://dbpedia.org/ontology/Organisation> rdf:type owl:Class ;
+                                            rdfs:subClassOf <http://xmlns.com/foaf/0.1/Group> ;
+                                            rdfs:seeAlso <http://xmlns.com/foaf/0.1/Organization> .
+
+
+###  https://dbpedia.org/ontology/developer
+<https://dbpedia.org/ontology/developer> rdf:type owl:Class ;
+                                         rdfs:subClassOf <https://w3id.org/okn/o/sd#Person> ;
+                                         rdfs:label "Developer"@en .
+
+
+###  https://w3id.org/okn/o/sd#Software
+<https://w3id.org/okn/o/sd#Software> rdfs:seeAlso <https://dbpedia.org/ontology/Software> .
+
+
+###  https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#RightsStatement
+<https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#RightsStatement> rdf:type owl:Class ;
+                                                                                    rdfs:label "License"@en .
+
+
+#################################################################
+#    Annotations
+#################################################################
+
+<http://xmlns.com/foaf/0.1/Agent> rdfs:seeAlso <https://dbpedia.org/ontology/Agent> .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
