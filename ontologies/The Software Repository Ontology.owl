@@ -53,11 +53,11 @@
                  rdfs:label "likes repository" .
 
 
-###  http://www.semanticweb.org/sabato/ontologies/2022/5/tsro#modifiedFiles
-:modifiedFiles rdf:type owl:ObjectProperty ;
-               rdfs:domain :Commit ;
-               rdfs:range <https://dbpedia.org/ontology/File> ;
-               rdfs:label "modified files" .
+###  http://www.semanticweb.org/sabato/ontologies/2022/5/tsro#modifiedFile
+:modifiedFile rdf:type owl:ObjectProperty ;
+              rdfs:domain :Commit ;
+              rdfs:range <https://dbpedia.org/ontology/File> ;
+              rdfs:label "modified file" .
 
 
 #################################################################
