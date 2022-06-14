@@ -31,6 +31,27 @@
            rdfs:range :Commit .
 
 
+###  http://www.semanticweb.org/sabato/ontologies/2022/5/tsro#hasBranch
+:hasBranch rdf:type owl:ObjectProperty ;
+           rdfs:domain :SoftwareRepository ;
+           rdfs:range :Branch ;
+           rdfs:label "has branch" .
+
+
+###  http://www.semanticweb.org/sabato/ontologies/2022/5/tsro#hasCommit
+:hasCommit rdf:type owl:ObjectProperty ;
+           rdfs:domain :Branch ;
+           rdfs:range :Commit ;
+           rdfs:label "has commit" .
+
+
+###  http://www.semanticweb.org/sabato/ontologies/2022/5/tsro#modifiedFiles
+:modifiedFiles rdf:type owl:ObjectProperty ;
+               rdfs:domain :Commit ;
+               rdfs:range <https://dbpedia.org/ontology/File> ;
+               rdfs:label "modified files" .
+
+
 #################################################################
 #    Data properties
 #################################################################
@@ -65,6 +86,10 @@
 <http://ontology.ethereal.cz/irao/Software> owl:equivalentClass <https://w3id.org/okn/o/sd#Software> ;
                                             <http://purl.org/dc/elements/1.1/title> rdfs:Literal ;
                                             rdfs:seeAlso <https://dbpedia.org/ontology/Software> .
+
+
+###  http://www.semanticweb.org/sabato/ontologies/2022/5/tsro#Branch
+:Branch rdf:type owl:Class .
 
 
 ###  http://www.semanticweb.org/sabato/ontologies/2022/5/tsro#Commit
