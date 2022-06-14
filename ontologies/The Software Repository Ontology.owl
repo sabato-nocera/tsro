@@ -45,6 +45,14 @@
            rdfs:label "has commit" .
 
 
+###  http://www.semanticweb.org/sabato/ontologies/2022/5/tsro#likesRepository
+:likesRepository rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf <http://rdfs.org/sioc/ns#likes> ;
+                 rdfs:domain <http://rdfs.org/sioc/ns#UserAccount> ;
+                 rdfs:range <http://ontology.ethereal.cz/irao/Repository> ;
+                 rdfs:label "likes repository" .
+
+
 ###  http://www.semanticweb.org/sabato/ontologies/2022/5/tsro#modifiedFiles
 :modifiedFiles rdf:type owl:ObjectProperty ;
                rdfs:domain :Commit ;
@@ -67,7 +75,7 @@
 ###  http://www.semanticweb.org/sabato/ontologies/2022/5/tsro#hasHtmlUrl
 :hasHtmlUrl rdf:type owl:DatatypeProperty ;
             rdfs:subPropertyOf <http://ontology.ethereal.cz/irao/hasURL> ;
-            rdfs:domain :SoftwareRepository ;
+            rdfs:domain <http://ontology.ethereal.cz/irao/Repository> ;
             rdfs:range xsd:anyURI ;
             rdfs:label "has HTML URL" .
 
