@@ -59,6 +59,14 @@
            rdfs:label "has commit" .
 
 
+###  http://www.semanticweb.org/sabato/ontologies/2022/5/tsro#hasFork
+:hasFork rdf:type owl:ObjectProperty ;
+         owl:inverseOf :isForkOf ;
+         rdfs:domain :SoftwareRepository ;
+         rdfs:range :SoftwareRepository ;
+         rdfs:label "has fork" .
+
+
 ###  http://www.semanticweb.org/sabato/ontologies/2022/5/tsro#isBranchOf
 :isBranchOf rdf:type owl:ObjectProperty ;
             rdfs:domain :Branch ;
@@ -71,6 +79,13 @@
             rdfs:domain :Commit ;
             rdfs:range :Branch ;
             rdfs:label "is commit of" .
+
+
+###  http://www.semanticweb.org/sabato/ontologies/2022/5/tsro#isForkOf
+:isForkOf rdf:type owl:ObjectProperty ;
+          rdfs:domain :SoftwareRepository ;
+          rdfs:range :SoftwareRepository ;
+          rdfs:label "is fork of" .
 
 
 ###  http://www.semanticweb.org/sabato/ontologies/2022/5/tsro#likesRepository
@@ -282,6 +297,12 @@
                            :likesRepository <https://github.com/mozilla-mobile/firefox-ios> .
 
 
+###  https://github.com/afmckinney
+<https://github.com/afmckinney> rdf:type owl:NamedIndividual ,
+                                         <http://rdfs.org/sioc/ns#UserAccount> ;
+                                <http://rdfs.org/sioc/ns#creator_of> <https://github.com/afmckinney/sky_sdk> .
+
+
 ###  https://github.com/darrenaustin
 <https://github.com/darrenaustin> rdf:type owl:NamedIndividual ,
                                            <http://rdfs.org/sioc/ns#UserAccount> ;
@@ -322,7 +343,9 @@
 ###  https://github.com/mozilla-mobile
 <https://github.com/mozilla-mobile> rdf:type owl:NamedIndividual ,
                                              <http://rdfs.org/sioc/ns#UserAccount> ;
-                                    <http://rdfs.org/sioc/ns#account_of> <https://dbpedia.org/page/Mozilla> .
+                                    <http://rdfs.org/sioc/ns#account_of> <https://dbpedia.org/page/Mozilla> ;
+                                    <http://rdfs.org/sioc/ns#creator_of> <https://github.com/mozilla-mobile/fenix> ,
+                                                                         <https://github.com/mozilla-mobile/firefox-ios> .
 
 
 ###  https://github.com/yoanarios
@@ -332,6 +355,43 @@
                                :committer <https://github.com/mozilla-mobile/firefox-ios/tree/71333a79e0608d94dd2751c21726c5b6cf7ab4fe> ;
                                :likesRepository <https://github.com/mozilla-mobile/fenix> ,
                                                 <https://github.com/mozilla-mobile/firefox-ios> .
+
+
+###  https://github.com/10Macit
+<https://github.com/10Macit> rdf:type owl:NamedIndividual ,
+                                      <http://rdfs.org/sioc/ns#UserAccount> .
+
+
+###  https://github.com/10045125
+<https://github.com/10045125> rdf:type owl:NamedIndividual ,
+                                       <http://rdfs.org/sioc/ns#UserAccount> ;
+                              <http://rdfs.org/sioc/ns#creator_of> <https://github.com/10Macit/firefox-ios> .
+
+
+###  https://github.com/10045125/firefox-ios
+<https://github.com/10045125/firefox-ios> rdf:type owl:NamedIndividual ,
+                                                   :SoftwareRepository ;
+                                          :isForkOf <https://github.com/mozilla-mobile/firefox-ios> ;
+                                          :hasCloneUrl "https://github.com/10045125/firefox-ios.git"^^xsd:anyURI ;
+                                          :hasHtmlUrl "https://github.com/10045125/firefox-ios"^^xsd:anyURI ;
+                                          rdfs:label "Firefox iOS fork1" .
+
+
+###  https://github.com/10Macit/firefox-ios
+<https://github.com/10Macit/firefox-ios> rdf:type owl:NamedIndividual ,
+                                                  :SoftwareRepository ;
+                                         :isForkOf <https://github.com/mozilla-mobile/firefox-ios> ;
+                                         :hasCloneUrl "https://github.com/10Macit/firefox-ios.git"^^xsd:anyURI ;
+                                         :hasHtmlUrl "https://github.com/10Macit/firefox-ios"^^xsd:anyURI ;
+                                         rdfs:label "Firefox iOS fork2" .
+
+
+###  https://github.com/afmckinney/sky_sdk
+<https://github.com/afmckinney/sky_sdk> rdf:type owl:NamedIndividual ,
+                                                 :SoftwareRepository ;
+                                        :hasCloneUrl "https://github.com/afmckinney/sky_sdk.git"^^xsd:anyURI ;
+                                        :hasHtmlUrl "https://github.com/afmckinney/sky_sdk"^^xsd:anyURI ;
+                                        rdfs:label "Sky sdk repo" .
 
 
 ###  https://github.com/flutter/flutter
@@ -502,6 +562,7 @@
 ###  https://github.com/mozilla-mobile/fenix/tree/3b4e11b796ec67883f1e6185dd3aa61acece9b05
 <https://github.com/mozilla-mobile/fenix/tree/3b4e11b796ec67883f1e6185dd3aa61acece9b05> rdf:type owl:NamedIndividual ,
                                                                                                  :Commit ;
+                                                                                        <http://rdfs.org/sioc/ns#creator_of> <https://github.com/10045125/firefox-ios> ;
                                                                                         :modifiedFile <https://github.com/mozilla-mobile/fenix/blob/3b4e11b796ec67883f1e6185dd3aa61acece9b05/app/src/main/java/org/mozilla/fenix/browser/BaseBrowserFragment.kt> ,
                                                                                                       <https://github.com/mozilla-mobile/fenix/blob/3b4e11b796ec67883f1e6185dd3aa61acece9b05/app/src/main/res/layout/fragment_browser.xml> ,
                                                                                                       <https://github.com/mozilla-mobile/fenix/blob/3b4e11b796ec67883f1e6185dd3aa61acece9b05/app/src/main/res/values/styles.xml> ;
