@@ -20,6 +20,10 @@
 #    Object Properties
 #################################################################
 
+###  http://rdfs.org/sioc/ns#follows
+<http://rdfs.org/sioc/ns#follows> rdf:type owl:IrreflexiveProperty .
+
+
 ###  http://rdfs.org/sioc/ns#topic
 <http://rdfs.org/sioc/ns#topic> rdfs:range <http://cso.kmi.open.ac.uk/schema/cso#Topic> .
 
@@ -225,31 +229,48 @@
 ###  https://github.com/Alexandru2909
 <https://github.com/Alexandru2909> rdf:type owl:NamedIndividual ,
                                             <http://rdfs.org/sioc/ns#UserAccount> ;
-                                   :committer <https://github.com/mozilla-mobile/fenix/tree/3b4e11b796ec67883f1e6185dd3aa61acece9b05> .
+                                   <http://rdfs.org/sioc/ns#follows> <https://github.com/AndiAJ> ,
+                                                                     <https://github.com/mozilla-mobile> ;
+                                   :committer <https://github.com/mozilla-mobile/fenix/tree/3b4e11b796ec67883f1e6185dd3aa61acece9b05> ;
+                                   :likesRepository <https://github.com/mozilla-mobile/fenix> ,
+                                                    <https://github.com/mozilla-mobile/firefox-ios> .
 
 
 ###  https://github.com/AndiAJ
 <https://github.com/AndiAJ> rdf:type owl:NamedIndividual ,
                                      <http://rdfs.org/sioc/ns#UserAccount> ;
-                            :committer <https://github.com/mozilla-mobile/fenix/tree/8b04752122f4196c48bcba8f26771f88df3926a8> .
+                            <http://rdfs.org/sioc/ns#follows> <https://github.com/Alexandru2909> ,
+                                                              <https://github.com/darrenaustin> ;
+                            :committer <https://github.com/mozilla-mobile/fenix/tree/8b04752122f4196c48bcba8f26771f88df3926a8> ;
+                            :likesRepository <https://github.com/mozilla-mobile/fenix> ,
+                                             <https://github.com/mozilla-mobile/firefox-ios> .
 
 
 ###  https://github.com/OrlaM
 <https://github.com/OrlaM> rdf:type owl:NamedIndividual ,
                                     <http://rdfs.org/sioc/ns#UserAccount> ;
-                           :committer <https://github.com/mozilla-mobile/firefox-ios/tree/e7c7994b972a011c23d4e5d4951e97648cf64747> .
+                           <http://rdfs.org/sioc/ns#follows> <https://github.com/gabrielluong> ,
+                                                             <https://github.com/mozilla-mobile> ,
+                                                             <https://github.com/yoanarios> ;
+                           :committer <https://github.com/mozilla-mobile/firefox-ios/tree/e7c7994b972a011c23d4e5d4951e97648cf64747> ;
+                           :likesRepository <https://github.com/mozilla-mobile/firefox-ios> .
 
 
 ###  https://github.com/darrenaustin
 <https://github.com/darrenaustin> rdf:type owl:NamedIndividual ,
                                            <http://rdfs.org/sioc/ns#UserAccount> ;
-                                  :committer <https://github.com/flutter/flutter/tree/e6d525d51dcd52d822d3b161cd04e9b0336d9fac> .
+                                  <http://rdfs.org/sioc/ns#follows> <https://github.com/AndiAJ> ,
+                                                                    <https://github.com/mozilla-mobile> ;
+                                  :committer <https://github.com/flutter/flutter/tree/e6d525d51dcd52d822d3b161cd04e9b0336d9fac> ;
+                                  :likesRepository <https://github.com/flutter/flutter> .
 
 
 ###  https://github.com/dkwingsmt
 <https://github.com/dkwingsmt> rdf:type owl:NamedIndividual ,
                                         <http://rdfs.org/sioc/ns#UserAccount> ;
-                               :committer <https://github.com/flutter/flutter/tree/576e85ca5e75dc418ea861440592a157e9495908> .
+                               :committer <https://github.com/flutter/flutter/tree/576e85ca5e75dc418ea861440592a157e9495908> ;
+                               :likesRepository <https://github.com/flutter/flutter> ,
+                                                <https://github.com/mozilla-mobile/firefox-ios> .
 
 
 ###  https://github.com/flutter
@@ -262,7 +283,8 @@
 ###  https://github.com/gabrielluong
 <https://github.com/gabrielluong> rdf:type owl:NamedIndividual ,
                                            <http://rdfs.org/sioc/ns#UserAccount> ;
-                                  :committer <https://github.com/mozilla-mobile/fenix/tree/412579f95625284ab4af8a6f72b75f6664756eb9> .
+                                  :committer <https://github.com/mozilla-mobile/fenix/tree/412579f95625284ab4af8a6f72b75f6664756eb9> ;
+                                  :likesRepository <https://github.com/mozilla-mobile/fenix> .
 
 
 ###  https://github.com/mozilla-l10n-automation-bot
@@ -280,7 +302,10 @@
 ###  https://github.com/yoanarios
 <https://github.com/yoanarios> rdf:type owl:NamedIndividual ,
                                         <http://rdfs.org/sioc/ns#UserAccount> ;
-                               :committer <https://github.com/mozilla-mobile/firefox-ios/tree/71333a79e0608d94dd2751c21726c5b6cf7ab4fe> .
+                               <http://rdfs.org/sioc/ns#follows> <https://github.com/OrlaM> ;
+                               :committer <https://github.com/mozilla-mobile/firefox-ios/tree/71333a79e0608d94dd2751c21726c5b6cf7ab4fe> ;
+                               :likesRepository <https://github.com/mozilla-mobile/fenix> ,
+                                                <https://github.com/mozilla-mobile/firefox-ios> .
 
 
 ###  https://github.com/flutter/flutter
@@ -290,7 +315,8 @@
                                                 <https://github.com/flutter/flutter/tree/dev> ,
                                                 <https://github.com/flutter/flutter/tree/master> ;
                                      :hasCloneUrl "https://github.com/flutter/flutter.git"^^xsd:anyURI ;
-                                     :hasHtmlUrl "https://github.com/flutter/flutter"^^xsd:anyURI .
+                                     :hasHtmlUrl "https://github.com/flutter/flutter"^^xsd:anyURI ;
+                                     rdfs:label "Flutter repo" .
 
 
 ###  https://github.com/flutter/flutter/blob/576e85ca5e75dc418ea861440592a157e9495908/packages/flutter/lib/src/services/text_input.dart
@@ -359,7 +385,8 @@
                                                    :SoftwareRepository ;
                                           :hasBranch <https://github.com/mozilla-mobile/fenix/tree/main> ;
                                           :hasCloneUrl "https://github.com/mozilla-mobile/fenix.git"^^xsd:anyURI ;
-                                          :hasHtmlUrl "https://github.com/mozilla-mobile/fenix"^^xsd:anyURI .
+                                          :hasHtmlUrl "https://github.com/mozilla-mobile/fenix"^^xsd:anyURI ;
+                                          rdfs:label "Fenix repo" .
 
 
 ###  https://github.com/mozilla-mobile/firefox-ios
@@ -368,7 +395,8 @@
                                                 :hasBranch <https://github.com/mozilla-mobile/firefox-ios/tree/main> ,
                                                            <https://github.com/mozilla-mobile/firefox-ios/tree/master> ;
                                                 :hasCloneUrl "https://github.com/mozilla-mobile/firefox-ios.git"^^xsd:anyURI ;
-                                                :hasHtmlUrl "https://github.com/mozilla-mobile/firefox-ios"^^xsd:anyURI .
+                                                :hasHtmlUrl "https://github.com/mozilla-mobile/firefox-ios"^^xsd:anyURI ;
+                                                rdfs:label "Firefox iOS repo" .
 
 
 ###  https://github.com/mozilla-mobile/fenix/blob/3b4e11b796ec67883f1e6185dd3aa61acece9b05/app/src/main/java/org/mozilla/fenix/browser/BaseBrowserFragment.kt
