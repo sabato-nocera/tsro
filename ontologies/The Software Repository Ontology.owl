@@ -67,6 +67,7 @@
 ###  http://www.semanticweb.org/sabato/ontologies/2022/5/tsro#hasCloneUrl
 :hasCloneUrl rdf:type owl:DatatypeProperty ;
              rdfs:subPropertyOf <http://ontology.ethereal.cz/irao/hasURL> ;
+             rdf:type owl:FunctionalProperty ;
              rdfs:domain :SoftwareRepository ;
              rdfs:range xsd:anyURI ;
              rdfs:label "has clone URL" .
@@ -75,6 +76,7 @@
 ###  http://www.semanticweb.org/sabato/ontologies/2022/5/tsro#hasHtmlUrl
 :hasHtmlUrl rdf:type owl:DatatypeProperty ;
             rdfs:subPropertyOf <http://ontology.ethereal.cz/irao/hasURL> ;
+            rdf:type owl:FunctionalProperty ;
             rdfs:domain <http://ontology.ethereal.cz/irao/Repository> ;
             rdfs:range xsd:anyURI ;
             rdfs:label "has HTML URL" .
@@ -91,9 +93,9 @@
 #################################################################
 
 ###  http://ontology.ethereal.cz/irao/Software
-<http://ontology.ethereal.cz/irao/Software> owl:equivalentClass <https://w3id.org/okn/o/sd#Software> ;
-                                            <http://purl.org/dc/elements/1.1/title> rdfs:Literal ;
-                                            rdfs:seeAlso <https://dbpedia.org/ontology/Software> .
+<http://ontology.ethereal.cz/irao/Software> owl:equivalentClass <https://dbpedia.org/ontology/Software> ,
+                                                                <https://w3id.org/okn/o/sd#Software> ;
+                                            <http://purl.org/dc/elements/1.1/title> rdfs:Literal .
 
 
 ###  http://www.semanticweb.org/sabato/ontologies/2022/5/tsro#Branch
@@ -127,10 +129,205 @@
 <https://dbpedia.org/ontology/File> rdf:type owl:Class .
 
 
+###  https://dbpedia.org/ontology/Software
+<https://dbpedia.org/ontology/Software> rdf:type owl:Class .
+
+
 ###  https://w3id.org/okn/o/sd#Organization
 
 ###  https://w3id.org/okn/o/sd#Person
 
 ###  https://w3id.org/okn/o/sd#Software
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  https://dbpedia.org/page/Firefox_for_Android
+<https://dbpedia.org/page/Firefox_for_Android> rdf:type owl:NamedIndividual ,
+                                                        <https://dbpedia.org/ontology/Software> ;
+                                               <http://ontology.ethereal.cz/irao/isPublishedAt> <https://github.com/mozilla-mobile/fenix> ;
+                                               <http://rdfs.org/sioc/ns#topic> <https://dbpedia.org/page/Web_browser> ,
+                                                                               <https://dbpedia.org/page/Android_(operating_system)> ;
+                                               <http://purl.org/dc/elements/1.1/title> "Fenix" .
+
+
+###  https://dbpedia.org/page/Firefox_for_iOS
+<https://dbpedia.org/page/Firefox_for_iOS> rdf:type owl:NamedIndividual ,
+                                                    <https://dbpedia.org/ontology/Software> ;
+                                           <http://ontology.ethereal.cz/irao/isPublishedAt> <https://github.com/mozilla-mobile/firefox-ios> ;
+                                           <http://rdfs.org/sioc/ns#topic> <https://dbpedia.org/page/IOS> ,
+                                                                           <https://dbpedia.org/page/Web_browser> ,
+                                                                           <https://dbpedia.org/page/Swift_(programming_language)> ;
+                                           <http://purl.org/dc/elements/1.1/title> "firefox-ios" .
+
+
+###  https://dbpedia.org/page/IOS
+<https://dbpedia.org/page/IOS> rdf:type owl:NamedIndividual ,
+                                        <http://cso.kmi.open.ac.uk/schema/cso#Topic> .
+
+
+###  https://dbpedia.org/page/Microsoft_Windows
+<https://dbpedia.org/page/Microsoft_Windows> rdf:type owl:NamedIndividual ,
+                                                      <http://cso.kmi.open.ac.uk/schema/cso#Topic> .
+
+
+###  https://dbpedia.org/page/Web_browser
+<https://dbpedia.org/page/Web_browser> rdf:type owl:NamedIndividual ,
+                                                <http://cso.kmi.open.ac.uk/schema/cso#Topic> .
+
+
+###  https://dbpedia.org/page/Android_(operating_system)
+<https://dbpedia.org/page/Android_(operating_system)> rdf:type owl:NamedIndividual ,
+                                                               <http://cso.kmi.open.ac.uk/schema/cso#Topic> .
+
+
+###  https://dbpedia.org/page/Dart_(programming_language)
+<https://dbpedia.org/page/Dart_(programming_language)> rdf:type owl:NamedIndividual ,
+                                                                <http://cso.kmi.open.ac.uk/schema/cso#Topic> .
+
+
+###  https://dbpedia.org/page/Flutter_(software)
+<https://dbpedia.org/page/Flutter_(software)> rdf:type owl:NamedIndividual ,
+                                                       <https://dbpedia.org/ontology/Software> ;
+                                              <http://ontology.ethereal.cz/irao/isPublishedAt> <https://github.com/flutter/flutter> ;
+                                              <http://rdfs.org/sioc/ns#topic> <https://dbpedia.org/page/IOS> ,
+                                                                              <https://dbpedia.org/page/Microsoft_Windows> ,
+                                                                              <https://dbpedia.org/page/Android_(operating_system)> ,
+                                                                              <https://dbpedia.org/page/Dart_(programming_language)> ;
+                                              <http://purl.org/dc/elements/1.1/title> "Flutter" .
+
+
+###  https://dbpedia.org/page/Swift_(programming_language)
+<https://dbpedia.org/page/Swift_(programming_language)> rdf:type owl:NamedIndividual ,
+                                                                 <http://cso.kmi.open.ac.uk/schema/cso#Topic> .
+
+
+###  https://github.com/flutter/flutter
+<https://github.com/flutter/flutter> rdf:type owl:NamedIndividual ,
+                                              :SoftwareRepository ;
+                                     :hasBranch <https://github.com/flutter/flutter/tree/beta> ,
+                                                <https://github.com/flutter/flutter/tree/dev> ,
+                                                <https://github.com/flutter/flutter/tree/master> ;
+                                     :hasCloneUrl "https://github.com/flutter/flutter.git"^^xsd:anyURI ;
+                                     :hasHtmlUrl "https://github.com/flutter/flutter"^^xsd:anyURI .
+
+
+###  https://github.com/flutter/flutter/tree/beta
+<https://github.com/flutter/flutter/tree/beta> rdf:type owl:NamedIndividual ,
+                                                        :Branch ;
+                                               rdfs:label "flutter-flutter-tree-beta" .
+
+
+###  https://github.com/flutter/flutter/tree/dev
+<https://github.com/flutter/flutter/tree/dev> rdf:type owl:NamedIndividual ,
+                                                       :Branch ;
+                                              rdfs:label "flutter-flutter-tree-dev" .
+
+
+###  https://github.com/flutter/flutter/tree/e6d525d51dcd52d822d3b161cd04e9b0336d9fac
+<https://github.com/flutter/flutter/tree/e6d525d51dcd52d822d3b161cd04e9b0336d9fac> rdf:type owl:NamedIndividual ,
+                                                                                            :Commit ;
+                                                                                   <http://purl.org/dc/terms/created> "2022-06-15T08:06:00"^^xsd:dateTime ;
+                                                                                   rdfs:label "flutter-flutter-tree-e6d525d51dcd52d822d3b161cd04e9b0336d9fac" .
+
+
+###  https://github.com/flutter/flutter/tree/master
+<https://github.com/flutter/flutter/tree/master> rdf:type owl:NamedIndividual ,
+                                                          :Branch ;
+                                                 :hasCommit <https://github.com/flutter/flutter/tree/e6d525d51dcd52d822d3b161cd04e9b0336d9fac> ,
+                                                            <https://github.com/flutter/flutter/tree/576e85ca5e75dc418ea861440592a157e9495908> ;
+                                                 rdfs:label "flutter-flutter-tree-master" .
+
+
+###  https://github.com/flutter/flutter/tree/576e85ca5e75dc418ea861440592a157e9495908
+<https://github.com/flutter/flutter/tree/576e85ca5e75dc418ea861440592a157e9495908> rdf:type owl:NamedIndividual ,
+                                                                                            :Commit ;
+                                                                                   <http://purl.org/dc/terms/created> "2022-06-15T05:31:00"^^xsd:dateTime ;
+                                                                                   rdfs:label "flutter-flutter-tree-576e85ca5e75dc418ea861440592a157e9495908" .
+
+
+###  https://github.com/mozilla-mobile/fenix
+<https://github.com/mozilla-mobile/fenix> rdf:type owl:NamedIndividual ,
+                                                   :SoftwareRepository ;
+                                          :hasBranch <https://github.com/mozilla-mobile/fenix/tree/main> ;
+                                          :hasCloneUrl "https://github.com/mozilla-mobile/fenix.git"^^xsd:anyURI ;
+                                          :hasHtmlUrl "https://github.com/mozilla-mobile/fenix"^^xsd:anyURI .
+
+
+###  https://github.com/mozilla-mobile/firefox-ios
+<https://github.com/mozilla-mobile/firefox-ios> rdf:type owl:NamedIndividual ,
+                                                         :SoftwareRepository ;
+                                                :hasBranch <https://github.com/mozilla-mobile/firefox-ios/tree/main> ,
+                                                           <https://github.com/mozilla-mobile/firefox-ios/tree/master> ;
+                                                :hasCloneUrl "https://github.com/mozilla-mobile/firefox-ios.git"^^xsd:anyURI ;
+                                                :hasHtmlUrl "https://github.com/mozilla-mobile/firefox-ios"^^xsd:anyURI .
+
+
+###  https://github.com/mozilla-mobile/fenix/tree/main
+<https://github.com/mozilla-mobile/fenix/tree/main> rdf:type owl:NamedIndividual ,
+                                                             :Branch ;
+                                                    :hasCommit <https://github.com/mozilla-mobile/fenix/tree/3b4e11b796ec67883f1e6185dd3aa61acece9b05> ,
+                                                               <https://github.com/mozilla-mobile/fenix/tree/412579f95625284ab4af8a6f72b75f6664756eb9> ,
+                                                               <https://github.com/mozilla-mobile/fenix/tree/685424de9aa26e655a57659722022486aef43254> ,
+                                                               <https://github.com/mozilla-mobile/fenix/tree/8b04752122f4196c48bcba8f26771f88df3926a8> ;
+                                                    rdfs:label "mozilla-mobile-fenix-tree-main" .
+
+
+###  https://github.com/mozilla-mobile/fenix/tree/3b4e11b796ec67883f1e6185dd3aa61acece9b05
+<https://github.com/mozilla-mobile/fenix/tree/3b4e11b796ec67883f1e6185dd3aa61acece9b05> rdf:type owl:NamedIndividual ,
+                                                                                                 :Commit ;
+                                                                                        <http://purl.org/dc/terms/created> "2022-06-15T08:43:00"^^xsd:dateTime ;
+                                                                                        rdfs:label "mozilla-mobile-fenix-tree-3b4e11b796ec67883f1e6185dd3aa61acece9b05" .
+
+
+###  https://github.com/mozilla-mobile/fenix/tree/412579f95625284ab4af8a6f72b75f6664756eb9
+<https://github.com/mozilla-mobile/fenix/tree/412579f95625284ab4af8a6f72b75f6664756eb9> rdf:type owl:NamedIndividual ,
+                                                                                                 :Commit ;
+                                                                                        <http://purl.org/dc/terms/created> "2022-06-15T01:20:00"^^xsd:dateTime ;
+                                                                                        rdfs:label "mozilla-mobile-fenix-tree-412579f95625284ab4af8a6f72b75f6664756eb9" .
+
+
+###  https://github.com/mozilla-mobile/fenix/tree/685424de9aa26e655a57659722022486aef43254
+<https://github.com/mozilla-mobile/fenix/tree/685424de9aa26e655a57659722022486aef43254> rdf:type owl:NamedIndividual ,
+                                                                                                 :Commit ;
+                                                                                        <http://purl.org/dc/terms/created> "2022-06-15T02:45:00"^^xsd:dateTime ;
+                                                                                        rdfs:label "mozilla-mobile-fenix-tree-685424de9aa26e655a57659722022486aef43254" .
+
+
+###  https://github.com/mozilla-mobile/fenix/tree/8b04752122f4196c48bcba8f26771f88df3926a8
+<https://github.com/mozilla-mobile/fenix/tree/8b04752122f4196c48bcba8f26771f88df3926a8> rdf:type owl:NamedIndividual ,
+                                                                                                 :Commit ;
+                                                                                        <http://purl.org/dc/terms/created> "2022-06-15T10:02:00"^^xsd:dateTime ;
+                                                                                        rdfs:label "mozilla-mobile-fenix-tree-8b04752122f4196c48bcba8f26771f88df3926a8" .
+
+
+###  https://github.com/mozilla-mobile/firefox-ios/tree/e7c7994b972a011c23d4e5d4951e97648cf64747
+<https://github.com/mozilla-mobile/firefox-ios/tree/e7c7994b972a011c23d4e5d4951e97648cf64747> rdf:type owl:NamedIndividual ,
+                                                                                                       :Commit ;
+                                                                                              <http://purl.org/dc/terms/created> "2022-06-14T23:34:00"^^xsd:dateTime ;
+                                                                                              rdfs:label "mozilla-mobile-firefox-ios-tree-e7c7994b972a011c23d4e5d4951e97648cf64747" .
+
+
+###  https://github.com/mozilla-mobile/firefox-ios/tree/main
+<https://github.com/mozilla-mobile/firefox-ios/tree/main> rdf:type owl:NamedIndividual ,
+                                                                   :Branch ;
+                                                          :hasCommit <https://github.com/mozilla-mobile/firefox-ios/tree/e7c7994b972a011c23d4e5d4951e97648cf64747> ,
+                                                                     <https://github.com/mozilla-mobile/firefox-ios/tree/71333a79e0608d94dd2751c21726c5b6cf7ab4fe> ;
+                                                          rdfs:label "mozilla-mobile-firefox-ios-tree-main" .
+
+
+###  https://github.com/mozilla-mobile/firefox-ios/tree/master
+<https://github.com/mozilla-mobile/firefox-ios/tree/master> rdf:type owl:NamedIndividual ,
+                                                                     :Branch ;
+                                                            rdfs:label "mozilla-mobile-firefox-ios-tree-master" .
+
+
+###  https://github.com/mozilla-mobile/firefox-ios/tree/71333a79e0608d94dd2751c21726c5b6cf7ab4fe
+<https://github.com/mozilla-mobile/firefox-ios/tree/71333a79e0608d94dd2751c21726c5b6cf7ab4fe> rdf:type owl:NamedIndividual ,
+                                                                                                       :Commit ;
+                                                                                              <http://purl.org/dc/terms/created> "2022-06-14T19:00:00"^^xsd:dateTime ;
+                                                                                              rdfs:label "mozilla-mobile-firefox-ios-tree-71333a79e0608d94dd2751c21726c5b6cf7ab4fe" .
+
 
 ###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
