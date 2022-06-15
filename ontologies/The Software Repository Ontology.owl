@@ -206,12 +206,23 @@
 ###  https://dbpedia.org/page/Firefox_for_iOS
 <https://dbpedia.org/page/Firefox_for_iOS> rdf:type owl:NamedIndividual ,
                                                     <https://dbpedia.org/ontology/Software> ;
+                                           <http://ontology.ethereal.cz/irao/hasLicense> <https://www.mozilla.org/en-US/MPL/2.0/> ;
                                            <http://ontology.ethereal.cz/irao/isPublishedAt> <https://github.com/mozilla-mobile/firefox-ios> ;
                                            <http://rdfs.org/sioc/ns#topic> <https://dbpedia.org/page/IOS> ,
                                                                            <https://dbpedia.org/page/Web_browser> ,
                                                                            <https://dbpedia.org/page/Swift_(programming_language)> ;
                                            <https://w3id.org/okn/o/sd#author> <https://dbpedia.org/page/Mozilla> ;
                                            <http://purl.org/dc/elements/1.1/title> "firefox-ios" .
+
+
+###  https://dbpedia.org/page/Geographic_information_system
+<https://dbpedia.org/page/Geographic_information_system> rdf:type owl:NamedIndividual ,
+                                                                  <http://cso.kmi.open.ac.uk/schema/cso#Topic> .
+
+
+###  https://dbpedia.org/page/Geography
+<https://dbpedia.org/page/Geography> rdf:type owl:NamedIndividual ,
+                                              <http://cso.kmi.open.ac.uk/schema/cso#Topic> .
 
 
 ###  https://dbpedia.org/page/Google
@@ -232,6 +243,15 @@
 ###  https://dbpedia.org/page/Mozilla
 <https://dbpedia.org/page/Mozilla> rdf:type owl:NamedIndividual ,
                                             <http://purl.org/cerif/frapo/Company> .
+
+
+###  https://dbpedia.org/page/QGIS
+<https://dbpedia.org/page/QGIS> rdf:type owl:NamedIndividual ,
+                                         <https://dbpedia.org/ontology/Software> ;
+                                <http://ontology.ethereal.cz/irao/hasLicense> <https://www.gnu.org/licenses/old-licenses/gpl-2.0.html> ;
+                                <http://ontology.ethereal.cz/irao/isPublishedAt> <https://github.com/qgis/QGIS> ;
+                                <http://rdfs.org/sioc/ns#topic> <https://dbpedia.org/page/Geographic_information_system> ,
+                                                                <https://dbpedia.org/page/Geography> .
 
 
 ###  https://dbpedia.org/page/Web_browser
@@ -346,6 +366,12 @@
                                     <http://rdfs.org/sioc/ns#account_of> <https://dbpedia.org/page/Mozilla> ;
                                     <http://rdfs.org/sioc/ns#creator_of> <https://github.com/mozilla-mobile/fenix> ,
                                                                          <https://github.com/mozilla-mobile/firefox-ios> .
+
+
+###  https://github.com/qgis
+<https://github.com/qgis> rdf:type owl:NamedIndividual ,
+                                   <http://rdfs.org/sioc/ns#UserAccount> ;
+                          <http://rdfs.org/sioc/ns#creator_of> <https://github.com/qgis/QGIS> .
 
 
 ###  https://github.com/yoanarios
@@ -658,10 +684,22 @@
                                                                                               rdfs:label "mozilla-mobile-firefox-ios-tree-71333a79e0608d94dd2751c21726c5b6cf7ab4fe" .
 
 
+###  https://github.com/qgis/QGIS
+<https://github.com/qgis/QGIS> rdf:type owl:NamedIndividual ,
+                                        :SoftwareRepository ;
+                               rdfs:label "QGIS repo" .
+
+
 ###  https://joinup.ec.europa.eu/licence/bsd-3-clause-new-or-revised-license
 <https://joinup.ec.europa.eu/licence/bsd-3-clause-new-or-revised-license> rdf:type owl:NamedIndividual ,
                                                                                    <http://ontology.ethereal.cz/irao/License> ;
                                                                           rdfs:label "BSD 3-Clause \"New\" or \"Revised\" license" .
+
+
+###  https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+<https://www.gnu.org/licenses/old-licenses/gpl-2.0.html> rdf:type owl:NamedIndividual ,
+                                                                  <http://ontology.ethereal.cz/irao/License> ;
+                                                         rdfs:label "GNU General Public License, version 2" .
 
 
 ###  https://www.mozilla.org/en-US/MPL/2.0/
