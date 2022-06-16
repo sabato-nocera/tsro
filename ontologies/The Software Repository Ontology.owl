@@ -144,7 +144,7 @@
 
 
 ###  http://purl.org/cerif/frapo/Company
-<http://purl.org/cerif/frapo/Company> rdfs:seeAlso "https://dbpedia.org/ontology/Company" .
+<http://purl.org/cerif/frapo/Company> owl:equivalentClass <https://dbpedia.org/ontology/Company> .
 
 
 ###  http://www.semanticweb.org/sabato/ontologies/2022/5/tsro#Branch
@@ -172,6 +172,10 @@
 
 ###  http://xmlns.com/foaf/0.1/Person
 <http://xmlns.com/foaf/0.1/Person> owl:equivalentClass <https://w3id.org/okn/o/sd#Person> .
+
+
+###  https://dbpedia.org/ontology/Company
+<https://dbpedia.org/ontology/Company> rdf:type owl:Class .
 
 
 ###  https://dbpedia.org/ontology/File

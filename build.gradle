@@ -23,7 +23,8 @@ tasks.withType(JavaCompile) {
 
 dependencies {
     compileOnly('jakarta.servlet:jakarta.servlet-api:5.0.0')
-
+    implementation group: 'org.apache.jena', name: 'jena-arq', version: '3.16.0'
+    implementation group: 'org.apache.jena', name: 'apache-jena-libs', version: '3.14.0', ext: 'pom'
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
 }

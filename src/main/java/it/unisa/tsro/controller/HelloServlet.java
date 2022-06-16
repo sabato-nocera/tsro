@@ -1,7 +1,8 @@
-package it.unisa.tsro;
+package it.unisa.tsro.controller;
 
 import java.io.*;
 
+import it.unisa.tsro.model.dao.TsroDao;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
@@ -14,6 +15,10 @@ public class HelloServlet extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        TsroDao tsroDao = new TsroDao();
+
+        tsroDao.retrieve();
+
         response.setContentType("text/html");
 
         // Hello

@@ -4,5 +4,7 @@
     <uri id="Imports Wizard Entry" name="https://w3id.org/okn/o/sd/1.9.0" uri="https://w3id.org/okn/o/sd"/>
     <uri id="Imports Wizard Entry" name="https://w3id.org/def/InformaticsResearchArtifactsOntology" uri="http://ontology.ethereal.cz/irao/"/>
     <uri id="Imports Wizard Entry" name="http://purl.org/cerif/frapo/2017-09-04" uri="http://purl.org/cerif/frapo"/>
-    <group id="Folder Repository, directory=, recursive=true, Auto-Update=true, version=2" prefer="public" xml:base=""/>
+    <group id="Folder Repository, directory=, recursive=true, Auto-Update=true, version=2" prefer="public" xml:base="">
+        <uri id="Automatically generated entry, Timestamp=1655405739202" name="http://www.semanticweb.org/sabato/ontologies/2022/5/tsro" uri="tsro-inferred.owl"/>
+    </group>
 </catalog>
