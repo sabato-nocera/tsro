@@ -11,6 +11,10 @@ public class IndexServlet extends HttpServlet {
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+
+        //        TODO: Implementare il recupero di tutte le repostiroy da Jena
+        //        TODO: Implementare la ricerca avanzata in index.jsp ed IndexServlet
+
         request.getRequestDispatcher("./index.jsp").forward(request, response);
     }
 
