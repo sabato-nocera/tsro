@@ -26,6 +26,7 @@ dependencies {
     implementation group: 'org.apache.jena', name: 'jena-arq', version: '3.16.0'
     implementation group: 'org.apache.jena', name: 'apache-jena-libs', version: '3.14.0', ext: 'pom'
     implementation group: 'org.apache.tomcat', name: 'tomcat-catalina', version: '10.1.0-M16'
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.24'
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
 }
