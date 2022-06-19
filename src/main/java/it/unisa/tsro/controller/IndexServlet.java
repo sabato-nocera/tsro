@@ -16,6 +16,9 @@ public class IndexServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         TsroDao tsroDao = new TsroDao();
         List<SoftwareBean> softwareList = tsroDao.recuperaRepositoryPerLaTabellaInIndex();
+        for(SoftwareBean softwareBean : softwareList){
+            softwareBean.setMiPiace(tsroDao.recuperaRepositoryMiPiace(softwareBean.getRepositoryUrl()));
+        }
 
         //        TODO: Implementare il recupero di tutte le repostiroy da Jena
         //        TODO: Implementare la ricerca avanzata in index.jsp ed IndexServlet

@@ -12,6 +12,22 @@ public class SoftwareBean {
     private Resource authorUrl;
     private Literal repositoryName;
     private Resource repositoryUrl;
+    private int miPiace;
+    private int numeroDiCommit;
+
+    @Override
+    public String toString() {
+        return "SoftwareBean{" +
+                "softwareTitle=" + softwareTitle +
+                ", softwareUrl=" + softwareUrl +
+                ", authorName=" + authorName +
+                ", authorUrl=" + authorUrl +
+                ", repositoryName=" + repositoryName +
+                ", repositoryUrl=" + repositoryUrl +
+                ", miPiace=" + miPiace +
+                ", numeroDiCommit=" + numeroDiCommit +
+                '}';
+    }
 
     public Literal getSoftwareTitle() {
         return softwareTitle;
@@ -61,15 +77,19 @@ public class SoftwareBean {
         this.repositoryUrl = repositoryUrl;
     }
 
-    @Override
-    public String toString() {
-        return "SoftwareBean{" +
-                "softwareTitle=" + softwareTitle +
-                ", softwareUrl=" + softwareUrl +
-                ", authorName=" + authorName +
-                ", authorUrl=" + authorUrl +
-                ", repositoryName=" + repositoryName +
-                ", repositoryUrl=" + repositoryUrl +
-                '}';
+    public int getMiPiace() {
+        return miPiace;
+    }
+
+    public void setMiPiace(int miPiace) {
+        this.miPiace = miPiace;
+    }
+
+    public int getNumeroDiCommit() {
+        return numeroDiCommit;
+    }
+
+    public void setNumeroDiCommit(int numeroDiCommit) {
+        this.numeroDiCommit = numeroDiCommit;
     }
 }

@@ -2,6 +2,7 @@ package it.unisa.tsro.model.dao;
 
 import it.unisa.tsro.model.bean.SoftwareBean;
 import org.apache.jena.query.*;
+import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.sparql.engine.http.QueryEngineHTTP;
 
 import java.util.ArrayList;
@@ -74,5 +75,35 @@ public class TsroDao {
         return list;
     }
 
-    
+    public int recuperaRepositoryMiPiace(Resource repositoryUrl) {
+        int miPiace = 0;
+
+        String szQuery = prefix + "SELECT (count(distinct ?authorUrl) as ?miPiace)\n" +
+                "WHERE {\n" +
+                "    ?authorUrl tsro:likesRepository <"+repositoryUrl.getURI()+">.\n" +
+                "}\n" +
+                "GROUP BY ?repositoryUrl";
+
+        LOGGER.info(szQuery);
+
+        Query query = QueryFactory.create(szQuery);
+
+        QueryExecution qexec = QueryExecutionFactory.sparqlService(szEndpoint, query);
+
+        ((QueryEngineHTTP) qexec).addParam("timeout", "10000");
+
+        int counter = 0;
+        ResultSet rs = qexec.execSelect();
+
+        while (rs.hasNext()) {
+            QuerySolution qs = rs.next();
+
+            miPiace = qs.getLiteral("miPiace").getInt();
+            counter++;
+
+            LOGGER.info("Result " + counter + ": " + miPiace);
+        }
+        qexec.close();
+        return miPiace;
+    }
 }
