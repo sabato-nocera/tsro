@@ -89,40 +89,34 @@
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                 <tr>
-                                    <th>Nome</th>
+                                    <th>Software</th>
+                                    <th>Repository</th>
                                     <th>Autore</th>
                                     <th>Topic</th>
                                     <th>Mi piace</th>
                                     <th>Commit</th>
-                                    <th>Size</th>
                                 </tr>
                                 </thead>
                                 <tfoot>
                                 <tr>
-                                    <th>Nome</th>
+                                    <th>Software</th>
+                                    <th>Repository</th>
                                     <th>Autore</th>
                                     <th>Topic</th>
                                     <th>Mi piace</th>
                                     <th>Commit</th>
-                                    <th>Size</th>
                                 </tr>
                                 </tfoot>
                                 <tbody>
-                                <tr>
-                                    <td>WLB</td>
-                                    <td>Mario Ruggiero</td>
-                                    <td>Smartworking, prenotazione postazioni</td>
-                                    <td>61</td>
-                                    <td>657</td>
-                                    <td>50MB</td>
-                                </tr>
-                                <tr>
-                                    <td>EasyAid</td>
-                                    <td>Sabato Nocera</td>
-                                    <td>Erogazioni servizi DSA/disabili</td>
+                                <tr><%//TODO: Sostituire con i dati della base di conoscenza e gli appositi link%>
+                                    <td><a href="software.jsp">EasyAid</a></td>
+                                    <td><a href="repository.jsp">https://github.com/C04-EasyAid/easyaid</a></td>
+                                    <td><a href="agent.jsp">Sabato Nocera</a></td>
+                                    <td><a href="topic.jsp">Erogazioni servizi DSA/disabili</a> ,
+                                        <a href="topic.jsp">Gestionale</a>
+                                    </td>
                                     <td>63</td>
                                     <td>589</td>
-                                    <td>90MB</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -179,14 +173,6 @@
                                                        placeholder="Numero di commit (<,>,=)"/>
                                             </div>
                                             <div class="col-sm-4">
-                                                <label for="size">Size totale</label>
-                                                <input type="text" class="form-control form-control-user"
-                                                       id="size"
-                                                       placeholder="Size totale (<,>,=)"/>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <div class="col-sm-12 mb-3 mb-sm-0">
                                                 <label for="topic">Topic</label>
                                                 <input type="text" class="form-control form-control-user"
                                                        id="topic"
