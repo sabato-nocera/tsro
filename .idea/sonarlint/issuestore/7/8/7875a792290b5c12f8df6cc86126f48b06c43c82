@@ -1,10 +1,0 @@
-
-7
-java:S1170
-"!Make this final field static too.(´ìÇ
-<
-java:S1170"!Make this final field static too.(àŸ…Âúÿÿÿÿ
-U	java:S106+"9Replace this use of System.out or System.err by a logger.(ä•8ŒïÈò–0
-`
-java:S1858.">"next" returns a string, there's no need to call "toString()".(ü·’ƒüÿÿÿÿ8ïÈò–0
-U	java:S1061"9Replace this use of System.out or System.err by a logger.(ªŒô•8ïÈò–0

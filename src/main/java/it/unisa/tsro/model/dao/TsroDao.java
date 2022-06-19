@@ -1,15 +1,21 @@
 package it.unisa.tsro.model.dao;
 
+import it.unisa.tsro.model.bean.SoftwareBean;
 import org.apache.jena.query.*;
 import org.apache.jena.sparql.engine.http.QueryEngineHTTP;
 
-import java.util.Iterator;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Logger;
 
 public class TsroDao {
-
+    private static final Logger LOGGER = Logger.getLogger(TsroDao.class.getName());
     private final String szEndpoint = "http://localhost:8080/jena-fuseki-war-4.5.0/tsro/query";
 
-    private final String prefix = "PREFIX foaf: <http://xmlns.com/foaf/0.1/>\n" +
+    private final String prefix = "PREFIX sioc: <http://rdfs.org/sioc/ns#>\n" +
+            "PREFIX sd: <https://w3id.org/okn/o/sd#>\n" +
+            "PREFIX dc: <http://purl.org/dc/elements/1.1/>\n" +
+            "PREFIX foaf: <http://xmlns.com/foaf/0.1/>\n" +
             "PREFIX fo: <http://purl.org/ontology/fo/>\n" +
             "PREFIX db: <https://dbpedia.org/>\n" +
             "PREFIX frapo: <http://purl.org/cerif/frapo/>\n" +
@@ -20,11 +26,23 @@ public class TsroDao {
             "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
             "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" +
             "PREFIX tsro: <http://www.semanticweb.org/sabato/ontologies/2022/5/tsro#>\n" +
-            "PREFIX ns: <http://rdfs.org/sioc/ns#>\n";
+            "PREFIX ns: <http://rdfs.org/sioc/ns#>\n" +
+            "PREFIX irao: <http://ontology.ethereal.cz/irao/>\n";
 
-    public void retrieve() {
+    public List<SoftwareBean> recuperaRepositoryPerLaTabellaInIndex() {
+        List<SoftwareBean> list = new ArrayList<>();
 
-        String szQuery = prefix + "SELECT ?company WHERE { { ?userAccount ns:account_of ?company. ?company a <https://dbpedia.org/ontology/Company>. } }";
+        String szQuery = prefix + "SELECT *\n" +
+                "WHERE {\n" +
+                "  ?softwareUrl a irao:Software.\n" +
+                "  ?softwareUrl dc:title ?softwareTitle.\n" +
+                "  ?softwareUrl irao:isPublishedAt ?repositoryUrl.\n" +
+                "  ?repositoryUrl dc:title ?repositoryName.\n" +
+                "  ?softwareUrl sd:author ?authorUrl.\n" +
+                "  ?authorUrl sioc:name ?authorName.\n" +
+                "}";
+
+        LOGGER.info(szQuery);
 
         Query query = QueryFactory.create(szQuery);
 
@@ -32,23 +50,29 @@ public class TsroDao {
 
         ((QueryEngineHTTP) qexec).addParam("timeout", "10000");
 
-        int iCount = 0;
+        int counter = 0;
         ResultSet rs = qexec.execSelect();
+
         while (rs.hasNext()) {
+            SoftwareBean softwareBean = new SoftwareBean();
+
             QuerySolution qs = rs.next();
 
-            Iterator<String> itVars = qs.varNames();
+            softwareBean.setSoftwareTitle(qs.getLiteral("softwareTitle"));
+            softwareBean.setSoftwareUrl(qs.getResource("softwareUrl"));
+            softwareBean.setRepositoryName(qs.getLiteral("repositoryName"));
+            softwareBean.setRepositoryUrl(qs.getResource("repositoryUrl"));
+            softwareBean.setAuthorName(qs.getLiteral("authorName"));
+            softwareBean.setAuthorUrl(qs.getResource("authorUrl"));
 
-            iCount++;
-            System.out.println("Result " + iCount + ": ");
+            counter++;
+            LOGGER.info("Result " + counter + ": " + softwareBean);
 
-            while (itVars.hasNext()) {
-                String szVar = itVars.next().toString();
-                String szVal = qs.get(szVar).toString();
-
-                System.out.println("[" + szVar + "]: " + szVal);
-            }
+            list.add(softwareBean);
         }
         qexec.close();
+        return list;
     }
+
+    
 }

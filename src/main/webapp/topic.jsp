@@ -36,7 +36,7 @@
                                             Software
                                         </div>
                                         <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                            <a href="software.jsp">Software</a> <%//TODO: inserire software%>
+                                            <a href="softwareBean.jsp">Software</a> <%//TODO: inserire softwareBean%>
                                         </div>
                                     </div>
                                 </div>

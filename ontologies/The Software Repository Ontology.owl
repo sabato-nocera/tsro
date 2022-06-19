@@ -12,8 +12,8 @@
                                                                         <http://www.w3.org/2004/02/skos/core> ,
                                                                         <https://w3id.org/def/InformaticsResearchArtifactsOntology> ,
                                                                         <https://w3id.org/okn/o/sd/1.9.0> ;
-                                                            rdfs:comment "Quest'ontologia è stata realizzata come progetto del corso di Intelligent Web (A.A. 2021/2022) e rappresenta una specifica formale, esplicita e condivisa della concettualizzazione di repository software."@it ,
-                                                                         "This ontology was created as a project of the Intelligent Web course (A.A. 2021/2022) and represents a formal, explicit and shared specification of the conceptualization of software repositories."@en ;
+                                                            rdfs:comment "Quest'ontologia è stata realizzata come progetto del corso di Intelligent Web (A.A. 2021/2022) e rappresenta una specifica formale, esplicita e condivisa della concettualizzazione di repository softwareBean."@it ,
+                                                                         "This ontology was created as a project of the Intelligent Web course (A.A. 2021/2022) and represents a formal, explicit and shared specification of the conceptualization of softwareBean repositories."@en ;
                                                             rdfs:label "The Software Repository Ontology"@en .
 
 #################################################################
@@ -292,8 +292,8 @@
                                                                 <http://cso.kmi.open.ac.uk/schema/cso#Topic> .
 
 
-###  https://dbpedia.org/page/Flutter_(software)
-<https://dbpedia.org/page/Flutter_(software)> rdf:type owl:NamedIndividual ,
+###  https://dbpedia.org/page/Flutter_(softwareBean)
+<https://dbpedia.org/page/Flutter_(softwareBean)> rdf:type owl:NamedIndividual ,
                                                        <https://dbpedia.org/ontology/Software> ;
                                               <http://ontology.ethereal.cz/irao/hasLicense> <https://joinup.ec.europa.eu/licence/bsd-3-clause-new-or-revised-license> ;
                                               <http://ontology.ethereal.cz/irao/isPublishedAt> <https://github.com/flutter/flutter> ;

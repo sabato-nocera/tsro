@@ -12,7 +12,7 @@ digraph g {
 	"'GitHub Account'" -> "'GitHub Software Repository'" [label="'creator of github repository'"]
 	"Commit" -> "'Software Repository'" [label="'is commit of'"]
 	"'GitHub Account'" -> "'GitHub Developer Account'" [label="sponsors"]
-	"'Software Repository'" -> "Software" [label="'related to software'"]
+	"'Software Repository'" -> "Software" [label="'related to softwareBean'"]
 	"'GitHub Software Repository'" -> "'GitHub Developer Account'" [label="'github contributor'"]
 	"'Software Repository'" -> "'Software Repository'" [label="'has fork'"]
 	"'GitHub Account'" -> "'GitHub Software Repository'" [label="'likes github repository'"]

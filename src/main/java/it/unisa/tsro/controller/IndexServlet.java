@@ -1,7 +1,10 @@
 package it.unisa.tsro.controller;
 
 import java.io.*;
+import java.util.List;
 
+import it.unisa.tsro.model.bean.SoftwareBean;
+import it.unisa.tsro.model.dao.TsroDao;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -11,6 +14,8 @@ public class IndexServlet extends HttpServlet {
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        TsroDao tsroDao = new TsroDao();
+        List<SoftwareBean> softwareList = tsroDao.recuperaRepositoryPerLaTabellaInIndex();
 
         //        TODO: Implementare il recupero di tutte le repostiroy da Jena
         //        TODO: Implementare la ricerca avanzata in index.jsp ed IndexServlet

@@ -22,7 +22,7 @@
                 <!-- Page Heading -->
                 <h1 class="h3 mb-2 text-gray-800 mt-4">Benvenuto!</h1>
                 <p class="mb-4">
-                    Interagisci con la tabella per consultare i dettagli delle repository software,
+                    Interagisci con la tabella per consultare i dettagli delle repository softwareBean,
                     oppure effettua una ricerca specificando i criteri che desideri.
                 </p>
 
@@ -56,7 +56,7 @@
                                 </tfoot>
                                 <tbody>
                                 <tr><%//TODO: Sostituire con i dati della base di conoscenza e gli appositi link%>
-                                    <td><a href="software.jsp">EasyAid</a></td>
+                                    <td><a href="softwareBean.jsp">EasyAid</a></td>
                                     <td><a href="repository.jsp">https://github.com/C04-EasyAid/easyaid</a></td>
                                     <td><a href="agent.jsp">Sabato Nocera</a></td>
                                     <td><a href="topic.jsp">Erogazioni servizi DSA/disabili</a> ,

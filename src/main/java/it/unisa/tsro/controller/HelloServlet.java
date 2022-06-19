@@ -15,9 +15,6 @@ public class HelloServlet extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        TsroDao tsroDao = new TsroDao();
-
-        tsroDao.retrieve();
 
         response.setContentType("text/html");
 

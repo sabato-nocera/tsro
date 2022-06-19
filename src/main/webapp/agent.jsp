@@ -24,7 +24,7 @@
                         NomeAgent <%//TODO: Inserire il nome dell'agent/person/organization preso dalla request%></h1>
                 </div>
 
-                <!-- Proprietario dei software -->
+                <!-- Proprietario dei softwareBean -->
                 <div class="row">
                     <div class="col m-1 p-1">
                         <div class="card border-left-primary shadow h-100 py-2">
@@ -32,11 +32,11 @@
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
                                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                            Proprietario del software
+                                            Proprietario del softwareBean
                                         </div>
                                         <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                            <a href="software.jsp">Nome del
-                                                software</a> <%//TODO: inserire Nome del software%>
+                                            <a href="softwareBean.jsp">Nome del
+                                                softwareBean</a> <%//TODO: inserire Nome del softwareBean%>
                                         </div>
                                     </div>
                                 </div>

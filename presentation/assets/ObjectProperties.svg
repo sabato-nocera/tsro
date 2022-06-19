@@ -184,7 +184,7 @@
 <title>'Software Repository'-&gt;Software</title>
 <path fill="none" stroke="#000000" d="M453.0711,-96.2441C423.4006,-90.5258 394.669,-82.2385 385.7012,-70.8 368.8868,-49.3531 400.1778,-35.5454 431.8452,-27.4507"/>
 <polygon fill="#000000" stroke="#000000" points="432.7152,-30.8414 441.6323,-25.1198 431.0934,-24.0319 432.7152,-30.8414"/>
-<text text-anchor="middle" x="441.9356" y="-58.2" font-family="Times,serif" font-size="14.00" fill="#000000">'related to software'</text>
+<text text-anchor="middle" x="441.9356" y="-58.2" font-family="Times,serif" font-size="14.00" fill="#000000">'related to softwareBean'</text>
 </g>
 <!-- Topic -->
 <g id="node11" class="node">

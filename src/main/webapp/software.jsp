@@ -21,7 +21,7 @@
                 <!-- Page Heading -->
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
                     <h1 class="h3 mb-0 text-gray-800">
-                        EasyAid <%//TODO: Inserire il nome del software preso dalla request%>,
+                        EasyAid <%//TODO: Inserire il nome del softwareBean preso dalla request%>,
                         pubblicato su <a href="repository.jsp">GitHub
                         URL<%//TODO: Inserire l'url della repository preso dalla request%></a></h1>
                 </div>
