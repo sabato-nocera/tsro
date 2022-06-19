@@ -11,7 +11,7 @@ repositories {
 }
 
 ext {
-    junitVersion = '5.8.1'
+    junitVersion = '5.8.2'
 }
 
 sourceCompatibility = '1.8'
@@ -25,6 +25,7 @@ dependencies {
     compileOnly('jakarta.servlet:jakarta.servlet-api:5.0.0')
     implementation group: 'org.apache.jena', name: 'jena-arq', version: '3.16.0'
     implementation group: 'org.apache.jena', name: 'apache-jena-libs', version: '3.14.0', ext: 'pom'
+    implementation group: 'org.apache.tomcat', name: 'tomcat-catalina', version: '10.1.0-M16'
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
 }
