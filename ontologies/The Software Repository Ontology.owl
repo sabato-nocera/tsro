@@ -107,6 +107,13 @@
 #    Data properties
 #################################################################
 
+###  http://www.semanticweb.org/sabato/ontologies/2022/5/tsro#commitNumber
+:commitNumber rdf:type owl:DatatypeProperty ;
+              rdfs:domain :Commit ;
+              rdfs:range xsd:int ;
+              rdfs:label "commit number" .
+
+
 ###  http://www.semanticweb.org/sabato/ontologies/2022/5/tsro#hasCloneUrl
 :hasCloneUrl rdf:type owl:DatatypeProperty ;
              rdfs:subPropertyOf <http://ontology.ethereal.cz/irao/hasURL> ;
@@ -137,6 +144,10 @@
 #    Classes
 #################################################################
 
+###  http://ontology.ethereal.cz/irao/Repository
+<http://ontology.ethereal.cz/irao/Repository> <http://purl.org/dc/elements/1.1/title> rdfs:Literal .
+
+
 ###  http://ontology.ethereal.cz/irao/Software
 <http://ontology.ethereal.cz/irao/Software> owl:equivalentClass <https://dbpedia.org/ontology/Software> ,
                                                                 <https://w3id.org/okn/o/sd#Software> ;
@@ -147,8 +158,13 @@
 <http://purl.org/cerif/frapo/Company> owl:equivalentClass <https://dbpedia.org/ontology/Company> .
 
 
+###  http://rdfs.org/sioc/ns#UserAccount
+<http://rdfs.org/sioc/ns#UserAccount> <http://purl.org/dc/elements/1.1/title> rdfs:Literal .
+
+
 ###  http://www.semanticweb.org/sabato/ontologies/2022/5/tsro#Branch
-:Branch rdf:type owl:Class .
+:Branch rdf:type owl:Class ;
+        <http://purl.org/dc/elements/1.1/title> rdfs:Literal .
 
 
 ###  http://www.semanticweb.org/sabato/ontologies/2022/5/tsro#Commit
@@ -179,7 +195,8 @@
 
 
 ###  https://dbpedia.org/ontology/File
-<https://dbpedia.org/ontology/File> rdf:type owl:Class .
+<https://dbpedia.org/ontology/File> rdf:type owl:Class ;
+                                    <http://purl.org/dc/elements/1.1/title> rdfs:Literal .
 
 
 ###  https://dbpedia.org/ontology/Software
@@ -231,7 +248,8 @@
 
 ###  https://dbpedia.org/page/Google
 <https://dbpedia.org/page/Google> rdf:type owl:NamedIndividual ,
-                                           <http://purl.org/cerif/frapo/Company> .
+                                           <http://purl.org/cerif/frapo/Company> ;
+                                  <http://rdfs.org/sioc/ns#name> "Google"^^rdfs:Literal .
 
 
 ###  https://dbpedia.org/page/IOS
@@ -246,7 +264,8 @@
 
 ###  https://dbpedia.org/page/Mozilla
 <https://dbpedia.org/page/Mozilla> rdf:type owl:NamedIndividual ,
-                                            <http://purl.org/cerif/frapo/Company> .
+                                            <http://purl.org/cerif/frapo/Company> ;
+                                   <http://rdfs.org/sioc/ns#name> "Mozilla"^^rdfs:Literal .
 
 
 ###  https://dbpedia.org/page/QGIS
@@ -298,7 +317,8 @@
                                                                      <https://github.com/mozilla-mobile> ;
                                    :committer <https://github.com/mozilla-mobile/fenix/tree/3b4e11b796ec67883f1e6185dd3aa61acece9b05> ;
                                    :likesRepository <https://github.com/mozilla-mobile/fenix> ,
-                                                    <https://github.com/mozilla-mobile/firefox-ios> .
+                                                    <https://github.com/mozilla-mobile/firefox-ios> ;
+                                   <http://rdfs.org/sioc/ns#name> "Alexandru2909"^^rdfs:Literal .
 
 
 ###  https://github.com/AndiAJ
@@ -308,7 +328,8 @@
                                                               <https://github.com/darrenaustin> ;
                             :committer <https://github.com/mozilla-mobile/fenix/tree/8b04752122f4196c48bcba8f26771f88df3926a8> ;
                             :likesRepository <https://github.com/mozilla-mobile/fenix> ,
-                                             <https://github.com/mozilla-mobile/firefox-ios> .
+                                             <https://github.com/mozilla-mobile/firefox-ios> ;
+                            <http://rdfs.org/sioc/ns#name> "AndiAJ"^^rdfs:Literal .
 
 
 ###  https://github.com/OrlaM
@@ -318,13 +339,15 @@
                                                              <https://github.com/mozilla-mobile> ,
                                                              <https://github.com/yoanarios> ;
                            :committer <https://github.com/mozilla-mobile/firefox-ios/tree/e7c7994b972a011c23d4e5d4951e97648cf64747> ;
-                           :likesRepository <https://github.com/mozilla-mobile/firefox-ios> .
+                           :likesRepository <https://github.com/mozilla-mobile/firefox-ios> ;
+                           <http://rdfs.org/sioc/ns#name> "OrlaM"^^rdfs:Literal .
 
 
 ###  https://github.com/afmckinney
 <https://github.com/afmckinney> rdf:type owl:NamedIndividual ,
                                          <http://rdfs.org/sioc/ns#UserAccount> ;
-                                <http://rdfs.org/sioc/ns#creator_of> <https://github.com/afmckinney/sky_sdk> .
+                                <http://rdfs.org/sioc/ns#creator_of> <https://github.com/afmckinney/sky_sdk> ;
+                                <http://rdfs.org/sioc/ns#name> "afmckinney"^^rdfs:Literal .
 
 
 ###  https://github.com/darrenaustin
@@ -333,7 +356,8 @@
                                   <http://rdfs.org/sioc/ns#follows> <https://github.com/AndiAJ> ,
                                                                     <https://github.com/mozilla-mobile> ;
                                   :committer <https://github.com/flutter/flutter/tree/e6d525d51dcd52d822d3b161cd04e9b0336d9fac> ;
-                                  :likesRepository <https://github.com/flutter/flutter> .
+                                  :likesRepository <https://github.com/flutter/flutter> ;
+                                  <http://rdfs.org/sioc/ns#name> "darrenaustin"^^rdfs:Literal .
 
 
 ###  https://github.com/dkwingsmt
@@ -341,27 +365,31 @@
                                         <http://rdfs.org/sioc/ns#UserAccount> ;
                                :committer <https://github.com/flutter/flutter/tree/576e85ca5e75dc418ea861440592a157e9495908> ;
                                :likesRepository <https://github.com/flutter/flutter> ,
-                                                <https://github.com/mozilla-mobile/firefox-ios> .
+                                                <https://github.com/mozilla-mobile/firefox-ios> ;
+                               <http://rdfs.org/sioc/ns#name> "dkwingsmt"^^rdfs:Literal .
 
 
 ###  https://github.com/flutter
 <https://github.com/flutter> rdf:type owl:NamedIndividual ,
                                       <http://rdfs.org/sioc/ns#UserAccount> ;
                              <http://rdfs.org/sioc/ns#account_of> <https://dbpedia.org/page/Google> ;
-                             <http://rdfs.org/sioc/ns#creator_of> <https://github.com/flutter/flutter> .
+                             <http://rdfs.org/sioc/ns#creator_of> <https://github.com/flutter/flutter> ;
+                             <http://rdfs.org/sioc/ns#name> "flutter"^^rdfs:Literal .
 
 
 ###  https://github.com/gabrielluong
 <https://github.com/gabrielluong> rdf:type owl:NamedIndividual ,
                                            <http://rdfs.org/sioc/ns#UserAccount> ;
                                   :committer <https://github.com/mozilla-mobile/fenix/tree/412579f95625284ab4af8a6f72b75f6664756eb9> ;
-                                  :likesRepository <https://github.com/mozilla-mobile/fenix> .
+                                  :likesRepository <https://github.com/mozilla-mobile/fenix> ;
+                                  <http://rdfs.org/sioc/ns#name> "gabrielluong"^^rdfs:Literal .
 
 
 ###  https://github.com/mozilla-l10n-automation-bot
 <https://github.com/mozilla-l10n-automation-bot> rdf:type owl:NamedIndividual ,
                                                           <http://rdfs.org/sioc/ns#UserAccount> ;
-                                                 :committer <https://github.com/mozilla-mobile/fenix/tree/685424de9aa26e655a57659722022486aef43254> .
+                                                 :committer <https://github.com/mozilla-mobile/fenix/tree/685424de9aa26e655a57659722022486aef43254> ;
+                                                 <http://rdfs.org/sioc/ns#name> "mozilla-l10n-automation-bot"^^rdfs:Literal .
 
 
 ###  https://github.com/mozilla-mobile
@@ -369,13 +397,15 @@
                                              <http://rdfs.org/sioc/ns#UserAccount> ;
                                     <http://rdfs.org/sioc/ns#account_of> <https://dbpedia.org/page/Mozilla> ;
                                     <http://rdfs.org/sioc/ns#creator_of> <https://github.com/mozilla-mobile/fenix> ,
-                                                                         <https://github.com/mozilla-mobile/firefox-ios> .
+                                                                         <https://github.com/mozilla-mobile/firefox-ios> ;
+                                    <http://rdfs.org/sioc/ns#name> "mozilla-mobile"^^rdfs:Literal .
 
 
 ###  https://github.com/qgis
 <https://github.com/qgis> rdf:type owl:NamedIndividual ,
                                    <http://rdfs.org/sioc/ns#UserAccount> ;
-                          <http://rdfs.org/sioc/ns#creator_of> <https://github.com/qgis/QGIS> .
+                          <http://rdfs.org/sioc/ns#creator_of> <https://github.com/qgis/QGIS> ;
+                          <http://rdfs.org/sioc/ns#name> "qgis"^^rdfs:Literal .
 
 
 ###  https://github.com/yoanarios
@@ -384,18 +414,21 @@
                                <http://rdfs.org/sioc/ns#follows> <https://github.com/OrlaM> ;
                                :committer <https://github.com/mozilla-mobile/firefox-ios/tree/71333a79e0608d94dd2751c21726c5b6cf7ab4fe> ;
                                :likesRepository <https://github.com/mozilla-mobile/fenix> ,
-                                                <https://github.com/mozilla-mobile/firefox-ios> .
+                                                <https://github.com/mozilla-mobile/firefox-ios> ;
+                               <http://rdfs.org/sioc/ns#name> "yoanarios"^^rdfs:Literal .
 
 
 ###  https://github.com/10Macit
 <https://github.com/10Macit> rdf:type owl:NamedIndividual ,
-                                      <http://rdfs.org/sioc/ns#UserAccount> .
+                                      <http://rdfs.org/sioc/ns#UserAccount> ;
+                             <http://rdfs.org/sioc/ns#name> "10Macit"^^rdfs:Literal .
 
 
 ###  https://github.com/10045125
 <https://github.com/10045125> rdf:type owl:NamedIndividual ,
                                        <http://rdfs.org/sioc/ns#UserAccount> ;
-                              <http://rdfs.org/sioc/ns#creator_of> <https://github.com/10Macit/firefox-ios> .
+                              <http://rdfs.org/sioc/ns#creator_of> <https://github.com/10Macit/firefox-ios> ;
+                              <http://rdfs.org/sioc/ns#name> "10045125"^^rdfs:Literal .
 
 
 ###  https://github.com/10045125/firefox-ios
@@ -404,6 +437,7 @@
                                           :isForkOf <https://github.com/mozilla-mobile/firefox-ios> ;
                                           :hasCloneUrl "https://github.com/10045125/firefox-ios.git"^^xsd:anyURI ;
                                           :hasHtmlUrl "https://github.com/10045125/firefox-ios"^^xsd:anyURI ;
+                                          <http://purl.org/dc/elements/1.1/title> "Firefox iOS fork1" ;
                                           rdfs:label "Firefox iOS fork1" .
 
 
@@ -413,14 +447,17 @@
                                          :isForkOf <https://github.com/mozilla-mobile/firefox-ios> ;
                                          :hasCloneUrl "https://github.com/10Macit/firefox-ios.git"^^xsd:anyURI ;
                                          :hasHtmlUrl "https://github.com/10Macit/firefox-ios"^^xsd:anyURI ;
+                                         <http://purl.org/dc/elements/1.1/title> "Firefox iOS fork2" ;
                                          rdfs:label "Firefox iOS fork2" .
 
 
 ###  https://github.com/afmckinney/sky_sdk
 <https://github.com/afmckinney/sky_sdk> rdf:type owl:NamedIndividual ,
                                                  :SoftwareRepository ;
+                                        :isForkOf <https://github.com/flutter/flutter> ;
                                         :hasCloneUrl "https://github.com/afmckinney/sky_sdk.git"^^xsd:anyURI ;
                                         :hasHtmlUrl "https://github.com/afmckinney/sky_sdk"^^xsd:anyURI ;
+                                        <http://purl.org/dc/elements/1.1/title> "Sky sdk repo" ;
                                         rdfs:label "Sky sdk repo" .
 
 
@@ -432,6 +469,7 @@
                                                 <https://github.com/flutter/flutter/tree/master> ;
                                      :hasCloneUrl "https://github.com/flutter/flutter.git"^^xsd:anyURI ;
                                      :hasHtmlUrl "https://github.com/flutter/flutter"^^xsd:anyURI ;
+                                     <http://purl.org/dc/elements/1.1/title> "Flutter repo" ;
                                      rdfs:label "Flutter repo" .
 
 
@@ -440,6 +478,7 @@
                                                                                                                                               :SourceCodeFile ;
                                                                                                                                      <https://dbpedia.org/ontology/fileExtension> "dart"^^xsd:string ;
                                                                                                                                      <https://w3id.org/okn/o/sd#programmingLanguage> "Dart"^^xsd:string ;
+                                                                                                                                     <http://purl.org/dc/elements/1.1/title> "text_input.dart" ;
                                                                                                                                      rdfs:label "flutter-flutter-blob-576e85ca5e75dc418ea861440592a157e9495908-packages-flutter-lib-src-services-text_input.dart" .
 
 
@@ -448,6 +487,7 @@
                                                                                                                                                 :SourceCodeFile ;
                                                                                                                                        <https://dbpedia.org/ontology/fileExtension> "dart"^^xsd:string ;
                                                                                                                                        <https://w3id.org/okn/o/sd#programmingLanguage> "Dart"^^xsd:string ;
+                                                                                                                                       <http://purl.org/dc/elements/1.1/title> "text_input_test.dart" ;
                                                                                                                                        rdfs:label "flutter-flutter-blob-576e85ca5e75dc418ea861440592a157e9495908-packages-flutter-test-services-text_input_test.dart" .
 
 
@@ -456,18 +496,21 @@
                                                                                                                                         :SourceCodeFile ;
                                                                                                                                <https://dbpedia.org/ontology/fileExtension> "dart"^^xsd:string ;
                                                                                                                                <https://w3id.org/okn/o/sd#programmingLanguage> "Dart"^^xsd:string ;
+                                                                                                                               <http://purl.org/dc/elements/1.1/title> "card.dart" ;
                                                                                                                                rdfs:label "flutter-flutter-blob-e6d525d51dcd52d822d3b161cd04e9b0336d9fac-packages-flutter-lib-src-material-card.dart" .
 
 
 ###  https://github.com/flutter/flutter/tree/beta
 <https://github.com/flutter/flutter/tree/beta> rdf:type owl:NamedIndividual ,
                                                         :Branch ;
+                                               <http://purl.org/dc/elements/1.1/title> "flutter-flutter-tree-beta" ;
                                                rdfs:label "flutter-flutter-tree-beta" .
 
 
 ###  https://github.com/flutter/flutter/tree/dev
 <https://github.com/flutter/flutter/tree/dev> rdf:type owl:NamedIndividual ,
                                                        :Branch ;
+                                              <http://purl.org/dc/elements/1.1/title> "flutter-flutter-tree-dev" ;
                                               rdfs:label "flutter-flutter-tree-dev" .
 
 
@@ -476,6 +519,7 @@
                                                                                             :Commit ;
                                                                                    :modifiedFile <https://github.com/flutter/flutter/blob/e6d525d51dcd52d822d3b161cd04e9b0336d9fac/packages/flutter/lib/src/material/card.dart> ;
                                                                                    <http://purl.org/dc/terms/created> "2022-06-15T08:06:00"^^xsd:dateTime ;
+                                                                                   :commitNumber "29462"^^xsd:int ;
                                                                                    rdfs:label "flutter-flutter-tree-e6d525d51dcd52d822d3b161cd04e9b0336d9fac" .
 
 
@@ -484,6 +528,7 @@
                                                           :Branch ;
                                                  :hasCommit <https://github.com/flutter/flutter/tree/e6d525d51dcd52d822d3b161cd04e9b0336d9fac> ,
                                                             <https://github.com/flutter/flutter/tree/576e85ca5e75dc418ea861440592a157e9495908> ;
+                                                 <http://purl.org/dc/elements/1.1/title> "flutter-flutter-tree-master" ;
                                                  rdfs:label "flutter-flutter-tree-master" .
 
 
@@ -493,6 +538,7 @@
                                                                                    :modifiedFile <https://github.com/flutter/flutter/blob/576e85ca5e75dc418ea861440592a157e9495908/packages/flutter/lib/src/services/text_input.dart> ,
                                                                                                  <https://github.com/flutter/flutter/blob/576e85ca5e75dc418ea861440592a157e9495908/packages/flutter/test/services/text_input_test.dart> ;
                                                                                    <http://purl.org/dc/terms/created> "2022-06-15T05:31:00"^^xsd:dateTime ;
+                                                                                   :commitNumber "29461"^^xsd:int ;
                                                                                    rdfs:label "flutter-flutter-tree-576e85ca5e75dc418ea861440592a157e9495908" .
 
 
@@ -502,6 +548,7 @@
                                           :hasBranch <https://github.com/mozilla-mobile/fenix/tree/main> ;
                                           :hasCloneUrl "https://github.com/mozilla-mobile/fenix.git"^^xsd:anyURI ;
                                           :hasHtmlUrl "https://github.com/mozilla-mobile/fenix"^^xsd:anyURI ;
+                                          <http://purl.org/dc/elements/1.1/title> "Fenix repo" ;
                                           rdfs:label "Fenix repo" .
 
 
@@ -512,6 +559,7 @@
                                                            <https://github.com/mozilla-mobile/firefox-ios/tree/master> ;
                                                 :hasCloneUrl "https://github.com/mozilla-mobile/firefox-ios.git"^^xsd:anyURI ;
                                                 :hasHtmlUrl "https://github.com/mozilla-mobile/firefox-ios"^^xsd:anyURI ;
+                                                <http://purl.org/dc/elements/1.1/title> "Firefox iOS repo" ;
                                                 rdfs:label "Firefox iOS repo" .
 
 
@@ -520,6 +568,7 @@
                                                                                                                                                                     :SourceCodeFile ;
                                                                                                                                                            <https://dbpedia.org/ontology/fileExtension> "kt"^^xsd:string ;
                                                                                                                                                            <https://w3id.org/okn/o/sd#programmingLanguage> "Kotlin"^^xsd:string ;
+                                                                                                                                                           <http://purl.org/dc/elements/1.1/title> "BaseBrowserFragment.kt" ;
                                                                                                                                                            rdfs:label "mozilla-mobile-fenix-blob-3b4e11b796ec67883f1e6185dd3aa61acece9b05-app-src-main-java-org-mozilla-fenix-browser-BaseBrowserFragment.kt" .
 
 
@@ -528,6 +577,7 @@
                                                                                                                                               :SourceCodeFile ;
                                                                                                                                      <https://dbpedia.org/ontology/fileExtension> "xml"^^xsd:string ;
                                                                                                                                      <https://w3id.org/okn/o/sd#programmingLanguage> "XML"^^xsd:string ;
+                                                                                                                                     <http://purl.org/dc/elements/1.1/title> "fragment_browser.xml" ;
                                                                                                                                      rdfs:label "mozilla-mobile-fenix-blob-3b4e11b796ec67883f1e6185dd3aa61acece9b05-app-src-main-res-layout-fragment_browser.xml" .
 
 
@@ -536,6 +586,7 @@
                                                                                                                                     :SourceCodeFile ;
                                                                                                                            <https://dbpedia.org/ontology/fileExtension> "xml"^^xsd:string ;
                                                                                                                            <https://w3id.org/okn/o/sd#programmingLanguage> "XML"^^xsd:string ;
+                                                                                                                           <http://purl.org/dc/elements/1.1/title> "styles.xml" ;
                                                                                                                            rdfs:label "mozilla-mobile-fenix-blob-3b4e11b796ec67883f1e6185dd3aa61acece9b05-app-src-main-res-values-styles.xml" .
 
 
@@ -544,6 +595,7 @@
                                                                                                                     :SourceCodeFile ;
                                                                                                            <https://dbpedia.org/ontology/fileExtension> "yaml"^^xsd:string ;
                                                                                                            <https://w3id.org/okn/o/sd#programmingLanguage> "Yaml"^^xsd:string ;
+                                                                                                           <http://purl.org/dc/elements/1.1/title> ".experimenter.yaml" ;
                                                                                                            rdfs:label "mozilla-mobile-fenix-blob-412579f95625284ab4af8a6f72b75f6664756eb9-.experimenter.yaml" .
 
 
@@ -552,6 +604,7 @@
                                                                                                                                          :SourceCodeFile ;
                                                                                                                                 <https://dbpedia.org/ontology/fileExtension> "xml"^^xsd:string ;
                                                                                                                                 <https://w3id.org/okn/o/sd#programmingLanguage> "XML"^^xsd:string ;
+                                                                                                                                <http://purl.org/dc/elements/1.1/title> "strings.xml" ;
                                                                                                                                 rdfs:label "mozilla-mobile-fenix-blob-685424de9aa26e655a57659722022486aef43254-app-src-main-res-values-kab-strings.xml" .
 
 
@@ -560,6 +613,7 @@
                                                                                                                                                                   :SourceCodeFile ;
                                                                                                                                                          <https://dbpedia.org/ontology/fileExtension> "kt"^^xsd:string ;
                                                                                                                                                          <https://w3id.org/okn/o/sd#programmingLanguage> "Kotlin"^^xsd:string ;
+                                                                                                                                                         <http://purl.org/dc/elements/1.1/title> "TestHelper.kt" ;
                                                                                                                                                          rdfs:label "mozilla-mobile-fenix-blob-8b04752122f4196c48bcba8f26771f88df3926a8-app-src-androidTest-java-org-mozilla-fenix-helpers-TestHelper.kt" .
 
 
@@ -568,6 +622,7 @@
                                                                                                                                                           :SourceCodeFile ;
                                                                                                                                                  <https://dbpedia.org/ontology/fileExtension> "kt"^^xsd:string ;
                                                                                                                                                  <https://w3id.org/okn/o/sd#programmingLanguage> "Kotlin"^^xsd:string ;
+                                                                                                                                                 <http://purl.org/dc/elements/1.1/title> "PwaTest.kt" ;
                                                                                                                                                  rdfs:label "mozilla-mobile-fenix-blob-8b04752122f4196c48bcba8f26771f88df3926a8-app-src-androidTest-java-org-mozilla-fenix-ui-PwaTest.kt" .
 
 
@@ -576,6 +631,7 @@
                                                                                                                                                                       :SourceCodeFile ;
                                                                                                                                                              <https://dbpedia.org/ontology/fileExtension> "kt"^^xsd:string ;
                                                                                                                                                              <https://w3id.org/okn/o/sd#programmingLanguage> "Kotlin"^^xsd:string ;
+                                                                                                                                                             <http://purl.org/dc/elements/1.1/title> "BrowserRobot.kt" ;
                                                                                                                                                              rdfs:label "mozilla-mobile-fenix-blob-8b04752122f4196c48bcba8f26771f88df3926a8-app-src-androidTest-java-org-mozilla-fenix-ui-robots-BrowserRobot.kt" .
 
 
@@ -586,6 +642,7 @@
                                                                <https://github.com/mozilla-mobile/fenix/tree/412579f95625284ab4af8a6f72b75f6664756eb9> ,
                                                                <https://github.com/mozilla-mobile/fenix/tree/685424de9aa26e655a57659722022486aef43254> ,
                                                                <https://github.com/mozilla-mobile/fenix/tree/8b04752122f4196c48bcba8f26771f88df3926a8> ;
+                                                    <http://purl.org/dc/elements/1.1/title> "mozilla-mobile-fenix-tree-main" ;
                                                     rdfs:label "mozilla-mobile-fenix-tree-main" .
 
 
@@ -597,6 +654,7 @@
                                                                                                       <https://github.com/mozilla-mobile/fenix/blob/3b4e11b796ec67883f1e6185dd3aa61acece9b05/app/src/main/res/layout/fragment_browser.xml> ,
                                                                                                       <https://github.com/mozilla-mobile/fenix/blob/3b4e11b796ec67883f1e6185dd3aa61acece9b05/app/src/main/res/values/styles.xml> ;
                                                                                         <http://purl.org/dc/terms/created> "2022-06-15T08:43:00"^^xsd:dateTime ;
+                                                                                        :commitNumber "9056"^^xsd:int ;
                                                                                         rdfs:label "mozilla-mobile-fenix-tree-3b4e11b796ec67883f1e6185dd3aa61acece9b05" .
 
 
@@ -605,6 +663,7 @@
                                                                                                  :Commit ;
                                                                                         :modifiedFile <https://github.com/mozilla-mobile/fenix/blob/412579f95625284ab4af8a6f72b75f6664756eb9/.experimenter.yaml> ;
                                                                                         <http://purl.org/dc/terms/created> "2022-06-15T01:20:00"^^xsd:dateTime ;
+                                                                                        :commitNumber "9054"^^xsd:int ;
                                                                                         rdfs:label "mozilla-mobile-fenix-tree-412579f95625284ab4af8a6f72b75f6664756eb9" .
 
 
@@ -613,6 +672,7 @@
                                                                                                  :Commit ;
                                                                                         :modifiedFile <https://github.com/mozilla-mobile/fenix/blob/685424de9aa26e655a57659722022486aef43254/app/src/main/res/values-kab/strings.xml> ;
                                                                                         <http://purl.org/dc/terms/created> "2022-06-15T02:45:00"^^xsd:dateTime ;
+                                                                                        :commitNumber "9055"^^xsd:int ;
                                                                                         rdfs:label "mozilla-mobile-fenix-tree-685424de9aa26e655a57659722022486aef43254" .
 
 
@@ -623,6 +683,7 @@
                                                                                                       <https://github.com/mozilla-mobile/fenix/blob/8b04752122f4196c48bcba8f26771f88df3926a8/app/src/androidTest/java/org/mozilla/fenix/ui/PwaTest.kt> ,
                                                                                                       <https://github.com/mozilla-mobile/fenix/blob/8b04752122f4196c48bcba8f26771f88df3926a8/app/src/androidTest/java/org/mozilla/fenix/ui/robots/BrowserRobot.kt> ;
                                                                                         <http://purl.org/dc/terms/created> "2022-06-15T10:02:00"^^xsd:dateTime ;
+                                                                                        :commitNumber "9057"^^xsd:int ;
                                                                                         rdfs:label "mozilla-mobile-fenix-tree-8b04752122f4196c48bcba8f26771f88df3926a8" .
 
 
@@ -631,6 +692,7 @@
                                                                                                                                                        :SourceCodeFile ;
                                                                                                                                               <https://dbpedia.org/ontology/fileExtension> "swift"^^xsd:string ;
                                                                                                                                               <https://w3id.org/okn/o/sd#programmingLanguage> "Swift"^^xsd:string ;
+                                                                                                                                              <http://purl.org/dc/elements/1.1/title> "IntroViewController.swift" ;
                                                                                                                                               rdfs:label "mozilla-mobile-firefox-ios-blob-71333a79e0608d94dd2751c21726c5b6cf7ab4fe-Client-Frontend-Intro-IntroViewController.swift" .
 
 
@@ -639,6 +701,7 @@
                                                                                                                                                                 :SourceCodeFile ;
                                                                                                                                                        <https://dbpedia.org/ontology/fileExtension> "swift"^^xsd:string ;
                                                                                                                                                        <https://w3id.org/okn/o/sd#programmingLanguage> "Swift"^^xsd:string ;
+                                                                                                                                                       <http://purl.org/dc/elements/1.1/title> "OnboardingCardViewController.swift" ;
                                                                                                                                                        rdfs:label "mozilla-mobile-firefox-ios-blob-71333a79e0608d94dd2751c21726c5b6cf7ab4fe-Client-Frontend-Intro-OnboardingCardViewController.swift" .
 
 
@@ -646,6 +709,7 @@
 <https://github.com/mozilla-mobile/firefox-ios/blob/e7c7994b972a011c23d4e5d4951e97648cf64747/Client.xcodeproj/project.pbxproj> rdf:type owl:NamedIndividual ,
                                                                                                                                         <https://dbpedia.org/ontology/File> ;
                                                                                                                                <https://dbpedia.org/ontology/fileExtension> "pbxproj"^^xsd:string ;
+                                                                                                                               <http://purl.org/dc/elements/1.1/title> "project.pbxproj" ;
                                                                                                                                rdfs:label "mozilla-mobile-firefox-ios-blob-e7c7994b972a011c23d4e5d4951e97648cf64747-Client.xcodeproj-project.pbxproj" .
 
 
@@ -653,6 +717,7 @@
 <https://github.com/mozilla-mobile/firefox-ios/blob/e7c7994b972a011c23d4e5d4951e97648cf64747/Client/Configuration/Fennec.xcconfig> rdf:type owl:NamedIndividual ,
                                                                                                                                             <https://dbpedia.org/ontology/File> ;
                                                                                                                                    <https://dbpedia.org/ontology/fileExtension> "xcconfig"^^xsd:string ;
+                                                                                                                                   <http://purl.org/dc/elements/1.1/title> "Fennec.xcconfig" ;
                                                                                                                                    rdfs:label "mozilla-mobile-firefox-ios-blob-e7c7994b972a011c23d4e5d4951e97648cf64747-Client-Configuration-Fennec.xcconfig" .
 
 
@@ -662,6 +727,7 @@
                                                                                               :modifiedFile <https://github.com/mozilla-mobile/firefox-ios/blob/e7c7994b972a011c23d4e5d4951e97648cf64747/Client.xcodeproj/project.pbxproj> ,
                                                                                                             <https://github.com/mozilla-mobile/firefox-ios/blob/e7c7994b972a011c23d4e5d4951e97648cf64747/Client/Configuration/Fennec.xcconfig> ;
                                                                                               <http://purl.org/dc/terms/created> "2022-06-14T23:34:00"^^xsd:dateTime ;
+                                                                                              :commitNumber "9657"^^xsd:int ;
                                                                                               rdfs:label "mozilla-mobile-firefox-ios-tree-e7c7994b972a011c23d4e5d4951e97648cf64747" .
 
 
@@ -670,12 +736,14 @@
                                                                    :Branch ;
                                                           :hasCommit <https://github.com/mozilla-mobile/firefox-ios/tree/e7c7994b972a011c23d4e5d4951e97648cf64747> ,
                                                                      <https://github.com/mozilla-mobile/firefox-ios/tree/71333a79e0608d94dd2751c21726c5b6cf7ab4fe> ;
+                                                          <http://purl.org/dc/elements/1.1/title> "mozilla-mobile-firefox-ios-tree-main" ;
                                                           rdfs:label "mozilla-mobile-firefox-ios-tree-main" .
 
 
 ###  https://github.com/mozilla-mobile/firefox-ios/tree/master
 <https://github.com/mozilla-mobile/firefox-ios/tree/master> rdf:type owl:NamedIndividual ,
                                                                      :Branch ;
+                                                            <http://purl.org/dc/elements/1.1/title> "mozilla-mobile-firefox-ios-tree-master" ;
                                                             rdfs:label "mozilla-mobile-firefox-ios-tree-master" .
 
 
@@ -685,12 +753,14 @@
                                                                                               :modifiedFile <https://github.com/mozilla-mobile/firefox-ios/blob/71333a79e0608d94dd2751c21726c5b6cf7ab4fe/Client/Frontend/Intro/IntroViewController.swift> ,
                                                                                                             <https://github.com/mozilla-mobile/firefox-ios/blob/71333a79e0608d94dd2751c21726c5b6cf7ab4fe/Client/Frontend/Intro/OnboardingCardViewController.swift> ;
                                                                                               <http://purl.org/dc/terms/created> "2022-06-14T19:00:00"^^xsd:dateTime ;
+                                                                                              :commitNumber "9656"^^xsd:int ;
                                                                                               rdfs:label "mozilla-mobile-firefox-ios-tree-71333a79e0608d94dd2751c21726c5b6cf7ab4fe" .
 
 
 ###  https://github.com/qgis/QGIS
 <https://github.com/qgis/QGIS> rdf:type owl:NamedIndividual ,
                                         :SoftwareRepository ;
+                               <http://purl.org/dc/elements/1.1/title> "QGIS repo" ;
                                rdfs:label "QGIS repo" .
 
 
