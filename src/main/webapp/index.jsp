@@ -1,3 +1,13 @@
+<%@ page import="it.unisa.tsro.model.bean.SoftwareBean" %>
+<%@ page import="java.util.List" %>
+<%
+    List<SoftwareBean> softwareList = (List<SoftwareBean>) request.getAttribute("softwareList");
+    if (softwareList == null) {
+        response.sendRedirect("index-servlet");
+        return;
+    }
+%>
+
 <jsp:include page="header.jsp">
     <jsp:param name="pageTitle" value="Index - "/>
 </jsp:include>
@@ -55,16 +65,45 @@
                                 </tr>
                                 </tfoot>
                                 <tbody>
+                                <%
+                                    for (SoftwareBean softwareBean : softwareList) {
+                                %>
                                 <tr><%//TODO: Sostituire con i dati della base di conoscenza e gli appositi link%>
-                                    <td><a href="softwareBean.jsp">EasyAid</a></td>
-                                    <td><a href="repository.jsp">https://github.com/C04-EasyAid/easyaid</a></td>
-                                    <td><a href="agent.jsp">Sabato Nocera</a></td>
+                                    <td>
+                                        <a href="software-servlet?softwareUrl="
+                                                <%=softwareBean.getSoftwareUrl().getURI()%>>
+                                            <%=softwareBean.getSoftwareTitle().getString()%></a>
+                                    </td>
+                                    <td>
+                                        <a href="repository-servlet?repositoryUrl="
+                                                <%=softwareBean.getRepositoryUrl().getURI()%>>
+                                            <%=softwareBean.getRepositoryName().getString()%></a>
+                                    </td>
+                                    <td>
+                                        <a href="agent-servlet?agentUrl="
+                                                <%=softwareBean.getAuthorUrl().getURI()%>>
+                                            <%=softwareBean.getAuthorName().getString()%></a>
+                                    </td>
+                                    <td>
+                                        <a href="agent-servlet?agentUrl="
+                                                <%=softwareBean.getAuthorUrl().getURI()%>>
+                                            <%=softwareBean.getAuthorName().getString()%></a>
+                                    </td>
+
+
+
+
+
+
                                     <td><a href="topic.jsp">Erogazioni servizi DSA/disabili</a> ,
                                         <a href="topic.jsp">Gestionale</a>
                                     </td>
                                     <td>63</td>
                                     <td>589</td>
                                 </tr>
+                                <%
+                                    }
+                                %>
                                 </tbody>
                             </table>
                         </div>

@@ -21,6 +21,8 @@ public class IndexServlet extends HttpServlet {
             softwareBean.setNumeroDiCommit(tsroDao.recuperaRepositoryMainBranchCommit(softwareBean.getRepositoryUrl()));
         }
 
+        request.setAttribute("softwareList",softwareList);
+
         request.getRequestDispatcher("./index.jsp").forward(request, response);
     }
 
