@@ -6,6 +6,7 @@ import org.apache.jena.rdf.model.Resource;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 
 
 public class SoftwareBean implements Serializable {
@@ -23,6 +24,19 @@ public class SoftwareBean implements Serializable {
 
     public SoftwareBean() {
 
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof SoftwareBean)) return false;
+        SoftwareBean that = (SoftwareBean) o;
+        return getMiPiace() == that.getMiPiace() && getNumeroDiCommit() == that.getNumeroDiCommit() && Objects.equals(getSoftwareTitle(), that.getSoftwareTitle()) && Objects.equals(getSoftwareUrl(), that.getSoftwareUrl()) && Objects.equals(getAuthorName(), that.getAuthorName()) && Objects.equals(getAuthorUrl(), that.getAuthorUrl()) && Objects.equals(getRepositoryName(), that.getRepositoryName()) && Objects.equals(getRepositoryUrl(), that.getRepositoryUrl()) && Objects.equals(getTopicBeanList(), that.getTopicBeanList());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getSoftwareTitle(), getSoftwareUrl(), getAuthorName(), getAuthorUrl(), getRepositoryName(), getRepositoryUrl(), getMiPiace(), getNumeroDiCommit(), getTopicBeanList());
     }
 
     public Literal getSoftwareTitle() {

@@ -1,7 +1,9 @@
 package it.unisa.tsro.model.dao;
 
+import it.unisa.tsro.model.bean.AgentBean;
 import it.unisa.tsro.model.bean.SoftwareBean;
 import it.unisa.tsro.model.bean.TopicBean;
+import it.unisa.tsro.model.bean.UserAccountBean;
 import org.apache.jena.query.*;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.sparql.engine.http.QueryEngineHTTP;
@@ -195,5 +197,98 @@ public class TsroDao {
         }
         qexec.close();
         return topicList;
+    }
+
+    public AgentBean recuperaAgent(String authorUrl) {
+        AgentBean agentBean = new AgentBean();
+        agentBean.setSoftwareBeanList(new ArrayList<>());
+        agentBean.setUserAccountBeanList(new ArrayList<>());
+
+        String szQuery = PREFIX + "SELECT ?authorName ?softwareUrl ?softwareTitle ?userAccountUrl ?userAccountName\n" +
+                "WHERE {\n" +
+                "  ?softwareUrl sd:author <" + authorUrl + ">.\n" +
+                "  ?softwareUrl dc:title ?softwareTitle.\n" +
+                "  <" + authorUrl + "> sioc:name ?authorName.\n" +
+                "  ?userAccountUrl ns:account_of <" + authorUrl + ">.\n" +
+                "  ?userAccountUrl sioc:name ?userAccountName.\n" +
+                "}";
+
+        LOGGER.info(szQuery);
+
+        Query query = QueryFactory.create(szQuery);
+
+        QueryExecution qexec = QueryExecutionFactory.sparqlService(ENDPOINT, query);
+
+        ((QueryEngineHTTP) qexec).addParam("timeout", "10000");
+
+        int counter = 0;
+        ResultSet rs = qexec.execSelect();
+
+        agentBean.setAuthorUrl(authorUrl);
+        while (rs.hasNext()) {
+            QuerySolution qs = rs.next();
+
+            agentBean.setAuthorName(qs.getLiteral("authorName"));
+
+            SoftwareBean softwareBean = new SoftwareBean();
+            softwareBean.setSoftwareTitle(qs.getLiteral("softwareTitle"));
+            softwareBean.setSoftwareUrl(qs.getResource("softwareUrl"));
+
+            UserAccountBean userAccountBean = new UserAccountBean();
+            userAccountBean.setUserAccountUrl(qs.getResource("userAccountUrl"));
+            userAccountBean.setUserAccountName(qs.getLiteral("userAccountName"));
+
+            if (!agentBean.getSoftwareBeanList().contains(softwareBean)) {
+                agentBean.getSoftwareBeanList().add(softwareBean);
+            }
+
+            if (!agentBean.getUserAccountBeanList().contains(userAccountBean)) {
+                agentBean.getUserAccountBeanList().add(userAccountBean);
+            }
+
+            counter++;
+
+            LOGGER.info("Result " + counter + ": " + agentBean);
+        }
+        qexec.close();
+        return agentBean;
+    }
+
+
+    public String recuperaAgentInfosFromTheCloud(String authorUrl) {
+        String infosFromTheCloud = "";
+
+        String szQuery = PREFIX + "SELECT ?fromTheCloud\n" +
+                "WHERE {\n" +
+                "SERVICE <https://dbpedia.org/sparql> { \n" +
+                "    <"+authorUrl+"> ?p ?fromTheCloud.\n" +
+                "    FILTER (lang(?fromTheCloud) = 'en')\n" +
+                "  }\n" +
+                "}\n" +
+                "ORDER BY DESC(strlen(str(?fromTheCloud)))\n" +
+                "LIMIT 1";
+
+        LOGGER.info(szQuery);
+
+        Query query = QueryFactory.create(szQuery);
+
+        QueryExecution qexec = QueryExecutionFactory.sparqlService(ENDPOINT, query);
+
+        ((QueryEngineHTTP) qexec).addParam("timeout", "10000");
+
+        int counter = 0;
+        ResultSet rs = qexec.execSelect();
+
+        while (rs.hasNext()) {
+            QuerySolution qs = rs.next();
+
+            infosFromTheCloud = qs.get("fromTheCloud").toString();
+
+            counter++;
+
+            LOGGER.info("Result " + counter + ": " + infosFromTheCloud);
+        }
+        qexec.close();
+        return infosFromTheCloud;
     }
 }

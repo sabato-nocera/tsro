@@ -1,7 +1,19 @@
+<%@ page import="it.unisa.tsro.model.bean.AgentBean" %>
+<%@ page import="it.unisa.tsro.model.bean.SoftwareBean" %>
+<%@ page import="it.unisa.tsro.model.bean.UserAccountBean" %>
+
+<%
+    AgentBean agentBean = (AgentBean) request.getAttribute("agentBean");
+    if (agentBean == null) {
+        response.sendRedirect("./index.jsp");
+        return;
+    }
+%>
+
 <jsp:include page="header.jsp">
-    <jsp:param name="pageTitle" value="Agent - "/>
+    <jsp:param name="pageTitle"
+               value='<%= agentBean.getAuthorName() != null ? agentBean.getAuthorName().getString() : "" %>'/>
 </jsp:include>
-<%//TODO: Inserire il nome dell'agent/person/organization preso dalla request%>
 
 <body id="page-top">
 
@@ -21,10 +33,14 @@
                 <!-- Page Heading -->
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
                     <h1 class="h3 mb-0 text-gray-800">
-                        NomeAgent <%//TODO: Inserire il nome dell'agent/person/organization preso dalla request%></h1>
+                        <%= agentBean.getAuthorName() != null ? agentBean.getAuthorName().getString() : "" %>
+                    </h1>
                 </div>
 
-                <!-- Proprietario dei softwareBean -->
+                <%
+                    for (SoftwareBean softwareBean : agentBean.getSoftwareBeanList()) {
+                %>
+                <!-- Proprietario dei software -->
                 <div class="row">
                     <div class="col m-1 p-1">
                         <div class="card border-left-primary shadow h-100 py-2">
@@ -32,11 +48,12 @@
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
                                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                            Proprietario del softwareBean
+                                            Proprietario del software:
                                         </div>
                                         <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                            <a href="softwareBean.jsp">Nome del
-                                                softwareBean</a> <%//TODO: inserire Nome del softwareBean%>
+                                            <a href="software-servlet?softwareUrl=<%=softwareBean.getSoftwareUrl() != null ? softwareBean.getSoftwareUrl().getURI() : ""%>">
+                                                <%=softwareBean.getSoftwareTitle() != null ? softwareBean.getSoftwareTitle().getString() : ""%>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -44,7 +61,13 @@
                         </div>
                     </div>
                 </div>
+                <%
+                    }
+                %>
 
+                <%
+                    for (UserAccountBean userAccountBean : agentBean.getUserAccountBeanList()) {
+                %>
                 <!-- Proprietario degli account -->
                 <div class="row">
                     <div class="col m-1 p-1">
@@ -53,10 +76,12 @@
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
                                         <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                            Proprietario dell'account
+                                            Proprietario dell'account:
                                         </div>
                                         <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                            <a href="account.jsp">Account</a> <%//TODO: inserire account%>
+                                            <a href="account-servlet?accountUrl=<%=userAccountBean.getUserAccountUrl() != null ? userAccountBean.getUserAccountUrl().getURI() : ""%>">
+                                                <%=userAccountBean.getUserAccountName() != null ? userAccountBean.getUserAccountName().getString() : ""%>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -64,6 +89,9 @@
                         </div>
                     </div>
                 </div>
+                <%
+                    }
+                %>
 
                 <!-- Ulteriori informazioni da dbpedia -->
                 <div class="row">
@@ -73,11 +101,10 @@
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
                                         <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                            Ulteriori informazioni
+                                            Ulteriori informazioni dal web:
                                         </div>
                                         <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                            Informazioni interessanti prese da DBPEDIA con una describe
-                                            <%//TODO: inserire ulteriori informazioni prese da DBPEDIA con una describe%>
+                                            <%=agentBean.getFromTheCloud()%>>
                                         </div>
                                     </div>
                                 </div>

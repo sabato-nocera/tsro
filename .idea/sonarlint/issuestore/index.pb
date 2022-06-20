@@ -20,8 +20,6 @@ T
 $src/main/webapp/forgot-password.html,0\8\080241802f202e1d0985d6f6d2a16bcd78f922aa
 J
 src/main/webapp/cards.html,a\2\a27fa8f7b65f1139539ff4be748b9a81f48511d0
-K
-src/main/webapp/account.jsp,e\5\e5c04f67b0a4bbcc3e439174260db42579e802cc
 J
 src/main/webapp/footer.jsp,3\8\3819c16e4a27752a128752c506287183b0c69775
 K
@@ -40,13 +38,9 @@ J
 gradlew.bat,2\a\2a45a911a8f1836b0b6c5b758962572012d8f8c3
 X
 (presentation/assets/ObjectProperties.dot,c\0\c0537827c380ea2132caa4fbfe3dc4bdd8bb1ff6
-I
-src/main/webapp/agent.jsp,a\d\ad89e251c62366398100100023374f5a1dc3af24
 X
 (presentation/assets/ObjectProperties.svg,9\e\9e7d17ebfc96b0a6136a4163e5b0954b5865d352
 L
 src/main/webapp/software.jsp,7\0\70768c1bffb33f8437d06cb8f7566c6777dc1682
 I
 src/main/webapp/topic.jsp,a\1\a1523a05561eed689b1d3497fdafc7ca0b9cc2e6
-b
-2ontologies/The Software Repository Ontology.drawio,4\7\47579c9499a7329769823733f83e8ea2ed9d5836
