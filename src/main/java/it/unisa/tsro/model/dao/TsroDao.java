@@ -12,9 +12,11 @@ import java.util.logging.Logger;
 
 public class TsroDao {
     private static final Logger LOGGER = Logger.getLogger(TsroDao.class.getName());
-    private final String szEndpoint = "http://localhost:8080/jena-fuseki-war-4.5.0/theSoftwareRepositoryOntology/query";
 
-    private final String prefix = "PREFIX sd: <https://w3id.org/okn/o/sd#>\n" +
+    private static final String ENDPOINT =
+            "http://localhost:8080/jena-fuseki-war-4.5.0/theSoftwareRepositoryOntology/query";
+
+    private static final String PREFIX = "PREFIX sd: <https://w3id.org/okn/o/sd#>\n" +
             "PREFIX dc: <http://purl.org/dc/elements/1.1/>\n" +
             "PREFIX foaf: <http://xmlns.com/foaf/0.1/>\n" +
             "PREFIX fo: <http://purl.org/ontology/fo/>\n" +
@@ -34,7 +36,7 @@ public class TsroDao {
     public List<SoftwareBean> recuperaRepositoryPerLaTabellaInIndex(String softwareTitle, String authorName) {
         List<SoftwareBean> list = new ArrayList<>();
 
-        String szQuery = prefix + "SELECT DISTINCT *\n" +
+        String szQuery = PREFIX + "SELECT DISTINCT *\n" +
                 "WHERE {\n" +
                 "  ?softwareUrl a irao:Software.\n" +
                 "  ?softwareUrl dc:title ?softwareTitle.\n" +
@@ -59,7 +61,7 @@ public class TsroDao {
 
         Query query = QueryFactory.create(szQuery);
 
-        QueryExecution qexec = QueryExecutionFactory.sparqlService(szEndpoint, query);
+        QueryExecution qexec = QueryExecutionFactory.sparqlService(ENDPOINT, query);
 
         ((QueryEngineHTTP) qexec).addParam("timeout", "10000");
 
@@ -90,7 +92,7 @@ public class TsroDao {
     public int recuperaRepositoryMiPiace(Resource repositoryUrl) {
         int miPiace = 0;
 
-        String szQuery = prefix + "SELECT (count(distinct ?authorUrl) as ?miPiace)\n" +
+        String szQuery = PREFIX + "SELECT (count(distinct ?authorUrl) as ?miPiace)\n" +
                 "WHERE {\n" +
                 "    ?authorUrl tsro:likesRepository <" + repositoryUrl.getURI() + ">.\n" +
                 "}\n" +
@@ -100,7 +102,7 @@ public class TsroDao {
 
         Query query = QueryFactory.create(szQuery);
 
-        QueryExecution qexec = QueryExecutionFactory.sparqlService(szEndpoint, query);
+        QueryExecution qexec = QueryExecutionFactory.sparqlService(ENDPOINT, query);
 
         ((QueryEngineHTTP) qexec).addParam("timeout", "10000");
 
@@ -122,7 +124,7 @@ public class TsroDao {
     public int recuperaRepositoryMainBranchCommit(Resource repositoryUrl) {
         int numeroDiCommit = 0;
 
-        String szQuery = prefix + "SELECT (count(?commitUrl) as ?numeroDiCommit)\n" +
+        String szQuery = PREFIX + "SELECT (count(?commitUrl) as ?numeroDiCommit)\n" +
                 "WHERE {\n" +
                 "  <" + repositoryUrl.getURI() + "> tsro:hasBranch ?branchUrl.\n" +
                 "  ?branchUrl tsro:isMainBranch true.\n" +
@@ -133,7 +135,7 @@ public class TsroDao {
 
         Query query = QueryFactory.create(szQuery);
 
-        QueryExecution qexec = QueryExecutionFactory.sparqlService(szEndpoint, query);
+        QueryExecution qexec = QueryExecutionFactory.sparqlService(ENDPOINT, query);
 
         ((QueryEngineHTTP) qexec).addParam("timeout", "10000");
 
@@ -155,7 +157,7 @@ public class TsroDao {
     public List<TopicBean> recuperaSoftwareTopic(Resource softwareUrl, String topicLabel) {
         List<TopicBean> topicList = new ArrayList<>();
 
-        String szQuery = prefix + "SELECT ?topic ?label\n" +
+        String szQuery = PREFIX + "SELECT ?topic ?label\n" +
                 "WHERE {\n" +
                 "  <" + softwareUrl.getURI() + "> sioc:topic ?topic\n" +
                 "  SERVICE <https://dbpedia.org/sparql> { ?topic rdfs:label ?label. FILTER (lang(?label) = \"en\")}\n";
@@ -170,7 +172,7 @@ public class TsroDao {
 
         Query query = QueryFactory.create(szQuery);
 
-        QueryExecution qexec = QueryExecutionFactory.sparqlService(szEndpoint, query);
+        QueryExecution qexec = QueryExecutionFactory.sparqlService(ENDPOINT, query);
 
         ((QueryEngineHTTP) qexec).addParam("timeout", "10000");
 
