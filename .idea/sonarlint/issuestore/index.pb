@@ -36,3 +36,21 @@ N
 src/main/webapp/repository.jsp,e\3\e34cb09f09bf86e29787cad693718ad497deab1c
 J
 src/main/webapp/commit.jsp,b\0\b0aa0cee2529f35acff7f0e43ed20c3eb0d44f21
+<
+build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
+;
+gradlew.bat,2\a\2a45a911a8f1836b0b6c5b758962572012d8f8c3
+X
+(presentation/assets/ObjectProperties.dot,c\0\c0537827c380ea2132caa4fbfe3dc4bdd8bb1ff6
+I
+src/main/webapp/agent.jsp,a\d\ad89e251c62366398100100023374f5a1dc3af24
+I
+src/main/webapp/index.jsp,8\e\8e6d3b70c9f5b02570779b0441540d45eceb0ded
+X
+(presentation/assets/ObjectProperties.svg,9\e\9e7d17ebfc96b0a6136a4163e5b0954b5865d352
+L
+src/main/webapp/software.jsp,7\0\70768c1bffb33f8437d06cb8f7566c6777dc1682
+I
+src/main/webapp/topic.jsp,a\1\a1523a05561eed689b1d3497fdafc7ca0b9cc2e6
+h
+8src/main/java/it/unisa/tsro/controller/HelloServlet.java,6\7\673769818c3f9a3ab5a7dd9eb6e8c705c5a500a1

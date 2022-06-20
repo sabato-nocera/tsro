@@ -132,6 +132,13 @@
             rdfs:label "has HTML URL" .
 
 
+###  http://www.semanticweb.org/sabato/ontologies/2022/5/tsro#isMainBranch
+:isMainBranch rdf:type owl:DatatypeProperty ;
+              rdfs:domain :Branch ;
+              rdfs:range xsd:boolean ;
+              rdfs:label "is main branch" .
+
+
 ###  https://dbpedia.org/ontology/fileExtension
 <https://dbpedia.org/ontology/fileExtension> rdf:type owl:DatatypeProperty ,
                                                       owl:FunctionalProperty ;
@@ -294,15 +301,15 @@
 
 ###  https://dbpedia.org/page/Flutter_(softwareBean)
 <https://dbpedia.org/page/Flutter_(softwareBean)> rdf:type owl:NamedIndividual ,
-                                                       <https://dbpedia.org/ontology/Software> ;
-                                              <http://ontology.ethereal.cz/irao/hasLicense> <https://joinup.ec.europa.eu/licence/bsd-3-clause-new-or-revised-license> ;
-                                              <http://ontology.ethereal.cz/irao/isPublishedAt> <https://github.com/flutter/flutter> ;
-                                              <http://rdfs.org/sioc/ns#topic> <https://dbpedia.org/page/IOS> ,
-                                                                              <https://dbpedia.org/page/Microsoft_Windows> ,
-                                                                              <https://dbpedia.org/page/Android_(operating_system)> ,
-                                                                              <https://dbpedia.org/page/Dart_(programming_language)> ;
-                                              <https://w3id.org/okn/o/sd#author> <https://dbpedia.org/page/Google> ;
-                                              <http://purl.org/dc/elements/1.1/title> "Flutter" .
+                                                           <https://dbpedia.org/ontology/Software> ;
+                                                  <http://ontology.ethereal.cz/irao/hasLicense> <https://joinup.ec.europa.eu/licence/bsd-3-clause-new-or-revised-license> ;
+                                                  <http://ontology.ethereal.cz/irao/isPublishedAt> <https://github.com/flutter/flutter> ;
+                                                  <http://rdfs.org/sioc/ns#topic> <https://dbpedia.org/page/IOS> ,
+                                                                                  <https://dbpedia.org/page/Microsoft_Windows> ,
+                                                                                  <https://dbpedia.org/page/Android_(operating_system)> ,
+                                                                                  <https://dbpedia.org/page/Dart_(programming_language)> ;
+                                                  <https://w3id.org/okn/o/sd#author> <https://dbpedia.org/page/Google> ;
+                                                  <http://purl.org/dc/elements/1.1/title> "Flutter" .
 
 
 ###  https://dbpedia.org/page/Swift_(programming_language)
@@ -503,6 +510,7 @@
 ###  https://github.com/flutter/flutter/tree/beta
 <https://github.com/flutter/flutter/tree/beta> rdf:type owl:NamedIndividual ,
                                                         :Branch ;
+                                               :isMainBranch "false"^^xsd:boolean ;
                                                <http://purl.org/dc/elements/1.1/title> "flutter-flutter-tree-beta" ;
                                                rdfs:label "flutter-flutter-tree-beta" .
 
@@ -510,6 +518,7 @@
 ###  https://github.com/flutter/flutter/tree/dev
 <https://github.com/flutter/flutter/tree/dev> rdf:type owl:NamedIndividual ,
                                                        :Branch ;
+                                              :isMainBranch "false"^^xsd:boolean ;
                                               <http://purl.org/dc/elements/1.1/title> "flutter-flutter-tree-dev" ;
                                               rdfs:label "flutter-flutter-tree-dev" .
 
@@ -528,6 +537,7 @@
                                                           :Branch ;
                                                  :hasCommit <https://github.com/flutter/flutter/tree/e6d525d51dcd52d822d3b161cd04e9b0336d9fac> ,
                                                             <https://github.com/flutter/flutter/tree/576e85ca5e75dc418ea861440592a157e9495908> ;
+                                                 :isMainBranch "true"^^xsd:boolean ;
                                                  <http://purl.org/dc/elements/1.1/title> "flutter-flutter-tree-master" ;
                                                  rdfs:label "flutter-flutter-tree-master" .
 
@@ -642,6 +652,7 @@
                                                                <https://github.com/mozilla-mobile/fenix/tree/412579f95625284ab4af8a6f72b75f6664756eb9> ,
                                                                <https://github.com/mozilla-mobile/fenix/tree/685424de9aa26e655a57659722022486aef43254> ,
                                                                <https://github.com/mozilla-mobile/fenix/tree/8b04752122f4196c48bcba8f26771f88df3926a8> ;
+                                                    :isMainBranch "true"^^xsd:boolean ;
                                                     <http://purl.org/dc/elements/1.1/title> "mozilla-mobile-fenix-tree-main" ;
                                                     rdfs:label "mozilla-mobile-fenix-tree-main" .
 
@@ -736,6 +747,7 @@
                                                                    :Branch ;
                                                           :hasCommit <https://github.com/mozilla-mobile/firefox-ios/tree/e7c7994b972a011c23d4e5d4951e97648cf64747> ,
                                                                      <https://github.com/mozilla-mobile/firefox-ios/tree/71333a79e0608d94dd2751c21726c5b6cf7ab4fe> ;
+                                                          :isMainBranch "true"^^xsd:boolean ;
                                                           <http://purl.org/dc/elements/1.1/title> "mozilla-mobile-firefox-ios-tree-main" ;
                                                           rdfs:label "mozilla-mobile-firefox-ios-tree-main" .
 
@@ -743,6 +755,7 @@
 ###  https://github.com/mozilla-mobile/firefox-ios/tree/master
 <https://github.com/mozilla-mobile/firefox-ios/tree/master> rdf:type owl:NamedIndividual ,
                                                                      :Branch ;
+                                                            :isMainBranch "false"^^xsd:boolean ;
                                                             <http://purl.org/dc/elements/1.1/title> "mozilla-mobile-firefox-ios-tree-master" ;
                                                             rdfs:label "mozilla-mobile-firefox-ios-tree-master" .
 

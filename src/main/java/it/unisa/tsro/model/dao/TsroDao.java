@@ -106,4 +106,37 @@ public class TsroDao {
         qexec.close();
         return miPiace;
     }
+
+    public int recuperaRepositoryMainBranchCommit(Resource repositoryUrl) {
+        int numeroDiCommit = 0;
+
+        String szQuery = prefix + "SELECT (count(?commitUrl) as ?numeroDiCommit)\n" +
+                "WHERE {\n" +
+                "  <"+repositoryUrl.getURI()+"> tsro:hasBranch ?branchUrl.\n" +
+                "  ?branchUrl tsro:isMainBranch true.\n" +
+                "  ?branchUrl tsro:hasCommit ?commitUrl.\n" +
+                "}";
+
+        LOGGER.info(szQuery);
+
+        Query query = QueryFactory.create(szQuery);
+
+        QueryExecution qexec = QueryExecutionFactory.sparqlService(szEndpoint, query);
+
+        ((QueryEngineHTTP) qexec).addParam("timeout", "10000");
+
+        int counter = 0;
+        ResultSet rs = qexec.execSelect();
+
+        while (rs.hasNext()) {
+            QuerySolution qs = rs.next();
+
+            numeroDiCommit = qs.getLiteral("numeroDiCommit").getInt();
+            counter++;
+
+            LOGGER.info("Result " + counter + ": " + numeroDiCommit);
+        }
+        qexec.close();
+        return numeroDiCommit;
+    }
 }
