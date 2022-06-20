@@ -4,8 +4,13 @@ package it.unisa.tsro.model.bean;
 import org.apache.jena.rdf.model.Literal;
 import org.apache.jena.rdf.model.Resource;
 
+import java.io.Serializable;
+import java.util.List;
 
-public class SoftwareBean {
+
+public class SoftwareBean implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private Literal softwareTitle;
     private Resource softwareUrl;
     private Literal authorName;
@@ -14,19 +19,10 @@ public class SoftwareBean {
     private Resource repositoryUrl;
     private int miPiace;
     private int numeroDiCommit;
+    private List<TopicBean> topicBeanList;
 
-    @Override
-    public String toString() {
-        return "SoftwareBean{" +
-                "softwareTitle=" + softwareTitle +
-                ", softwareUrl=" + softwareUrl +
-                ", authorName=" + authorName +
-                ", authorUrl=" + authorUrl +
-                ", repositoryName=" + repositoryName +
-                ", repositoryUrl=" + repositoryUrl +
-                ", miPiace=" + miPiace +
-                ", numeroDiCommit=" + numeroDiCommit +
-                '}';
+    public SoftwareBean() {
+
     }
 
     public Literal getSoftwareTitle() {
@@ -91,5 +87,28 @@ public class SoftwareBean {
 
     public void setNumeroDiCommit(int numeroDiCommit) {
         this.numeroDiCommit = numeroDiCommit;
+    }
+
+    public List<TopicBean> getTopicBeanList() {
+        return topicBeanList;
+    }
+
+    public void setTopicBeanList(List<TopicBean> topicBeanList) {
+        this.topicBeanList = topicBeanList;
+    }
+
+    @Override
+    public String toString() {
+        return "SoftwareBean{" +
+                "softwareTitle=" + softwareTitle +
+                ", softwareUrl=" + softwareUrl +
+                ", authorName=" + authorName +
+                ", authorUrl=" + authorUrl +
+                ", repositoryName=" + repositoryName +
+                ", repositoryUrl=" + repositoryUrl +
+                ", miPiace=" + miPiace +
+                ", numeroDiCommit=" + numeroDiCommit +
+                ", topicBeanList=" + topicBeanList +
+                '}';
     }
 }

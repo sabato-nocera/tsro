@@ -1,5 +1,6 @@
 <%@ page import="it.unisa.tsro.model.bean.SoftwareBean" %>
 <%@ page import="java.util.List" %>
+<%@ page import="it.unisa.tsro.model.bean.TopicBean" %>
 <%
     List<SoftwareBean> softwareList = (List<SoftwareBean>) request.getAttribute("softwareList");
     if (softwareList == null) {
@@ -9,9 +10,8 @@
 %>
 
 <jsp:include page="header.jsp">
-    <jsp:param name="pageTitle" value="Index - "/>
+    <jsp:param name="pageTitle" value="Index"/>
 </jsp:include>
-<%//TODO: Inserire il nome preso dalla request%>
 
 <body id="page-top">
 
@@ -32,7 +32,7 @@
                 <!-- Page Heading -->
                 <h1 class="h3 mb-2 text-gray-800 mt-4">Benvenuto!</h1>
                 <p class="mb-4">
-                    Interagisci con la tabella per consultare i dettagli delle repository softwareBean,
+                    Interagisci con la tabella per consultare i dettagli delle repository software,
                     oppure effettua una ricerca specificando i criteri che desideri.
                 </p>
 
@@ -68,38 +68,43 @@
                                 <%
                                     for (SoftwareBean softwareBean : softwareList) {
                                 %>
-                                <tr><%//TODO: Sostituire con i dati della base di conoscenza e gli appositi link%>
+                                <tr>
                                     <td>
-                                        <a href="software-servlet?softwareUrl="
-                                                <%=softwareBean.getSoftwareUrl().getURI()%>>
-                                            <%=softwareBean.getSoftwareTitle().getString()%></a>
-                                    </td>
-                                    <td>
-                                        <a href="repository-servlet?repositoryUrl="
-                                                <%=softwareBean.getRepositoryUrl().getURI()%>>
-                                            <%=softwareBean.getRepositoryName().getString()%></a>
+                                        <a href="software-servlet?softwareUrl=<%=softwareBean.getSoftwareUrl() != null ? softwareBean.getSoftwareUrl().getURI() : ""%>">
+                                            <%=softwareBean.getSoftwareTitle() != null ?  softwareBean.getSoftwareTitle().getString() : ""%>
+                                        </a>
                                     </td>
                                     <td>
-                                        <a href="agent-servlet?agentUrl="
-                                                <%=softwareBean.getAuthorUrl().getURI()%>>
-                                            <%=softwareBean.getAuthorName().getString()%></a>
+                                        <a href="repository-servlet?repositoryUrl=<%=softwareBean.getRepositoryUrl() != null ? softwareBean.getRepositoryUrl().getURI() : ""%>">
+                                            <%=softwareBean.getRepositoryName() != null ? softwareBean.getRepositoryName().getString() : ""%>
+                                        </a>
                                     </td>
                                     <td>
-                                        <a href="agent-servlet?agentUrl="
-                                                <%=softwareBean.getAuthorUrl().getURI()%>>
-                                            <%=softwareBean.getAuthorName().getString()%></a>
+                                        <a href="agent-servlet?agentUrl=<%=softwareBean.getAuthorUrl() != null ? softwareBean.getAuthorUrl().getURI() : ""%>">
+                                            <%=softwareBean.getAuthorName() != null ? softwareBean.getAuthorName().getString() : ""%>
+                                        </a>
                                     </td>
-
-
-
-
-
-
-                                    <td><a href="topic.jsp">Erogazioni servizi DSA/disabili</a> ,
-                                        <a href="topic.jsp">Gestionale</a>
+                                    <td>
+                                        <ul>
+                                            <%
+                                                if (softwareBean.getTopicBeanList() != null) {
+                                                    for (TopicBean topic : softwareBean.getTopicBeanList()) {
+                                            %>
+                                            <li>
+                                                <a href="topic-servlet?agentUrl=<%=topic.getTopicUrl() != null ? topic.getTopicUrl().getURI() : ""%>">
+                                                    <%=topic.getTopicLabel() != null ? topic.getTopicLabel().getString() : ""%>
+                                                </a>
+                                            </li>
+                                            <%
+                                                    }
+                                                }
+                                            %>
+                                        </ul>
                                     </td>
-                                    <td>63</td>
-                                    <td>589</td>
+                                    <td><%=softwareBean.getMiPiace()%>
+                                    </td>
+                                    <td><%=softwareBean.getNumeroDiCommit()%>
+                                    </td>
                                 </tr>
                                 <%
                                     }

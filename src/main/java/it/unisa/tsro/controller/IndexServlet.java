@@ -8,6 +8,7 @@ import it.unisa.tsro.model.dao.TsroDao;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import org.apache.jena.rdf.model.Resource;
 
 @WebServlet(name = "indexServlet", value = "/index-servlet")
 public class IndexServlet extends HttpServlet {
@@ -19,9 +20,10 @@ public class IndexServlet extends HttpServlet {
         for (SoftwareBean softwareBean : softwareList) {
             softwareBean.setMiPiace(tsroDao.recuperaRepositoryMiPiace(softwareBean.getRepositoryUrl()));
             softwareBean.setNumeroDiCommit(tsroDao.recuperaRepositoryMainBranchCommit(softwareBean.getRepositoryUrl()));
+            softwareBean.setTopicBeanList(tsroDao.recuperaSoftwareTopic(softwareBean.getSoftwareUrl()));
         }
 
-        request.setAttribute("softwareList",softwareList);
+        request.setAttribute("softwareList", softwareList);
 
         request.getRequestDispatcher("./index.jsp").forward(request, response);
     }

@@ -22,8 +22,6 @@ J
 src/main/webapp/cards.html,a\2\a27fa8f7b65f1139539ff4be748b9a81f48511d0
 K
 src/main/webapp/account.jsp,e\5\e5c04f67b0a4bbcc3e439174260db42579e802cc
-I
-src/main/webapp/error.jsp,c\b\cba3df22242d379bdb72d00919d2e8d49101d1bf
 J
 src/main/webapp/footer.jsp,3\8\3819c16e4a27752a128752c506287183b0c69775
 K
@@ -44,8 +42,6 @@ X
 (presentation/assets/ObjectProperties.dot,c\0\c0537827c380ea2132caa4fbfe3dc4bdd8bb1ff6
 I
 src/main/webapp/agent.jsp,a\d\ad89e251c62366398100100023374f5a1dc3af24
-I
-src/main/webapp/index.jsp,8\e\8e6d3b70c9f5b02570779b0441540d45eceb0ded
 X
 (presentation/assets/ObjectProperties.svg,9\e\9e7d17ebfc96b0a6136a4163e5b0954b5865d352
 L
@@ -54,3 +50,5 @@ I
 src/main/webapp/topic.jsp,a\1\a1523a05561eed689b1d3497fdafc7ca0b9cc2e6
 h
 8src/main/java/it/unisa/tsro/controller/HelloServlet.java,6\7\673769818c3f9a3ab5a7dd9eb6e8c705c5a500a1
+b
+2ontologies/The Software Repository Ontology.drawio,4\7\47579c9499a7329769823733f83e8ea2ed9d5836
