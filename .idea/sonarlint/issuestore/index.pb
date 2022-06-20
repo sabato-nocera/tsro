@@ -48,7 +48,5 @@ L
 src/main/webapp/software.jsp,7\0\70768c1bffb33f8437d06cb8f7566c6777dc1682
 I
 src/main/webapp/topic.jsp,a\1\a1523a05561eed689b1d3497fdafc7ca0b9cc2e6
-h
-8src/main/java/it/unisa/tsro/controller/HelloServlet.java,6\7\673769818c3f9a3ab5a7dd9eb6e8c705c5a500a1
 b
 2ontologies/The Software Repository Ontology.drawio,4\7\47579c9499a7329769823733f83e8ea2ed9d5836

@@ -31,7 +31,7 @@ public class TsroDao {
             "PREFIX irao: <http://ontology.ethereal.cz/irao/>\n" +
             "PREFIX sioc: <http://rdfs.org/sioc/ns#>\n";
 
-    public List<SoftwareBean> recuperaRepositoryPerLaTabellaInIndex() {
+    public List<SoftwareBean> recuperaRepositoryPerLaTabellaInIndex(String softwareTitle, String authorName) {
         List<SoftwareBean> list = new ArrayList<>();
 
         String szQuery = prefix + "SELECT DISTINCT *\n" +
@@ -43,8 +43,17 @@ public class TsroDao {
                 "  OPTIONAL{\n" +
                 "    ?softwareUrl sd:author ?authorUrl.\n" +
                 "    ?authorUrl sioc:name ?authorName.\n" +
-                "  }\n" +
-                "} ORDER BY DESC (?authorUrl)";
+                "  }\n";
+
+        if (softwareTitle != null && !softwareTitle.equals("")) {
+            szQuery += "FILTER regex(?softwareTitle, \".*" + softwareTitle + ".*\", \"i\")\n";
+        }
+
+        if (authorName != null && !authorName.equals("")) {
+            szQuery += "FILTER regex(STR(?authorName), \".*" + authorName + ".*\", \"i\")\n";
+        }
+
+        szQuery += "} ORDER BY DESC (?authorUrl)";
 
         LOGGER.info(szQuery);
 
@@ -85,7 +94,7 @@ public class TsroDao {
                 "WHERE {\n" +
                 "    ?authorUrl tsro:likesRepository <" + repositoryUrl.getURI() + ">.\n" +
                 "}\n" +
-                "GROUP BY ?repositoryUrl";
+                "GROUP BY ?repositoryUrl\n";
 
         LOGGER.info(szQuery);
 
@@ -143,14 +152,19 @@ public class TsroDao {
         return numeroDiCommit;
     }
 
-    public List<TopicBean> recuperaSoftwareTopic(Resource softwareUrl) {
+    public List<TopicBean> recuperaSoftwareTopic(Resource softwareUrl, String topicLabel) {
         List<TopicBean> topicList = new ArrayList<>();
 
         String szQuery = prefix + "SELECT ?topic ?label\n" +
                 "WHERE {\n" +
                 "  <" + softwareUrl.getURI() + "> sioc:topic ?topic\n" +
-                "  SERVICE <https://dbpedia.org/sparql> { ?topic rdfs:label ?label. FILTER (lang(?label) = \"en\")}\n" +
-                "}";
+                "  SERVICE <https://dbpedia.org/sparql> { ?topic rdfs:label ?label. FILTER (lang(?label) = \"en\")}\n";
+
+        if (topicLabel != null && !topicLabel.equals("")) {
+            szQuery += "FILTER regex(STR(?label), \".*" + topicLabel + ".*\", \"i\")\n";
+        }
+
+        szQuery += "}";
 
         LOGGER.info(szQuery);
 

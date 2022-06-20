@@ -130,48 +130,41 @@
                                     </div>
                                     <form class="user" action="index-servlet">
                                         <div class="form-group row">
-                                            <div class="col-sm-4 mb-3 mb-sm-0">
-                                                <label for="nome">Nome</label>
+                                            <div class="col-sm-4">
+                                                <label for="softwareTitle">Nome del software</label>
                                                 <input type="text" class="form-control form-control-user"
-                                                       id="nome"
-                                                       placeholder="Nome"/>
+                                                       id="softwareTitle" name="softwareTitle"
+                                                       placeholder="Software"/>
                                             </div>
                                             <div class="col-sm-4">
-                                                <label for="autore">Autore</label>
+                                                <label for="authorName">Autore</label>
                                                 <input type="text" class="form-control form-control-user"
-                                                       id="autore"
+                                                       id="authorName" name="authorName"
                                                        placeholder="Autore"/>
                                             </div>
                                             <div class="col-sm-4">
-                                                <label for="linguaggiDiProgrammazione">Linguaggi di programmazione
-                                                </label>
+                                                <label for="topicLabel">Topic</label>
                                                 <input type="text" class="form-control form-control-user"
-                                                       id="linguaggiDiProgrammazione"
-                                                       placeholder="Linguaggi di programmazione"/>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <div class="col-sm-4 mb-3 mb-sm-0">
-                                                <label for="miPiace">Numero di mi piace</label>
-                                                <input type="text" class="form-control form-control-user"
-                                                       id="miPiace"
-                                                       placeholder="Numero di mi piace (<,>,=)"/>
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <label for="commit">Numero di commit</label>
-                                                <input type="text" class="form-control form-control-user"
-                                                       id="commit"
-                                                       placeholder="Numero di commit (<,>,=)"/>
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <label for="topic">Topic</label>
-                                                <input type="text" class="form-control form-control-user"
-                                                       id="topic"
+                                                       id="topicLabel" name="topicLabel"
                                                        placeholder="Topic"/>
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                            <div class="col-sm-6">
+                                                <label for="miPiace">Numero di mi piace</label>
+                                                <input type="text" class="form-control form-control-user"
+                                                       id="miPiace" name="miPiace"
+                                                       placeholder="Numero di mi piace (<,>,=)"/>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label for="numeroDiCommit">Numero di commit</label>
+                                                <input type="text" class="form-control form-control-user"
+                                                       id="numeroDiCommit" name="numeroDiCommit"
+                                                       placeholder="Numero di commit (<,>,=)"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-6">
                                                 <input type="reset" class="btn btn-info btn-user btn-block"/>
                                             </div>
                                             <div class="col-sm-6">
