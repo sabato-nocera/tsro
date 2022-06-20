@@ -1,16 +1,13 @@
 package it.unisa.tsro.controller;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.List;
 
 import it.unisa.tsro.model.bean.SoftwareBean;
-import it.unisa.tsro.model.bean.TopicBean;
 import it.unisa.tsro.model.dao.TsroDao;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
-import org.apache.jena.rdf.model.Resource;
 
 @WebServlet(name = "indexServlet", value = "/index-servlet")
 public class IndexServlet extends HttpServlet {
@@ -55,6 +52,8 @@ public class IndexServlet extends HttpServlet {
                 case "=":
                     softwareList.removeIf(tmp -> tmp.getNumeroDiCommit() != Integer.parseInt(argomenti[1]));
                     break;
+                default:
+                    break;
             }
         }
 
@@ -75,6 +74,8 @@ public class IndexServlet extends HttpServlet {
                     break;
                 case "=":
                     softwareList.removeIf(tmp -> tmp.getMiPiace() != Integer.parseInt(argomenti[1]));
+                    break;
+                default:
                     break;
             }
         }
