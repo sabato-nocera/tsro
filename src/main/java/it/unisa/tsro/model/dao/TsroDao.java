@@ -3,6 +3,7 @@ package it.unisa.tsro.model.dao;
 import it.unisa.tsro.model.bean.*;
 import org.apache.jena.query.*;
 import org.apache.jena.rdf.model.Literal;
+import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.sparql.engine.http.QueryEngineHTTP;
 
@@ -522,6 +523,33 @@ public class TsroDao {
         boolean result = qexec.execAsk();
 
         LOGGER.info("Result : " + result);
+
+        qexec.close();
+
+        return result;
+    }
+
+    public Model costruisciFileInUltimoCommit(String softwareRepositoryUrl) {
+        String szQuery = PREFIX + "CONSTRUCT {?fileUrl dc:title dbo:File.}\n" +
+                "WHERE {\n" +
+                "  ?fileUrl a dbo:File.\n" +
+                "  ?fileUrl tsro:hasBeenModifiedIn ?commitUrl.\n" +
+                "  ?commitUrl tsro:isCommitOf ?branchUrl.\n" +
+                "  ?branchUrl tsro:isBranchOf <"+softwareRepositoryUrl+">.\n" +
+                "  ?branchUrl tsro:isMainBranch true.\n" +
+                "}";
+
+        LOGGER.info(szQuery);
+
+        Query query = QueryFactory.create(szQuery);
+
+        QueryExecution qexec = QueryExecutionFactory.sparqlService(ENDPOINT, query);
+
+        ((QueryEngineHTTP) qexec).addParam("timeout", "10000");
+
+        Model result = qexec.execConstruct();
+
+        LOGGER.info("Result : " + result.toString());
 
         qexec.close();
 

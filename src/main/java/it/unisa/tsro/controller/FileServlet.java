@@ -12,23 +12,23 @@ import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Statement;
 
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.util.List;
 
-@WebServlet(name = "repositoryServlet", value = "/repository-servlet")
-public class RepositoryServlet extends HttpServlet {
+@WebServlet(name = "fileServlet", value = "/file-servlet")
+public class FileServlet extends HttpServlet {
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String repositoryUrl = request.getParameter("repositoryUrl");
 
         TsroDao tsroDao = new TsroDao();
-        SoftwareRepositoryBean softwareRepository = tsroDao.recuperaSoftwareRepository(repositoryUrl);
-        softwareRepository.setHasForks(tsroDao.askSeSiaFork(repositoryUrl));
-        request.setAttribute("softwareRepository", softwareRepository);
+        Model model = tsroDao.costruisciFileInUltimoCommit(repositoryUrl);
 
-        request.getRequestDispatcher("./repository.jsp").forward(request, response);
+        Writer writer = response.getWriter();
+        model.write(writer, "TURTLE");
     }
 
     @Override

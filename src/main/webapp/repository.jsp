@@ -4,6 +4,7 @@
 
 <%
     SoftwareRepositoryBean softwareRepository = (SoftwareRepositoryBean) request.getAttribute("softwareRepository");
+    String newRdfModel = (String) request.getAttribute("newRdfModel");
     if (softwareRepository == null) {
         response.sendRedirect("./index.jsp");
         return;
@@ -163,6 +164,15 @@
                 <%
                     }
                 %>
+                <div class="col m-1 p-1">
+                    <a href="file-servlet?repositoryUrl=<%=softwareRepository.getSoftwareRepositoryUrlString()%>"
+                       class="btn btn-info btn-icon-split btn-lg">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-file"></i>
+                                        </span>
+                        <span class="text">Genera RDF con l'ultima versione dei file contenuti nella repository software</span>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
