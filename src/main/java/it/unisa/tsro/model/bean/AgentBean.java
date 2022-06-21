@@ -17,6 +17,9 @@ public class AgentBean implements Serializable {
     private List<UserAccountBean> userAccountBeanList;
     private String fromTheCloud;
 
+    public AgentBean() {
+    }
+
     public Resource getAuthorUrlResource() {
         return authorUrlResource;
     }

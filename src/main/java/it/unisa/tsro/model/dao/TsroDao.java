@@ -2,6 +2,7 @@ package it.unisa.tsro.model.dao;
 
 import it.unisa.tsro.model.bean.*;
 import org.apache.jena.query.*;
+import org.apache.jena.rdf.model.Literal;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.sparql.engine.http.QueryEngineHTTP;
 
@@ -391,7 +392,7 @@ public class TsroDao {
 
         String szQuery = PREFIX + "SELECT DISTINCT ?licenseUrl\n" +
                 "WHERE {\n" +
-                "  <"+softwareUrl+"> irao:hasLicense ?licenseUrl\n" +
+                "  <" + softwareUrl + "> irao:hasLicense ?licenseUrl\n" +
                 "}";
 
         LOGGER.info(szQuery);
@@ -416,5 +417,114 @@ public class TsroDao {
         }
         qexec.close();
         return licensa;
+    }
+
+    public SoftwareRepositoryBean recuperaSoftwareRepository(String softwareRepositoryUrl) {
+        SoftwareRepositoryBean softwareRepositoryBean = new SoftwareRepositoryBean();
+        softwareRepositoryBean.setBranchBeanList(new ArrayList<>());
+        softwareRepositoryBean.setRepositoriesForkList(new ArrayList<>());
+
+        String szQuery = PREFIX + "SELECT ?softwareRepositoryTitle ?softwareUrl ?softwareTitle ?repositoryHtmlUrl ?repositoryCloneUrl ?repositoryForkUrl ?repositoryForkTitle ?repositoryCreatorUrl ?repositoryCreatorName ?branchUrl ?branchTitle ?isMainBranch\n" +
+                "WHERE {\n" +
+                "  <" + softwareRepositoryUrl + "> dc:title ?softwareRepositoryTitle.\n" +
+                "  OPTIONAL {\n" +
+                "    ?softwareUrl irao:isPublishedAt <" + softwareRepositoryUrl + ">.\n" +
+                "    ?softwareUrl dc:title ?softwareTitle.\n" +
+                "  }\n" +
+                "  OPTIONAL {\n" +
+                "    <" + softwareRepositoryUrl + "> tsro:hasHtmlUrl ?repositoryHtmlUrl.\n" +
+                "  }\n" +
+                "  OPTIONAL {\n" +
+                "    <" + softwareRepositoryUrl + "> tsro:hasCloneUrl ?repositoryCloneUrl.\n" +
+                "  }\n" +
+                "  OPTIONAL {\n" +
+                "    <" + softwareRepositoryUrl + "> tsro:hasFork ?repositoryForkUrl.\n" +
+                "    ?repositoryForkUrl dc:title ?repositoryForkTitle.\n" +
+                "  }\n" +
+                "  OPTIONAL {\n" +
+                "    ?repositoryCreatorUrl ns:creator_of <" + softwareRepositoryUrl + ">.\n" +
+                "    ?repositoryCreatorUrl sioc:name ?repositoryCreatorName.\n" +
+                "  }\n" +
+                "  OPTIONAL {\n" +
+                "    <" + softwareRepositoryUrl + "> tsro:hasBranch ?branchUrl.\n" +
+                "    ?branchUrl dc:title ?branchTitle.\n" +
+                "    ?branchUrl tsro:isMainBranch ?isMainBranch.\n" +
+                "  }\n" +
+                "}";
+
+        LOGGER.info(szQuery);
+
+        Query query = QueryFactory.create(szQuery);
+
+        QueryExecution qexec = QueryExecutionFactory.sparqlService(ENDPOINT, query);
+
+        ((QueryEngineHTTP) qexec).addParam("timeout", "10000");
+
+        int counter = 0;
+        ResultSet rs = qexec.execSelect();
+
+        softwareRepositoryBean.setSoftwareRepositoryUrlString(softwareRepositoryUrl);
+        while (rs.hasNext()) {
+            QuerySolution qs = rs.next();
+
+            softwareRepositoryBean.setSoftwareRepositoryTitle(qs.getLiteral("softwareRepositoryTitle"));
+            softwareRepositoryBean.setRepositoryCloneUrl(qs.getLiteral("repositoryHtmlUrl"));
+            softwareRepositoryBean.setRepositoryHtmlUrl(qs.getLiteral("repositoryCloneUrl"));
+
+            SoftwareBean softwareBean = new SoftwareBean();
+            softwareBean.setSoftwareTitle(qs.getLiteral("softwareTitle"));
+            softwareBean.setSoftwareUrl(qs.getResource("softwareUrl"));
+            softwareRepositoryBean.setSoftwareBean(softwareBean);
+
+            UserAccountBean creator = new UserAccountBean();
+            creator.setUserAccountUrl(qs.getResource("repositoryCreatorUrl"));
+            creator.setUserAccountName(qs.getLiteral("repositoryCreatorName"));
+            softwareRepositoryBean.setUserAccountBean(creator);
+
+            SoftwareRepositoryBean fork = new SoftwareRepositoryBean();
+            fork.setSoftwareRepositoryTitle(qs.getLiteral("repositoryForkTitle"));
+            fork.setSoftwareRepositoryUrl(qs.getResource("repositoryForkUrl"));
+
+            BranchBean branch = new BranchBean();
+            branch.setBranchUrl(qs.getResource("branchUrl"));
+            branch.setBranchTitle(qs.getLiteral("branchTitle"));
+            branch.setIsMainBranch(qs.getLiteral("isMainBranch"));
+
+            if (!softwareRepositoryBean.getRepositoriesForkList().contains(fork)) {
+                softwareRepositoryBean.getRepositoriesForkList().add(fork);
+            }
+
+            if (!softwareRepositoryBean.getBranchBeanList().contains(branch)) {
+                softwareRepositoryBean.getBranchBeanList().add(branch);
+            }
+
+            counter++;
+
+            LOGGER.info("Result " + counter + ": " + softwareRepositoryBean);
+        }
+        qexec.close();
+        return softwareRepositoryBean;
+    }
+
+    public boolean askSeSiaFork(String softwareRepositoryUrl) {
+        String szQuery = PREFIX + "ASK { \n" +
+                "  <" + softwareRepositoryUrl + "> tsro:isForkOf ?s\n" +
+                "}";
+
+        LOGGER.info(szQuery);
+
+        Query query = QueryFactory.create(szQuery);
+
+        QueryExecution qexec = QueryExecutionFactory.sparqlService(ENDPOINT, query);
+
+        ((QueryEngineHTTP) qexec).addParam("timeout", "10000");
+
+        boolean result = qexec.execAsk();
+
+        LOGGER.info("Result : " + result);
+
+        qexec.close();
+
+        return result;
     }
 }
