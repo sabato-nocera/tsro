@@ -10,34 +10,19 @@ import java.util.Objects;
 public class AgentBean implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    private Resource authorUrlResource;
     private String authorUrl;
     private Literal authorName;
     private List<SoftwareBean> softwareBeanList;
     private List<UserAccountBean> userAccountBeanList;
     private String fromTheCloud;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof AgentBean)) return false;
-        AgentBean agentBean = (AgentBean) o;
-        return Objects.equals(getAuthorUrl(), agentBean.getAuthorUrl()) && Objects.equals(getAuthorName(), agentBean.getAuthorName()) && Objects.equals(getSoftwareBeanList(), agentBean.getSoftwareBeanList()) && Objects.equals(getUserAccountBeanList(), agentBean.getUserAccountBeanList()) && Objects.equals(getFromTheCloud(), agentBean.getFromTheCloud());
+    public Resource getAuthorUrlResource() {
+        return authorUrlResource;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(getAuthorUrl(), getAuthorName(), getSoftwareBeanList(), getUserAccountBeanList(), getFromTheCloud());
-    }
-
-    @Override
-    public String toString() {
-        return "AgentBean{" +
-                "authorUrl='" + authorUrl + '\'' +
-                ", authorName=" + authorName +
-                ", softwareBeanList=" + softwareBeanList +
-                ", userAccountBeanList=" + userAccountBeanList +
-                ", fromTheCloud='" + fromTheCloud + '\'' +
-                '}';
+    public void setAuthorUrlResource(Resource authorUrlResource) {
+        this.authorUrlResource = authorUrlResource;
     }
 
     public String getAuthorUrl() {
@@ -78,5 +63,30 @@ public class AgentBean implements Serializable {
 
     public void setFromTheCloud(String fromTheCloud) {
         this.fromTheCloud = fromTheCloud;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof AgentBean)) return false;
+        AgentBean agentBean = (AgentBean) o;
+        return Objects.equals(getAuthorUrlResource(), agentBean.getAuthorUrlResource()) && Objects.equals(getAuthorUrl(), agentBean.getAuthorUrl()) && Objects.equals(getAuthorName(), agentBean.getAuthorName()) && Objects.equals(getSoftwareBeanList(), agentBean.getSoftwareBeanList()) && Objects.equals(getUserAccountBeanList(), agentBean.getUserAccountBeanList()) && Objects.equals(getFromTheCloud(), agentBean.getFromTheCloud());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getAuthorUrlResource(), getAuthorUrl(), getAuthorName(), getSoftwareBeanList(), getUserAccountBeanList(), getFromTheCloud());
+    }
+
+    @Override
+    public String toString() {
+        return "AgentBean{" +
+                "authorUrlResource=" + authorUrlResource +
+                ", authorUrl='" + authorUrl + '\'' +
+                ", authorName=" + authorName +
+                ", softwareBeanList=" + softwareBeanList +
+                ", userAccountBeanList=" + userAccountBeanList +
+                ", fromTheCloud='" + fromTheCloud + '\'' +
+                '}';
     }
 }

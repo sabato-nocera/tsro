@@ -30,6 +30,7 @@
                         if (exception != null) {
                             out.flush();
                             response.getWriter().println(exception.getMessage());
+                            exception.printStackTrace();
                         }
                     %></p>
                     <p class="text-gray-500 mb-0">Si &egrave; verificato un errore...</p>

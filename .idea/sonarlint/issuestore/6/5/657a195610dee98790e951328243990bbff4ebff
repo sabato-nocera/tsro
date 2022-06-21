@@ -1,0 +1,8 @@
+
+Z	java:S106"9Replace this use of System.out or System.err by a logger.(èûßøÿÿÿÿ8’ÅÓƒ˜0
+F
+java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ
+]
+java:S1128"BRemove this unused import 'it.unisa.tsro.model.bean.SoftwareBean'.(á”¶şÿÿÿÿ
+Q
+java:S1128"<Remove this unused import 'it.unisa.tsro.model.dao.TsroDao'.(Êïšo

@@ -44,3 +44,19 @@ L
 src/main/webapp/software.jsp,7\0\70768c1bffb33f8437d06cb8f7566c6777dc1682
 I
 src/main/webapp/topic.jsp,a\1\a1523a05561eed689b1d3497fdafc7ca0b9cc2e6
+m
+=src/main/java/it/unisa/tsro/controller/RepositoryServlet.java,3\8\38414435de3f94fc719e25bacb21f8aad5848550
+k
+;src/main/java/it/unisa/tsro/controller/SoftwareServlet.java,6\5\657a195610dee98790e951328243990bbff4ebff
+_
+/ontologies/The Software Repository Ontology.owl,2\4\2413288740ec56601a67055c5da76fc89b9f4fb9
+?
+ontologies/tsro,3\e\3e67245f67b620c86f5850480ce41d321bdb705b
+h
+8src/main/java/it/unisa/tsro/controller/TopicServlet.java,3\8\38ccb95dcac08e8aa097c67136e9d36b6b3271b4
+e
+5src/main/java/it/unisa/tsro/model/bean/TopicBean.java,3\3\33894772bb890ddc33da177a764fdb1b57077801
+h
+8src/main/java/it/unisa/tsro/controller/IndexServlet.java,0\a\0a4a064e040541f37c34cd3e036369a14592ad96
+h
+8src/main/java/it/unisa/tsro/model/bean/SoftwareBean.java,a\e\aeaa8f24c6051a97bf10f6d9325edf3343c304ae

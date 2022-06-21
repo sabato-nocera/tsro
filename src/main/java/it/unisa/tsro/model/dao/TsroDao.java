@@ -1,9 +1,6 @@
 package it.unisa.tsro.model.dao;
 
-import it.unisa.tsro.model.bean.AgentBean;
-import it.unisa.tsro.model.bean.SoftwareBean;
-import it.unisa.tsro.model.bean.TopicBean;
-import it.unisa.tsro.model.bean.UserAccountBean;
+import it.unisa.tsro.model.bean.*;
 import org.apache.jena.query.*;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.sparql.engine.http.QueryEngineHTTP;
@@ -254,14 +251,13 @@ public class TsroDao {
         return agentBean;
     }
 
-
     public String recuperaAgentInfosFromTheCloud(String authorUrl) {
         String infosFromTheCloud = "";
 
         String szQuery = PREFIX + "SELECT ?fromTheCloud\n" +
                 "WHERE {\n" +
                 "SERVICE <https://dbpedia.org/sparql> { \n" +
-                "    <"+authorUrl+"> ?p ?fromTheCloud.\n" +
+                "    <" + authorUrl + "> ?p ?fromTheCloud.\n" +
                 "    FILTER (lang(?fromTheCloud) = 'en')\n" +
                 "  }\n" +
                 "}\n" +
@@ -290,5 +286,103 @@ public class TsroDao {
         }
         qexec.close();
         return infosFromTheCloud;
+    }
+
+    public UserAccountBean recuperaUserAccount(String userAccountUrl) {
+        UserAccountBean userAccountBean = new UserAccountBean();
+        userAccountBean.setAgentBeanList(new ArrayList<>());
+        userAccountBean.setSoftwareCreatedList(new ArrayList<>());
+        userAccountBean.setSoftwareLikedList(new ArrayList<>());
+        userAccountBean.setUserAccountFollowedList(new ArrayList<>());
+        userAccountBean.setUserAccountFollowingList(new ArrayList<>());
+
+        String szQuery = PREFIX + "SELECT DISTINCT *\n" +
+                "WHERE {\n" +
+                "    <" + userAccountUrl + "> sioc:name ?userAccountName.\n" +
+                "    OPTIONAL {\n" +
+                "      <" + userAccountUrl + "> ns:account_of ?authorUrl.\n" +
+                "      ?authorUrl sioc:name ?authorName.\n" +
+                "    }\n" +
+                "    OPTIONAL {\n" +
+                "      <" + userAccountUrl + "> ns:creator_of ?softwareRepositoryCreatedUrl.\n" +
+                "      ?softwareRepositoryCreatedUrl dc:title ?softwareRepositoryCreatedTitle.\n" +
+                "    }\n" +
+                "    OPTIONAL {\n" +
+                "      <" + userAccountUrl + "> tsro:likesRepository ?softwareRepositoryLikedUrl.\n" +
+                "      ?softwareRepositoryLikedUrl dc:title ?softwareRepositoryLikedName.\n" +
+                "    }\n" +
+                "    OPTIONAL {\n" +
+                "      <" + userAccountUrl + "> ns:follows ?userAccountFollowedUrl.\n" +
+                "      ?userAccountFollowedUrl sioc:name ?userAccountFollowedName.\n" +
+                "    }\n" +
+                "    OPTIONAL {\n" +
+                "      ?userAccountFollowingUrl ns:follows <" + userAccountUrl + ">.\n" +
+                "      ?userAccountFollowingUrl sioc:name ?userAccountFollowingName.\n" +
+                "    }\n" +
+                "}";
+
+        LOGGER.info(szQuery);
+
+        Query query = QueryFactory.create(szQuery);
+
+        QueryExecution qexec = QueryExecutionFactory.sparqlService(ENDPOINT, query);
+
+        ((QueryEngineHTTP) qexec).addParam("timeout", "10000");
+
+        int counter = 0;
+        ResultSet rs = qexec.execSelect();
+
+        userAccountBean.setUserAccountUrlString(userAccountUrl);
+        while (rs.hasNext()) {
+            QuerySolution qs = rs.next();
+
+            userAccountBean.setUserAccountName(qs.getLiteral("authorName"));
+
+            AgentBean agentBean = new AgentBean();
+            agentBean.setAuthorUrlResource(qs.getResource("authorUrl"));
+            agentBean.setAuthorName(qs.getLiteral("authorName"));
+
+            SoftwareRepositoryBean softwareRepositoryCreated = new SoftwareRepositoryBean();
+            softwareRepositoryCreated.setSoftwareRepositoryTitle(qs.getLiteral("softwareRepositoryCreatedTitle"));
+            softwareRepositoryCreated.setSoftwareRepositoryUrl(qs.getResource("softwareRepositoryCreatedUrl"));
+
+            SoftwareRepositoryBean softwareRepositoryLiked = new SoftwareRepositoryBean();
+            softwareRepositoryLiked.setSoftwareRepositoryTitle(qs.getLiteral("softwareRepositoryLikedName"));
+            softwareRepositoryLiked.setSoftwareRepositoryUrl(qs.getResource("softwareRepositoryLikedUrl"));
+
+            UserAccountBean accountFollowed = new UserAccountBean();
+            accountFollowed.setUserAccountUrl(qs.getResource("userAccountFollowedUrl"));
+            accountFollowed.setUserAccountName(qs.getLiteral("userAccountFollowedName"));
+
+            UserAccountBean accountFollowing = new UserAccountBean();
+            accountFollowing.setUserAccountUrl(qs.getResource("userAccountFollowingUrl"));
+            accountFollowing.setUserAccountName(qs.getLiteral("userAccountFollowingName"));
+
+            if (!userAccountBean.getAgentBeanList().contains(agentBean)) {
+                userAccountBean.getAgentBeanList().add(agentBean);
+            }
+
+            if (!userAccountBean.getSoftwareCreatedList().contains(softwareRepositoryCreated)) {
+                userAccountBean.getSoftwareCreatedList().add(softwareRepositoryCreated);
+            }
+
+            if (!userAccountBean.getSoftwareLikedList().contains(softwareRepositoryLiked)) {
+                userAccountBean.getSoftwareLikedList().add(softwareRepositoryLiked);
+            }
+
+            if (!userAccountBean.getUserAccountFollowedList().contains(accountFollowed)) {
+                userAccountBean.getUserAccountFollowedList().add(accountFollowed);
+            }
+
+            if (!userAccountBean.getUserAccountFollowingList().contains(accountFollowing)) {
+                userAccountBean.getUserAccountFollowingList().add(accountFollowing);
+            }
+
+            counter++;
+
+            LOGGER.info("Result " + counter + ": " + userAccountBean);
+        }
+        qexec.close();
+        return userAccountBean;
     }
 }
