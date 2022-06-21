@@ -1,7 +1,18 @@
+<%@ page import="it.unisa.tsro.model.bean.SoftwareBean" %>
+<%@ page import="it.unisa.tsro.model.bean.TopicBean" %>
+
+<%
+    SoftwareBean software = (SoftwareBean) request.getAttribute("software");
+    if (software == null) {
+        response.sendRedirect("./index.jsp");
+        return;
+    }
+%>
+
 <jsp:include page="header.jsp">
-    <jsp:param name="pageTitle" value="Software - "/>
+    <jsp:param name="pageTitle"
+               value='<%= software.getSoftwareTitle() != null ? software.getSoftwareTitle().getString() : "" %>'/>
 </jsp:include>
-<%//TODO: Inserire il nome preso dalla request%>
 
 <body id="page-top">
 
@@ -21,9 +32,13 @@
                 <!-- Page Heading -->
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
                     <h1 class="h3 mb-0 text-gray-800">
-                        EasyAid <%//TODO: Inserire il nome del softwareBean preso dalla request%>,
-                        pubblicato su <a href="repository.jsp">GitHub
-                        URL<%//TODO: Inserire l'url della repository preso dalla request%></a></h1>
+                        <a href="software-servlet?softwareUrl=<%=software.getSoftwareUrl() != null ? software.getSoftwareUrl().getURI() : ""%>">
+                            <%=software.getSoftwareTitle() != null ? software.getSoftwareTitle().getString() : ""%>
+                        </a> pubblicato su <a
+                            href="repository-servlet?repositoryUrl=<%=software.getRepositoryUrl() != null ? software.getRepositoryUrl().getURI() : ""%>">
+                        <%=software.getRepositoryName() != null ? software.getRepositoryName().getString() : ""%>
+                    </a>
+                    </h1>
                 </div>
 
                 <!-- Author -->
@@ -34,10 +49,52 @@
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
                                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                            Autore
+                                            Autore:
                                         </div>
                                         <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                            <a href="agent.jsp">Nome autore</a> <%//TODO: inserire topic%>
+                                            <a href="agent-servlet?agentUrl=<%=software.getAuthorUrl() != null ? software.getAuthorUrl().getURI() : ""%>">
+                                                <%=software.getAuthorName() != null ? software.getAuthorName().getString() : ""%>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Numero di commit -->
+                <div class="row">
+                    <div class="col m-1 p-1">
+                        <div class="card border-left-secondary shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">
+                                            Numero di commit:
+                                        </div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                            <%=software.getNumeroDiCommit()%>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Numero di mi piace -->
+                <div class="row">
+                    <div class="col m-1 p-1">
+                        <div class="card border-left-secondary shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">
+                                            Numero di mi piace:
+                                        </div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                            <%=software.getMiPiace()%>
                                         </div>
                                     </div>
                                 </div>
@@ -54,10 +111,12 @@
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
                                         <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                            Licensa
+                                            Licensa:
                                         </div>
                                         <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                            <a href="">Licensa</a> <%//TODO: inserire topic%>
+                                            <a href="<%=software.getLicensa() != null ? software.getLicensa().getURI() : ""%>">
+                                                <%=software.getLicensa() != null ? software.getLicensa().getURI() : ""%>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -66,6 +125,10 @@
                     </div>
                 </div>
 
+                <%
+                    if (software.getTopicBeanList() != null) {
+                        for (TopicBean topic : software.getTopicBeanList()) {
+                %>
                 <!-- Topic -->
                 <div class="row">
                     <div class="col m-1 p-1">
@@ -74,10 +137,12 @@
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
                                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                            Topic
+                                            Topic:
                                         </div>
                                         <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                            <a href="topic.jsp">Nome topic</a> <%//TODO: inserire topic%>
+                                            <a href="topic-servlet?agentUrl=<%=topic.getTopicUrl() != null ? topic.getTopicUrl().getURI() : ""%>">
+                                                <%=topic.getTopicLabel() != null ? topic.getTopicLabel().getString() : ""%>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -85,26 +150,10 @@
                         </div>
                     </div>
                 </div>
-                <!-- Ulteriori informazioni da dbpedia -->
-                <div class="row">
-                    <div class="col m-1 p-1">
-                        <div class="card border-left-warning shadow h-100 py-2">
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                            Ulteriori informazioni
-                                        </div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                            Informazioni interessanti prese da DBPEDIA con una describe
-                                            <%//TODO: inserire ulteriori informazioni prese da DBPEDIA con una describe%>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <%
+                        }
+                    }
+                %>
             </div>
         </div>
 

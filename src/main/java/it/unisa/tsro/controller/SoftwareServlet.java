@@ -15,7 +15,33 @@ public class SoftwareServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String softwareUrl = request.getParameter("softwareUrl");
-        System.out.println(softwareUrl);
+
+        TsroDao tsroDao = new TsroDao();
+        List<SoftwareBean> softwareList = tsroDao.recuperaRepositoryPerLaTabellaInIndex(null, null);
+
+        for (SoftwareBean softwareBean : softwareList) {
+            softwareBean.setMiPiace(tsroDao.recuperaRepositoryMiPiace(softwareBean.getRepositoryUrl()));
+            softwareBean.setNumeroDiCommit(tsroDao.recuperaRepositoryMainBranchCommit(softwareBean.getRepositoryUrl()));
+            softwareBean.setTopicBeanList(tsroDao.recuperaSoftwareTopic(softwareBean.getSoftwareUrl(), null));
+        }
+
+        SoftwareBean software = null;
+
+        for (SoftwareBean softwareBean : softwareList) {
+            if (softwareBean.getSoftwareUrl() != null && !softwareBean.getSoftwareUrl().getURI().equals("") &&
+                    softwareUrl != null && !softwareUrl.equals("") &&
+                    softwareBean.getSoftwareUrl().getURI().equals(softwareUrl)) {
+                software = softwareBean;
+                break;
+            }
+        }
+
+        if (software != null) {
+            software.setLicensa(tsroDao.recuperaLicensa(softwareUrl));
+        }
+
+        request.setAttribute("software", software);
+
         request.getRequestDispatcher("./software.jsp").forward(request, response);
     }
 

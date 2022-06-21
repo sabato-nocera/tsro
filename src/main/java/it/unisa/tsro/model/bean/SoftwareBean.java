@@ -21,22 +21,10 @@ public class SoftwareBean implements Serializable {
     private int miPiace;
     private int numeroDiCommit;
     private List<TopicBean> topicBeanList;
+    private Resource licensa;
 
     public SoftwareBean() {
 
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof SoftwareBean)) return false;
-        SoftwareBean that = (SoftwareBean) o;
-        return getMiPiace() == that.getMiPiace() && getNumeroDiCommit() == that.getNumeroDiCommit() && Objects.equals(getSoftwareTitle(), that.getSoftwareTitle()) && Objects.equals(getSoftwareUrl(), that.getSoftwareUrl()) && Objects.equals(getAuthorName(), that.getAuthorName()) && Objects.equals(getAuthorUrl(), that.getAuthorUrl()) && Objects.equals(getRepositoryName(), that.getRepositoryName()) && Objects.equals(getRepositoryUrl(), that.getRepositoryUrl()) && Objects.equals(getTopicBeanList(), that.getTopicBeanList());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getSoftwareTitle(), getSoftwareUrl(), getAuthorName(), getAuthorUrl(), getRepositoryName(), getRepositoryUrl(), getMiPiace(), getNumeroDiCommit(), getTopicBeanList());
     }
 
     public Literal getSoftwareTitle() {
@@ -111,6 +99,27 @@ public class SoftwareBean implements Serializable {
         this.topicBeanList = topicBeanList;
     }
 
+    public Resource getLicensa() {
+        return licensa;
+    }
+
+    public void setLicensa(Resource licensa) {
+        this.licensa = licensa;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof SoftwareBean)) return false;
+        SoftwareBean that = (SoftwareBean) o;
+        return getMiPiace() == that.getMiPiace() && getNumeroDiCommit() == that.getNumeroDiCommit() && Objects.equals(getSoftwareTitle(), that.getSoftwareTitle()) && Objects.equals(getSoftwareUrl(), that.getSoftwareUrl()) && Objects.equals(getAuthorName(), that.getAuthorName()) && Objects.equals(getAuthorUrl(), that.getAuthorUrl()) && Objects.equals(getRepositoryName(), that.getRepositoryName()) && Objects.equals(getRepositoryUrl(), that.getRepositoryUrl()) && Objects.equals(getTopicBeanList(), that.getTopicBeanList()) && Objects.equals(getLicensa(), that.getLicensa());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getSoftwareTitle(), getSoftwareUrl(), getAuthorName(), getAuthorUrl(), getRepositoryName(), getRepositoryUrl(), getMiPiace(), getNumeroDiCommit(), getTopicBeanList(), getLicensa());
+    }
+
     @Override
     public String toString() {
         return "SoftwareBean{" +
@@ -123,6 +132,7 @@ public class SoftwareBean implements Serializable {
                 ", miPiace=" + miPiace +
                 ", numeroDiCommit=" + numeroDiCommit +
                 ", topicBeanList=" + topicBeanList +
+                ", licensa=" + licensa +
                 '}';
     }
 }

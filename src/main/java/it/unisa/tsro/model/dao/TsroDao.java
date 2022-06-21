@@ -385,4 +385,36 @@ public class TsroDao {
         qexec.close();
         return userAccountBean;
     }
+
+    public Resource recuperaLicensa(String softwareUrl) {
+        Resource licensa = null;
+
+        String szQuery = PREFIX + "SELECT DISTINCT ?licenseUrl\n" +
+                "WHERE {\n" +
+                "  <"+softwareUrl+"> irao:hasLicense ?licenseUrl\n" +
+                "}";
+
+        LOGGER.info(szQuery);
+
+        Query query = QueryFactory.create(szQuery);
+
+        QueryExecution qexec = QueryExecutionFactory.sparqlService(ENDPOINT, query);
+
+        ((QueryEngineHTTP) qexec).addParam("timeout", "10000");
+
+        int counter = 0;
+        ResultSet rs = qexec.execSelect();
+
+        while (rs.hasNext()) {
+            QuerySolution qs = rs.next();
+
+            licensa = qs.getResource("licenseUrl");
+
+            counter++;
+
+            LOGGER.info("Result " + counter + ": " + licensa);
+        }
+        qexec.close();
+        return licensa;
+    }
 }
