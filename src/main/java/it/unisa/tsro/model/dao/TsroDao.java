@@ -17,7 +17,8 @@ public class TsroDao {
     private static final String ENDPOINT =
             "http://localhost:8080/jena-fuseki-war-4.5.0/theSoftwareRepositoryOntology/query";
 
-    private static final String PREFIX = "PREFIX sd: <https://w3id.org/okn/o/sd#>\n" +
+    private static final String PREFIX = "PREFIX dcterms: <http://purl.org/dc/terms/>\n" +
+            "PREFIX sd: <https://w3id.org/okn/o/sd#>\n" +
             "PREFIX dc: <http://purl.org/dc/elements/1.1/>\n" +
             "PREFIX foaf: <http://xmlns.com/foaf/0.1/>\n" +
             "PREFIX fo: <http://purl.org/ontology/fo/>\n" +
@@ -535,7 +536,7 @@ public class TsroDao {
                 "  ?fileUrl a dbo:File.\n" +
                 "  ?fileUrl tsro:hasBeenModifiedIn ?commitUrl.\n" +
                 "  ?commitUrl tsro:isCommitOf ?branchUrl.\n" +
-                "  ?branchUrl tsro:isBranchOf <"+softwareRepositoryUrl+">.\n" +
+                "  ?branchUrl tsro:isBranchOf <" + softwareRepositoryUrl + ">.\n" +
                 "  ?branchUrl tsro:isMainBranch true.\n" +
                 "}";
 
@@ -554,5 +555,63 @@ public class TsroDao {
         qexec.close();
 
         return result;
+    }
+
+    public BranchBean recuperaBranch(String branchUrlString) {
+        BranchBean branchBean = new BranchBean();
+        branchBean.setCommitBeanList(new ArrayList<>());
+
+        String szQuery = PREFIX + "SELECT ?softwareRepositoryUrl ?softwareRepositoryTitle ?branchTitle ?isMainBranch ?commitUrl ?commitNumber ?commitDate\n" +
+                "WHERE {\n" +
+                "  <" + branchUrlString + "> tsro:isBranchOf ?softwareRepositoryUrl.\n" +
+                "  ?softwareRepositoryUrl dc:title ?softwareRepositoryTitle.\n" +
+                "  <" + branchUrlString + "> dc:title ?branchTitle.\n" +
+                "  <" + branchUrlString + "> tsro:isMainBranch ?isMainBranch.\n" +
+                "  OPTIONAL {\n" +
+                "    <" + branchUrlString + "> tsro:hasCommit ?commitUrl.\n" +
+                "    ?commitUrl tsro:commitNumber ?commitNumber.\n" +
+                "    ?commitUrl dcterms:created ?commitDate.\n" +
+                "  }\n" +
+                "}\n" +
+                "ORDER BY DESC(?commitNumber)";
+
+        LOGGER.info(szQuery);
+
+        Query query = QueryFactory.create(szQuery);
+
+        QueryExecution qexec = QueryExecutionFactory.sparqlService(ENDPOINT, query);
+
+        ((QueryEngineHTTP) qexec).addParam("timeout", "10000");
+
+        int counter = 0;
+        ResultSet rs = qexec.execSelect();
+
+        branchBean.setBranchUrlString(branchUrlString);
+        while (rs.hasNext()) {
+            QuerySolution qs = rs.next();
+
+            branchBean.setBranchTitle(qs.getLiteral("branchTitle"));
+            branchBean.setIsMainBranch(qs.getLiteral("isMainBranch"));
+
+            SoftwareRepositoryBean softwareRepositoryBean = new SoftwareRepositoryBean();
+            softwareRepositoryBean.setSoftwareRepositoryUrl(qs.getResource("softwareRepositoryUrl"));
+            softwareRepositoryBean.setSoftwareRepositoryTitle(qs.getLiteral("softwareRepositoryTitle"));
+            branchBean.setSoftwareRepositoryBean(softwareRepositoryBean);
+
+            CommitBean commitBean = new CommitBean();
+            commitBean.setCommitUrl(qs.getResource("commitUrl"));
+            commitBean.setCommitNumber(qs.getLiteral("commitNumber"));
+            commitBean.setCommitDate(qs.getLiteral("commitDate"));
+
+            if (!branchBean.getCommitBeanList().contains(commitBean)) {
+                branchBean.getCommitBeanList().add(commitBean);
+            }
+
+            counter++;
+
+            LOGGER.info("Result " + counter + ": " + branchBean);
+        }
+        qexec.close();
+        return branchBean;
     }
 }

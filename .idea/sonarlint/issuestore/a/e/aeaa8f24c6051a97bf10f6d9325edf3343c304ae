@@ -1,0 +1,17 @@
+
+—
+java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(÷äª’
+E
+java:S1948"/Make "softwareTitle" transient or serializable.(ÖÈ§ü
+H
+java:S1948"-Make "softwareUrl" transient or serializable.(Şş´”úÿÿÿÿ
+G
+java:S1948",Make "authorName" transient or serializable.(æİ½Åûÿÿÿÿ
+F
+java:S1948"+Make "authorUrl" transient or serializable.(Ş¯şÿÿÿÿ
+F
+java:S1948"0Make "repositoryName" transient or serializable.(¦ıĞØ
+J
+java:S1948"/Make "repositoryUrl" transient or serializable.(äßÈ¡üÿÿÿÿ
+F
+java:S1948")Make "licensa" transient or serializable.(³ƒ‘‘8›Á¯˜0

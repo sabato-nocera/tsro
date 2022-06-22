@@ -1,5 +1,4 @@
 <%@ page import="it.unisa.tsro.model.bean.SoftwareRepositoryBean" %>
-<%@ page import="it.unisa.tsro.model.bean.SoftwareBean" %>
 <%@ page import="it.unisa.tsro.model.bean.BranchBean" %>
 
 <%
@@ -151,7 +150,7 @@
                                             Ha branch:
                                         </div>
                                         <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                            <a href="repository-servlet?repositoryUrl=<%=branchBean.getBranchUrl() != null ? branchBean.getBranchUrl().getURI() : ""%>">
+                                            <a href="branch-servlet?branchUrl=<%=branchBean.getBranchUrl() != null ? branchBean.getBranchUrl().getURI() : ""%>">
                                                 <%=branchBean.getBranchTitle() != null ? branchBean.getBranchTitle().getString() : ""%>
                                             </a>
                                         </div>

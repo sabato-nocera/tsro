@@ -12,8 +12,6 @@ H
 :
 
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
-O
-src/main/webapp/WEB-INF/web.xml,2\e\2e22b6edd746fa3dc40ad7276c87c8d87d72a392
 J
 src/main/webapp/blank.html,8\d\8d78d4019cb6db7dd254f54b569a16059d9ec3f2
 T
@@ -24,10 +22,6 @@ J
 src/main/webapp/footer.jsp,3\8\3819c16e4a27752a128752c506287183b0c69775
 K
 src/main/webapp/sidebar.jsp,5\3\53638bd9d3568396c5cc3ff8673957416b0168ad
-J
-src/main/webapp/header.jsp,0\5\051b0ac501a865704d2b6b36f8cfabfa311becc2
-J
-src/main/webapp/branch.jsp,a\6\a686e9cda1cf06c6060e37972c5086d7699a5117
 J
 src/main/webapp/commit.jsp,b\0\b0aa0cee2529f35acff7f0e43ed20c3eb0d44f21
 <
@@ -46,3 +40,21 @@ _
 ontologies/tsro,3\e\3e67245f67b620c86f5850480ce41d321bdb705b
 h
 8src/main/java/it/unisa/tsro/controller/TopicServlet.java,3\8\38ccb95dcac08e8aa097c67136e9d36b6b3271b4
+h
+8src/main/java/it/unisa/tsro/controller/AgentServlet.java,3\b\3bfb4ad369d47491496d5a22dabdcbcdd55c1ac9
+h
+8src/main/java/it/unisa/tsro/controller/IndexServlet.java,0\a\0a4a064e040541f37c34cd3e036369a14592ad96
+j
+:src/main/java/it/unisa/tsro/controller/AccountServlet.java,6\3\631e5c5fdbc6478f9250ac6530344d96cd4e3d9e
+h
+8src/main/java/it/unisa/tsro/model/bean/SoftwareBean.java,a\e\aeaa8f24c6051a97bf10f6d9325edf3343c304ae
+e
+5src/main/java/it/unisa/tsro/model/bean/TopicBean.java,3\3\33894772bb890ddc33da177a764fdb1b57077801
+k
+;src/main/java/it/unisa/tsro/model/bean/UserAccountBean.java,f\f\ff65a40edcc44058a025c41833daf9296232e7ad
+k
+;src/main/java/it/unisa/tsro/controller/SoftwareServlet.java,6\5\657a195610dee98790e951328243990bbff4ebff
+e
+5src/main/java/it/unisa/tsro/model/bean/AgentBean.java,6\6\668d14ba90598cdf49cce51af95e2d2637254fe0
+r
+Bsrc/main/java/it/unisa/tsro/model/bean/SoftwareRepositoryBean.java,c\f\cfcb7ef29d139aa08eaa73aacfabe4ec4626e8cc
