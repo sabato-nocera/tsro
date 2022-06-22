@@ -33,9 +33,7 @@
                 <!-- Page Heading -->
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
                     <h1 class="h3 mb-0 text-gray-800">
-                        <a href="repository-servlet?repositoryUrl=<%=softwareRepository.getSoftwareRepositoryUrl() != null ? softwareRepository.getSoftwareRepositoryUrl().getURI() : ""%>">
-                            <%=softwareRepository.getSoftwareRepositoryTitle() != null ? softwareRepository.getSoftwareRepositoryTitle().getString() : ""%>
-                        </a> risulta essere repository software di
+                        <%=softwareRepository.getSoftwareRepositoryTitle() != null ? softwareRepository.getSoftwareRepositoryTitle().getString() : ""%> risulta essere repository software di
                         <a href="software-servlet?softwareUrl=<%=softwareRepository.getSoftwareBean()!=null && softwareRepository.getSoftwareBean().getSoftwareUrl() != null ? softwareRepository.getSoftwareBean().getSoftwareUrl().getURI() : ""%>">
                             <%=softwareRepository.getSoftwareBean() != null && softwareRepository.getSoftwareBean().getSoftwareTitle() != null ? softwareRepository.getSoftwareBean().getSoftwareTitle().getString() : "nulla..."%>
                         </a>
