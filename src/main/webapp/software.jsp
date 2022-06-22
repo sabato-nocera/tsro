@@ -140,7 +140,7 @@
                                             Topic:
                                         </div>
                                         <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                            <a href="topic-servlet?agentUrl=<%=topic.getTopicUrl() != null ? topic.getTopicUrl().getURI() : ""%>">
+                                            <a href="topic-servlet?topicUrl=<%=topic.getTopicUrl() != null ? topic.getTopicUrl().getURI() : ""%>">
                                                 <%=topic.getTopicLabel() != null ? topic.getTopicLabel().getString() : ""%>
                                             </a>
                                         </div>
