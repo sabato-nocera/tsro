@@ -10,12 +10,13 @@ import java.util.Objects;
 public class CommitBean implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private Resource commitUrl;
-    private String commitUrlString;
-    private Literal commitNumber;
-    private Literal commitDate;
+    private Resource commitUrl; //
+    private String commitUrlString; //
+    private Literal commitNumber; //
+    private Literal commitDate; //
     private UserAccountBean committer;
     private List<FileBean> fileBeanList;
+    private BranchBean branchBean; //
 
     public CommitBean() {
     }
@@ -68,17 +69,25 @@ public class CommitBean implements Serializable {
         this.fileBeanList = fileBeanList;
     }
 
+    public BranchBean getBranchBean() {
+        return branchBean;
+    }
+
+    public void setBranchBean(BranchBean branchBean) {
+        this.branchBean = branchBean;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof CommitBean)) return false;
         CommitBean that = (CommitBean) o;
-        return Objects.equals(getCommitUrl(), that.getCommitUrl()) && Objects.equals(getCommitUrlString(), that.getCommitUrlString()) && Objects.equals(getCommitNumber(), that.getCommitNumber()) && Objects.equals(getCommitDate(), that.getCommitDate()) && Objects.equals(getCommitter(), that.getCommitter()) && Objects.equals(getFileBeanList(), that.getFileBeanList());
+        return Objects.equals(getCommitUrl(), that.getCommitUrl()) && Objects.equals(getCommitUrlString(), that.getCommitUrlString()) && Objects.equals(getCommitNumber(), that.getCommitNumber()) && Objects.equals(getCommitDate(), that.getCommitDate()) && Objects.equals(getCommitter(), that.getCommitter()) && Objects.equals(getFileBeanList(), that.getFileBeanList()) && Objects.equals(getBranchBean(), that.getBranchBean());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getCommitUrl(), getCommitUrlString(), getCommitNumber(), getCommitDate(), getCommitter(), getFileBeanList());
+        return Objects.hash(getCommitUrl(), getCommitUrlString(), getCommitNumber(), getCommitDate(), getCommitter(), getFileBeanList(), getBranchBean());
     }
 
     @Override
@@ -90,6 +99,7 @@ public class CommitBean implements Serializable {
                 ", commitDate=" + commitDate +
                 ", committer=" + committer +
                 ", fileBeanList=" + fileBeanList +
+                ", branchBean=" + branchBean +
                 '}';
     }
 }

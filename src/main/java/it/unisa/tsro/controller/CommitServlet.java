@@ -1,5 +1,6 @@
 package it.unisa.tsro.controller;
 
+import it.unisa.tsro.model.bean.CommitBean;
 import it.unisa.tsro.model.dao.TsroDao;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -17,6 +18,9 @@ public class CommitServlet extends HttpServlet {
         String commitUrl = request.getParameter("commitUrl");
 
         TsroDao tsroDao = new TsroDao();
+        CommitBean commit = tsroDao.recuperaCommit(commitUrl);
+
+        request.setAttribute("commit", commit);
 
         request.getRequestDispatcher("./commit.jsp").forward(request, response);
     }

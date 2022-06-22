@@ -614,4 +614,68 @@ public class TsroDao {
         qexec.close();
         return branchBean;
     }
+
+    public CommitBean recuperaCommit(String commitUrlString) {
+        CommitBean commitBean = new CommitBean();
+        commitBean.setFileBeanList(new ArrayList<>());
+
+        String szQuery = PREFIX + "SELECT ?commitNumber ?commitCreationDate ?userAccountUrl ?userAccountName ?branchUrl ?branchTitle ?fileUrl ?fileTitle ?fileExtension ?fileProgrammingLanguage\n" +
+                "WHERE {\n" +
+                "  <" + commitUrlString + "> tsro:commitNumber ?commitNumber.\n" +
+                "  <" + commitUrlString + "> dcterms:created ?commitCreationDate.\n" +
+                "  <" + commitUrlString + "> ns:has_modifier ?userAccountUrl.\n" +
+                "  ?userAccountUrl sioc:name ?userAccountName.\n" +
+                "  <" + commitUrlString + "> tsro:isCommitOf ?branchUrl.\n" +
+                "  ?branchUrl dc:title ?branchTitle.\n" +
+                "  <" + commitUrlString + "> tsro:modifiedFile ?fileUrl.\n" +
+                "  ?fileUrl dc:title ?fileTitle.\n" +
+                "  ?fileUrl dbo:fileExtension ?fileExtension.\n" +
+                "  OPTIONAL{?fileUrl sd:programmingLanguage ?fileProgrammingLanguage.}\n" +
+                "}";
+
+        LOGGER.info(szQuery);
+
+        Query query = QueryFactory.create(szQuery);
+
+        QueryExecution qexec = QueryExecutionFactory.sparqlService(ENDPOINT, query);
+
+        ((QueryEngineHTTP) qexec).addParam("timeout", "10000");
+
+        int counter = 0;
+        ResultSet rs = qexec.execSelect();
+
+        commitBean.setCommitUrlString(commitUrlString);
+        while (rs.hasNext()) {
+            QuerySolution qs = rs.next();
+
+            commitBean.setCommitNumber(qs.getLiteral("commitNumber"));
+            commitBean.setCommitDate(qs.getLiteral("commitCreationDate"));
+
+            UserAccountBean userAccountBean = new UserAccountBean();
+            userAccountBean.setUserAccountUrl(qs.getResource("userAccountUrl"));
+            userAccountBean.setUserAccountName(qs.getLiteral("userAccountName"));
+            commitBean.setCommitter(userAccountBean);
+
+            BranchBean branchBean = new BranchBean();
+            branchBean.setBranchUrl(qs.getResource("branchUrl"));
+            branchBean.setBranchTitle(qs.getLiteral("branchTitle"));
+            commitBean.setBranchBean(branchBean);
+
+            FileBean fileBean = new FileBean();
+            fileBean.setFileUrl(qs.getResource("fileUrl"));
+            fileBean.setFileTitle(qs.getLiteral("fileTitle"));
+            fileBean.setExtension(qs.getLiteral("fileExtension"));
+            fileBean.setProgrammingLanguage(qs.getLiteral("fileProgrammingLanguage"));
+
+            if (!commitBean.getFileBeanList().contains(fileBean)) {
+                commitBean.getFileBeanList().add(fileBean);
+            }
+
+            counter++;
+
+            LOGGER.info("Result " + counter + ": " + commitBean);
+        }
+        qexec.close();
+        return commitBean;
+    }
 }
