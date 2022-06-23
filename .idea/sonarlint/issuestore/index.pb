@@ -52,8 +52,6 @@ J
 src/main/webapp/commit.jsp,b\0\b0aa0cee2529f35acff7f0e43ed20c3eb0d44f21
 K
 src/main/webapp/sidebar.jsp,5\3\53638bd9d3568396c5cc3ff8673957416b0168ad
-L
-src/main/webapp/software.jsp,7\0\70768c1bffb33f8437d06cb8f7566c6777dc1682
 h
 8src/main/java/it/unisa/tsro/controller/AgentServlet.java,3\b\3bfb4ad369d47491496d5a22dabdcbcdd55c1ac9
 i
@@ -62,8 +60,6 @@ h
 8src/main/java/it/unisa/tsro/controller/IndexServlet.java,0\a\0a4a064e040541f37c34cd3e036369a14592ad96
 m
 =src/main/java/it/unisa/tsro/controller/RepositoryServlet.java,3\8\38414435de3f94fc719e25bacb21f8aad5848550
-k
-;src/main/java/it/unisa/tsro/controller/SoftwareServlet.java,6\5\657a195610dee98790e951328243990bbff4ebff
 <
 build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
 N

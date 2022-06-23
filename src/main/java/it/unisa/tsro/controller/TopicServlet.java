@@ -11,8 +11,6 @@ import org.apache.jena.rdf.model.Statement;
 import org.apache.jena.rdf.model.StmtIterator;
 
 import java.io.*;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.List;
 
 @WebServlet(name = "topicServlet", value = "/topic-servlet")

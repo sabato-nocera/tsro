@@ -155,6 +155,45 @@
                     }
                 %>
             </div>
+
+            <div class="container-fluid">
+
+                <div class="card o-hidden border-0 shadow-lg my-5">
+                    <div class="card-body p-0">
+                        <!-- Nested Row within Card Body -->
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="p-5">
+                                    <div class="text-left">
+                                        <h1 class="h4 text-gray-900 mb-4">Inserisci un nuovo topic</h1>
+                                    </div>
+                                    <form class="user" action="software-servlet">
+                                        <input type="hidden" name="softwareUrl"
+                                        value='<%=software.getSoftwareUrl() != null ? software.getSoftwareUrl().getURI() : ""%>'/>
+
+                                        <div class="form-group row">
+                                            <div class="col-sm-12">
+                                                <label for="topicUrl">URL del topic</label>
+                                                <input type="text" class="form-control form-control-user"
+                                                       id="topicUrl" name="topicUrl"
+                                                       placeholder="URL del topic"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-6">
+                                                <input type="reset" class="btn btn-info btn-user btn-block"/>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <input type="submit" class="btn btn-primary btn-user btn-block"/>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>

@@ -714,6 +714,8 @@ public class TsroDao {
                 "  <" + softwareUrl + "> sioc:topic <" + topicUrlString + ">.  \n" +
                 "  }";
 
+        LOGGER.info(szQuery);
+
         UpdateRequest update = UpdateFactory.create(szQuery);
         UpdateProcessor processor = UpdateExecutionFactory.createRemote(update, UPDATE_ENDPOINT);
         processor.execute();

@@ -15,8 +15,12 @@ public class SoftwareServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String softwareUrl = request.getParameter("softwareUrl");
+        String topicUrl = request.getParameter("topicUrl");
 
         TsroDao tsroDao = new TsroDao();
+
+        tsroDao.insertTopic(softwareUrl, topicUrl);
+
         List<SoftwareBean> softwareList = tsroDao.recuperaRepositoryPerLaTabellaInIndex(null, null);
 
         for (SoftwareBean softwareBean : softwareList) {
