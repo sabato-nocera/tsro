@@ -2,10 +2,13 @@ package it.unisa.tsro.model.dao;
 
 import it.unisa.tsro.model.bean.*;
 import org.apache.jena.query.*;
-import org.apache.jena.rdf.model.Literal;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.sparql.engine.http.QueryEngineHTTP;
+import org.apache.jena.update.UpdateExecutionFactory;
+import org.apache.jena.update.UpdateFactory;
+import org.apache.jena.update.UpdateProcessor;
+import org.apache.jena.update.UpdateRequest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,8 +17,11 @@ import java.util.logging.Logger;
 public class TsroDao {
     private static final Logger LOGGER = Logger.getLogger(TsroDao.class.getName());
 
-    private static final String ENDPOINT =
+    private static final String QUERY_ENDPOINT =
             "http://localhost:8080/jena-fuseki-war-4.5.0/theSoftwareRepositoryOntology/query";
+
+    private static final String UPDATE_ENDPOINT =
+            "http://localhost:8080/jena-fuseki-war-4.5.0/theSoftwareRepositoryOntology/update";
 
     private static final String PREFIX = "PREFIX dcterms: <http://purl.org/dc/terms/>\n" +
             "PREFIX sd: <https://w3id.org/okn/o/sd#>\n" +
@@ -63,7 +69,7 @@ public class TsroDao {
 
         Query query = QueryFactory.create(szQuery);
 
-        QueryExecution qexec = QueryExecutionFactory.sparqlService(ENDPOINT, query);
+        QueryExecution qexec = QueryExecutionFactory.sparqlService(QUERY_ENDPOINT, query);
 
         ((QueryEngineHTTP) qexec).addParam("timeout", "10000");
 
@@ -104,7 +110,7 @@ public class TsroDao {
 
         Query query = QueryFactory.create(szQuery);
 
-        QueryExecution qexec = QueryExecutionFactory.sparqlService(ENDPOINT, query);
+        QueryExecution qexec = QueryExecutionFactory.sparqlService(QUERY_ENDPOINT, query);
 
         ((QueryEngineHTTP) qexec).addParam("timeout", "10000");
 
@@ -137,7 +143,7 @@ public class TsroDao {
 
         Query query = QueryFactory.create(szQuery);
 
-        QueryExecution qexec = QueryExecutionFactory.sparqlService(ENDPOINT, query);
+        QueryExecution qexec = QueryExecutionFactory.sparqlService(QUERY_ENDPOINT, query);
 
         ((QueryEngineHTTP) qexec).addParam("timeout", "10000");
 
@@ -174,7 +180,7 @@ public class TsroDao {
 
         Query query = QueryFactory.create(szQuery);
 
-        QueryExecution qexec = QueryExecutionFactory.sparqlService(ENDPOINT, query);
+        QueryExecution qexec = QueryExecutionFactory.sparqlService(QUERY_ENDPOINT, query);
 
         ((QueryEngineHTTP) qexec).addParam("timeout", "10000");
 
@@ -217,7 +223,7 @@ public class TsroDao {
 
         Query query = QueryFactory.create(szQuery);
 
-        QueryExecution qexec = QueryExecutionFactory.sparqlService(ENDPOINT, query);
+        QueryExecution qexec = QueryExecutionFactory.sparqlService(QUERY_ENDPOINT, query);
 
         ((QueryEngineHTTP) qexec).addParam("timeout", "10000");
 
@@ -271,7 +277,7 @@ public class TsroDao {
 
         Query query = QueryFactory.create(szQuery);
 
-        QueryExecution qexec = QueryExecutionFactory.sparqlService(ENDPOINT, query);
+        QueryExecution qexec = QueryExecutionFactory.sparqlService(QUERY_ENDPOINT, query);
 
         ((QueryEngineHTTP) qexec).addParam("timeout", "10000");
 
@@ -328,7 +334,7 @@ public class TsroDao {
 
         Query query = QueryFactory.create(szQuery);
 
-        QueryExecution qexec = QueryExecutionFactory.sparqlService(ENDPOINT, query);
+        QueryExecution qexec = QueryExecutionFactory.sparqlService(QUERY_ENDPOINT, query);
 
         ((QueryEngineHTTP) qexec).addParam("timeout", "10000");
 
@@ -401,7 +407,7 @@ public class TsroDao {
 
         Query query = QueryFactory.create(szQuery);
 
-        QueryExecution qexec = QueryExecutionFactory.sparqlService(ENDPOINT, query);
+        QueryExecution qexec = QueryExecutionFactory.sparqlService(QUERY_ENDPOINT, query);
 
         ((QueryEngineHTTP) qexec).addParam("timeout", "10000");
 
@@ -458,7 +464,7 @@ public class TsroDao {
 
         Query query = QueryFactory.create(szQuery);
 
-        QueryExecution qexec = QueryExecutionFactory.sparqlService(ENDPOINT, query);
+        QueryExecution qexec = QueryExecutionFactory.sparqlService(QUERY_ENDPOINT, query);
 
         ((QueryEngineHTTP) qexec).addParam("timeout", "10000");
 
@@ -517,7 +523,7 @@ public class TsroDao {
 
         Query query = QueryFactory.create(szQuery);
 
-        QueryExecution qexec = QueryExecutionFactory.sparqlService(ENDPOINT, query);
+        QueryExecution qexec = QueryExecutionFactory.sparqlService(QUERY_ENDPOINT, query);
 
         ((QueryEngineHTTP) qexec).addParam("timeout", "10000");
 
@@ -545,7 +551,7 @@ public class TsroDao {
 
         Query query = QueryFactory.create(szQuery);
 
-        QueryExecution qexec = QueryExecutionFactory.sparqlService(ENDPOINT, query);
+        QueryExecution qexec = QueryExecutionFactory.sparqlService(QUERY_ENDPOINT, query);
 
         ((QueryEngineHTTP) qexec).addParam("timeout", "10000");
 
@@ -580,7 +586,7 @@ public class TsroDao {
 
         Query query = QueryFactory.create(szQuery);
 
-        QueryExecution qexec = QueryExecutionFactory.sparqlService(ENDPOINT, query);
+        QueryExecution qexec = QueryExecutionFactory.sparqlService(QUERY_ENDPOINT, query);
 
         ((QueryEngineHTTP) qexec).addParam("timeout", "10000");
 
@@ -638,7 +644,7 @@ public class TsroDao {
 
         Query query = QueryFactory.create(szQuery);
 
-        QueryExecution qexec = QueryExecutionFactory.sparqlService(ENDPOINT, query);
+        QueryExecution qexec = QueryExecutionFactory.sparqlService(QUERY_ENDPOINT, query);
 
         ((QueryEngineHTTP) qexec).addParam("timeout", "10000");
 
@@ -681,8 +687,8 @@ public class TsroDao {
     }
 
     public Model describeTopic(String topicUrlString) {
-        String szQuery = PREFIX + "DESCRIBE <"+topicUrlString+">\n" +
-                "WHERE { <"+topicUrlString+"> dbo:wikiPageWikiLink ?o\n" +
+        String szQuery = PREFIX + "DESCRIBE <" + topicUrlString + ">\n" +
+                "WHERE { <" + topicUrlString + "> dbo:wikiPageWikiLink ?o\n" +
                 "FILTER ( LANG ( ?o) = 'en' ) }";
 
         LOGGER.info(szQuery);
@@ -700,5 +706,16 @@ public class TsroDao {
         qexec.close();
 
         return result;
+    }
+
+    public void insertTopic(String softwareUrl, String topicUrlString) {
+        String szQuery = PREFIX + "INSERT DATA\n" +
+                "  { \n" +
+                "  <" + softwareUrl + "> sioc:topic <" + topicUrlString + ">.  \n" +
+                "  }";
+
+        UpdateRequest update = UpdateFactory.create(szQuery);
+        UpdateProcessor processor = UpdateExecutionFactory.createRemote(update, UPDATE_ENDPOINT);
+        processor.execute();
     }
 }

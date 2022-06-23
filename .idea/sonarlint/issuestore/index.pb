@@ -54,3 +54,31 @@ K
 src/main/webapp/sidebar.jsp,5\3\53638bd9d3568396c5cc3ff8673957416b0168ad
 L
 src/main/webapp/software.jsp,7\0\70768c1bffb33f8437d06cb8f7566c6777dc1682
+h
+8src/main/java/it/unisa/tsro/controller/AgentServlet.java,3\b\3bfb4ad369d47491496d5a22dabdcbcdd55c1ac9
+i
+9src/main/java/it/unisa/tsro/controller/CommitServlet.java,d\b\db0e2e5a97d70107a78ae402e2cb70476fad84d2
+h
+8src/main/java/it/unisa/tsro/controller/IndexServlet.java,0\a\0a4a064e040541f37c34cd3e036369a14592ad96
+m
+=src/main/java/it/unisa/tsro/controller/RepositoryServlet.java,3\8\38414435de3f94fc719e25bacb21f8aad5848550
+k
+;src/main/java/it/unisa/tsro/controller/SoftwareServlet.java,6\5\657a195610dee98790e951328243990bbff4ebff
+<
+build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
+N
+src/main/webapp/repository.jsp,e\3\e34cb09f09bf86e29787cad693718ad497deab1c
+j
+:src/main/java/it/unisa/tsro/controller/AccountServlet.java,6\3\631e5c5fdbc6478f9250ac6530344d96cd4e3d9e
+K
+src/main/webapp/account.jsp,e\5\e5c04f67b0a4bbcc3e439174260db42579e802cc
+k
+;src/main/java/it/unisa/tsro/model/bean/UserAccountBean.java,f\f\ff65a40edcc44058a025c41833daf9296232e7ad
+r
+Bsrc/main/java/it/unisa/tsro/model/bean/SoftwareRepositoryBean.java,c\f\cfcb7ef29d139aa08eaa73aacfabe4ec4626e8cc
+e
+5src/main/java/it/unisa/tsro/model/bean/TopicBean.java,3\3\33894772bb890ddc33da177a764fdb1b57077801
+\
+,presentation/assets/DeploymentDiagram.drawio,6\3\632e429247d32f41ed08ab514bc70e4a6bb31be4
+b
+2ontologies/The Software Repository Ontology.drawio,4\7\47579c9499a7329769823733f83e8ea2ed9d5836
