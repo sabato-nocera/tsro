@@ -531,8 +531,9 @@ public class TsroDao {
     }
 
     public Model costruisciFileInUltimoCommit(String softwareRepositoryUrl) {
-        String szQuery = PREFIX + "CONSTRUCT {?fileUrl dc:title dbo:File.}\n" +
+        String szQuery = PREFIX + "CONSTRUCT {?fileUrl dc:title ?fileName.}\n" +
                 "WHERE {\n" +
+                "  ?fileUrl dc:title ?fileName.\n" +
                 "  ?fileUrl a dbo:File.\n" +
                 "  ?fileUrl tsro:hasBeenModifiedIn ?commitUrl.\n" +
                 "  ?commitUrl tsro:isCommitOf ?branchUrl.\n" +
@@ -677,5 +678,27 @@ public class TsroDao {
         }
         qexec.close();
         return commitBean;
+    }
+
+    public Model describeTopic(String topicUrlString) {
+        String szQuery = PREFIX + "DESCRIBE <"+topicUrlString+">\n" +
+                "WHERE { <"+topicUrlString+"> dbo:wikiPageWikiLink ?o\n" +
+                "FILTER ( LANG ( ?o) = 'en' ) }";
+
+        LOGGER.info(szQuery);
+
+        Query query = QueryFactory.create(szQuery);
+
+        QueryExecution qexec = QueryExecutionFactory.sparqlService("https://dbpedia.org/sparql", query);
+
+        ((QueryEngineHTTP) qexec).addParam("timeout", "10000");
+
+        Model result = qexec.execConstruct();
+
+        LOGGER.info("Result : " + result.toString());
+
+        qexec.close();
+
+        return result;
     }
 }

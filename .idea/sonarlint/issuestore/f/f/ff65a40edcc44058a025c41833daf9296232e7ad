@@ -1,15 +1,0 @@
-
-K
-java:S1948"0Make "userAccountUrl" transient or serializable.(ò×óúıÿÿÿÿ
-G
-java:S1948"1Make "userAccountName" transient or serializable.(ä·›á
-E
-java:S1948"*Make "agentBeanList" private or transient.(©Àüÿÿÿÿ
-M
-java:S1948"0Make "softwareCreatedList" private or transient.(˜Ùé’8ö›®˜0
-P
-java:S1948".Make "softwareLikedList" private or transient.(ôŞÀùÿÿÿÿ8ö›®˜0
-P
-java:S1948"4Make "userAccountFollowedList" private or transient.(ÿ‚‘C8©¡ó¬˜0
-W
-java:S1948"5Make "userAccountFollowingList" private or transient.(ãèàâıÿÿÿÿ8Ğ½ó¬˜0

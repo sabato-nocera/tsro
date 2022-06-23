@@ -1,14 +1,19 @@
 package it.unisa.tsro.controller;
 
+import it.unisa.tsro.model.dao.TsroDao;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.apache.jena.rdf.model.Model;
+import org.apache.jena.rdf.model.Statement;
+import org.apache.jena.rdf.model.StmtIterator;
 
 import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.List;
 
 @WebServlet(name = "topicServlet", value = "/topic-servlet")
 public class TopicServlet extends HttpServlet {
@@ -16,24 +21,16 @@ public class TopicServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String topicUrl = request.getParameter("topicUrl");
-        String targetURL = "https://dbpedia.org/sparql";
-        String urlParameters = "query=DESCRIBE+<" + topicUrl + ">";
-        String httpGetRequestURL = targetURL + "?" + urlParameters;
 
-        URL url = new URL(httpGetRequestURL);
-        URLConnection urlConnection = url.openConnection();
+        TsroDao tsroDao = new TsroDao();
+        Model model = tsroDao.describeTopic(topicUrl);
 
-        BufferedReader in = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+        StmtIterator stmtIterator = model.listStatements();
+        List<Statement> statementList = stmtIterator.toList();
 
-        StringBuilder string = new StringBuilder();
-        String inputLine;
+        request.setAttribute("statementList", statementList);
 
-        while ((inputLine = in.readLine()) != null)
-            string.append(inputLine).append("\n");
-        in.close();
-
-        response.setContentType("text/html");
-        response.getWriter().write(String.valueOf(string));
+        request.getRequestDispatcher("./topic.jsp").forward(request, response);
     }
 
     @Override
