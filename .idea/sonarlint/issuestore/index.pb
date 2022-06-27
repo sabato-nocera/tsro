@@ -86,13 +86,5 @@ g
 7src/main/java/it/unisa/tsro/controller/FileServlet.java,1\5\1515af22f1a5ef9e24d15e1ec5cbd95c6dda299b
 I
 src/main/webapp/index.jsp,8\e\8e6d3b70c9f5b02570779b0441540d45eceb0ded
-S
-#.idea/sonarlint/issuestore/index.pb,9\f\9fe84ebb15faf917b7def6236dba604453cc61e0
-L
-src/main/webapp/software.jsp,7\0\70768c1bffb33f8437d06cb8f7566c6777dc1682
-k
-;src/main/java/it/unisa/tsro/controller/SoftwareServlet.java,6\5\657a195610dee98790e951328243990bbff4ebff
 h
 8src/main/java/it/unisa/tsro/controller/TopicServlet.java,3\8\38ccb95dcac08e8aa097c67136e9d36b6b3271b4
-b
-2src/main/java/it/unisa/tsro/model/dao/TsroDao.java,7\8\7875a792290b5c12f8df6cc86126f48b06c43c82

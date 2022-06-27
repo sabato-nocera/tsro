@@ -687,7 +687,7 @@ public class TsroDao {
     }
 
     public Model describeTopic(String topicUrlString) {
-        String szQuery = PREFIX + "DESCRIBE <" + topicUrlString + ">\n" +
+        String szQuery = PREFIX + "DESCRIBE *\n" +
                 "WHERE { <" + topicUrlString + "> dbo:wikiPageWikiLink ?o\n" +
                 "FILTER ( LANG ( ?o) = 'en' ) }";
 
